@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
 
+    header {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-right: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .profile-container {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Mi Página Web</h1>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca-de">Acerca de</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#cv">CV</a></li> <!-- Nueva sección para el CV -->
+        <li><a href="#">Repositorios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="profile-container">
+      <h2>Hi 👋, I'm Rodrigo47363</h2>
+
+      <!-- Sección de estadísticas y enlaces sociales -->
+      <p>
+        <!-- Imagen de vistas de perfil -->
+        <img src="https://komarev.com/ghpvc/?username=rodrigo47363&label=Profile%20views&color=0e75b6&style=flat" alt="Profile Views Counter" title="Profile Views" />
+
+
+      <!-- Sección de lenguajes y herramientas -->
+      <h3>Languages and Tools:</h3>
+      <p>
+        <!-- Imágenes de lenguajes y herramientas -->
+        <a href="https://www.gnu.org/software/bash/" target="_blank">
+          <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40" title="Bash" />
+        </a>
+        <a href="https://www.linux.org/" target="_blank">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40" title="Linux" />
+        </a>
+        <!-- Agrega más herramientas y lenguajes aquí -->
+      </p>
+
+      <!-- Sección de estadísticas de GitHub -->
+      <p>
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rodrigo47363&layout=compact&theme=dark" alt="Top Languages" title="Top Languages" />
+      </p>
+
+      <p>
+        <img src="https://github-readme-stats.vercel.app/api?username=rodrigo47363&show_icons=true&count_private=true&hide=stars&theme=dark" alt="GitHub Stats" title="GitHub Stats" />
+      </p>
+
+      <p>
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=rodrigo47363&theme=dark" alt="GitHub Streak" title="GitHub Streak" />
+      </p>
+
+    
+     
+
+    </div>
+
+    <!-- Sección de bienvenida y repositorios de GitHub -->
+    <h2>Bienvenidos a mi página web</h2>
+    <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
+    <h3>Mis repositorios de GitHub</h3>
+    <ul id="repos-list"></ul>
+  </main>
+
+  <footer>
+    <p>Derechos reservados © 2024 rodrigo47363.github.io</p>
+  </footer>
+
+  <!-- Script para obtener y mostrar repositorios de GitHub -->
+  <script>
+    const apiUrl = "https://api.github.com/users/rodrigo47363/repos";
+
+    // Hacer la solicitud a la API de GitHub
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const reposList = document.getElementById("repos-list");
+
+        // Recorrer los repositorios y agregarlos a la lista
+        data.forEach(repo => {
+          const listItem = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = repo.html_url;
+          link.textContent = repo.name;
+          link.target = "_blank";
+          listItem.appendChild(link);
+          reposList.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
