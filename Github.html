@@ -7,15 +7,17 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
+      background-color: #f0f0f0; /* Color de fondo suave */
+      color: #333; /* Color de texto principal */
       margin: 0;
       padding: 0;
     }
 
     header {
       background-color: #333;
+      color: #fff;
       padding: 10px;
+      text-align: center;
     }
 
     nav {
@@ -47,6 +49,38 @@
 
     .profile-container {
       text-align: center;
+      padding: 20px;
+    }
+
+    .profile-container img {
+      border-radius: 50%; /* Para hacer la imagen redonda */
+      margin-bottom: 20px;
+    }
+
+    .languages-tools {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .languages-tools a {
+      margin: 0 10px;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
   </style>
 </head>
@@ -58,7 +92,7 @@
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#acerca-de">Acerca de</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li><a href="#cv">CV</a></li> <!-- Nueva sección para el CV -->
+        <li><a href="#cv">CV</a></li>
         <li><a href="#">Repositorios</a></li>
       </ul>
     </nav>
@@ -66,26 +100,24 @@
 
   <main>
     <div class="profile-container">
-      <h2>Hi 👋, I'm Rodrigo47363</h2>
+      <h2>¡Hola! Soy Rodrigo47363</h2>
 
       <!-- Sección de estadísticas y enlaces sociales -->
       <p>
         <!-- Imagen de vistas de perfil -->
         <img src="https://komarev.com/ghpvc/?username=rodrigo47363&label=Profile%20views&color=0e75b6&style=flat" alt="Profile Views Counter" title="Profile Views" />
-
+      </p>
 
       <!-- Sección de lenguajes y herramientas -->
-      <h3>Languages and Tools:</h3>
-      <p>
-        <!-- Imágenes de lenguajes y herramientas -->
+      <div class="languages-tools">
         <a href="https://www.gnu.org/software/bash/" target="_blank">
           <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40" title="Bash" />
         </a>
         <a href="https://www.linux.org/" target="_blank">
           <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40" title="Linux" />
         </a>
-        <!-- Agrega más herramientas y lenguajes aquí -->
-      </p>
+        <!-- Puedes agregar más herramientas y lenguajes aquí -->
+      </div>
 
       <!-- Sección de estadísticas de GitHub -->
       <p>
@@ -99,10 +131,6 @@
       <p>
         <img src="https://github-readme-streak-stats.herokuapp.com/?user=rodrigo47363&theme=dark" alt="GitHub Streak" title="GitHub Streak" />
       </p>
-
-    
-     
-
     </div>
 
     <!-- Sección de bienvenida y repositorios de GitHub -->
