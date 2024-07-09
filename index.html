@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Portafolio</title>
+  <style>
+    /* Estilos globales */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
 
+    /* Estilos del encabezado */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    header ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    header ul li {
+      margin-right: 15px;
+    }
+
+    header ul li:last-child {
+      margin-right: 0;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    header a:hover {
+      color: #ddd;
+    }
+
+    /* Estilos del contenido principal */
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .profile-container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-container img {
+      border-radius: 50%;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .languages-tools {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .languages-tools a {
+      margin: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .languages-tools a:hover {
+      transform: scale(1.1);
+    }
+
+    .repos-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .repos-list li {
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 600px) {
+      header nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header ul {
+        margin-top: 10px;
+      }
+
+      .profile-container img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Mi Portafolio</h1>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca-de">Acerca de</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#repositorios">Repositorios</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="profile-container">
+      <img src="https://avatars.githubusercontent.com/u/rodrigo47363" alt="Foto de perfil" width="150" height="150">
+      <h2>¡Hola! Soy Rodrigo47363</h2>
+
+      <!-- Sección de lenguajes y herramientas -->
+      <div class="languages-tools">
+        <a href="https://www.gnu.org/software/bash/" target="_blank">
+          <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40" title="Bash">
+        </a>
+        <a href="https://www.linux.org/" target="_blank">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40" title="Linux">
+        </a>
+        <!-- Agrega más herramientas y lenguajes aquí -->
+      </div>
+    </div>
+
+    <!-- Sección de bienvenida y repositorios de GitHub -->
+    <section>
+      <h2>Bienvenidos a mi página web</h2>
+      <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
+      <h3>Mis repositorios de GitHub</h3>
+      <ul class="repos-list" id="repos-list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Derechos reservados © 2024 rodrigo47363.github.io</p>
+  </footer>
+
+  <!-- Script para obtener y mostrar repositorios de GitHub -->
+  <script>
+    const apiUrl = "https://api.github.com/users/rodrigo47363/repos";
+
+    // Hacer la solicitud a la API de GitHub
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const reposList = document.getElementById("repos-list");
+
+        // Recorrer los repositorios y agregarlos a la lista
+        data.forEach(repo => {
+          const listItem = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = repo.html_url;
+          link.textContent = repo.name;
+          link.target = "_blank";
+          listItem.appendChild(link);
+          reposList.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error('Error al cargar los repositorios:', error));
+  </script>
+</body>
+</html>
