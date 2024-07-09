@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio Profesional</title>
+  <title>Mi Página Web</title>
   <style>
     /* Estilos globales */
     body {
@@ -106,18 +106,6 @@
       margin-bottom: 10px;
     }
 
-    .projects-section {
-      margin-top: 40px;
-    }
-
-    .project {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
     .footer {
       background-color: #333;
       color: #fff;
@@ -149,13 +137,13 @@
 <body>
   <header>
     <nav>
-      <h1>Mi Portafolio Profesional</h1>
+      <h1>Mi Página Web</h1>
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#acerca-de">Acerca de</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li><a href="#repositorios">Repositorios</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#">Repositorios</a></li>
       </ul>
     </nav>
   </header>
@@ -164,9 +152,14 @@
     <div class="profile-container">
       <img src="https://avatars.githubusercontent.com/u/rodrigo47363" alt="Foto de perfil" width="150" height="150">
       <h2>¡Hola! Soy Rodrigo47363</h2>
+
+      <!-- Sección de estadísticas y enlaces sociales -->
       <p>
+        <!-- Imagen de vistas de perfil -->
         <img src="https://komarev.com/ghpvc/?username=rodrigo47363&label=Profile%20views&color=0e75b6&style=flat" alt="Profile Views Counter" title="Profile Views">
       </p>
+
+      <!-- Sección de lenguajes y herramientas -->
       <div class="languages-tools">
         <a href="https://www.gnu.org/software/bash/" target="_blank">
           <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40" title="Bash">
@@ -174,34 +167,27 @@
         <a href="https://www.linux.org/" target="_blank">
           <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40" title="Linux">
         </a>
+        <!-- Agrega más herramientas y lenguajes aquí -->
       </div>
+
+      <!-- Sección de estadísticas de GitHub -->
       <div>
         <h3>Estadísticas de GitHub</h3>
         <p>
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rodrigo47363&layout=compact&theme=dark" alt="Top Languages" title="Top Languages">
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rodrigo47363&layout=compact&theme=dark" alt="Top Languages" title="Top Languages" style="max-width: 100%; height: auto;">
         </p>
+
         <p>
-          <img src="https://github-readme-stats.vercel.app/api?username=rodrigo47363&show_icons=true&count_private=true&hide=stars&theme=dark" alt="GitHub Stats" title="GitHub Stats">
+          <img src="https://github-readme-stats.vercel.app/api?username=rodrigo47363&show_icons=true&count_private=true&hide=stars&theme=dark" alt="GitHub Stats" title="GitHub Stats" style="max-width: 100%; height: auto;">
         </p>
+
         <p>
-          <img src="https://github-readme-streak-stats.herokuapp.com/?user=rodrigo47363&theme=dark" alt="GitHub Streak" title="GitHub Streak">
+          <img src="https://github-readme-streak-stats.herokuapp.com/?user=rodrigo47363&theme=dark" alt="GitHub Streak" title="GitHub Streak" style="max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
 
-    <section class="projects-section">
-      <h2>Proyectos Destacados</h2>
-      <div class="project">
-        <h3>Proyecto 1</h3>
-        <p>Descripción del Proyecto 1. Incluye detalles sobre las tecnologías utilizadas, los desafíos enfrentados y los resultados obtenidos.</p>
-      </div>
-      <div class="project">
-        <h3>Proyecto 2</h3>
-        <p>Descripción del Proyecto 2. Incluye detalles sobre las tecnologías utilizadas, los desafíos enfrentados y los resultados obtenidos.</p>
-      </div>
-      <!-- Añade más proyectos destacados aquí -->
-    </section>
-
+    <!-- Sección de bienvenida y repositorios de GitHub -->
     <section>
       <h2>Bienvenidos a mi página web</h2>
       <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
@@ -218,11 +204,13 @@
   <script>
     const apiUrl = "https://api.github.com/users/rodrigo47363/repos";
 
+    // Hacer la solicitud a la API de GitHub
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         const reposList = document.getElementById("repos-list");
 
+        // Recorrer los repositorios y agregarlos a la lista
         data.forEach(repo => {
           const listItem = document.createElement("li");
           const link = document.createElement("a");
