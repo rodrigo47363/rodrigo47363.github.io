@@ -13,6 +13,9 @@
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     /* Estilos del encabezado */
@@ -62,6 +65,7 @@
 
     /* Estilos del contenido principal */
     main {
+      flex: 1;
       max-width: 800px;
       margin: 20px auto;
       padding: 0 20px;
@@ -111,9 +115,20 @@
       color: #fff;
       text-align: center;
       padding: 10px;
-      position: fixed;
+      position: absolute;
       bottom: 0;
       width: 100%;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-media a {
+      margin: 0 10px;
     }
 
     /* Estilos responsivos */
@@ -130,6 +145,11 @@
       .profile-container img {
         width: 120px;
         height: 120px;
+      }
+
+      .social-media img {
+        max-width: 30px;
+        max-height: 30px;
       }
     }
   </style>
@@ -171,6 +191,25 @@
       <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
       <h3>Mis repositorios de GitHub</h3>
       <ul class="repos-list" id="repos-list"></ul>
+      
+      <!-- Sección de redes sociales -->
+      <div class="social-media">
+        <a href="https://youtube.com/@Rodrigo-47363?sub_confirmation=1" target="_blank">
+          <img src="https://img.shields.io/youtube/channel/subscribers/UCxPD7bsocoAMq8Dj18kmGyQ?style=social" alt="YouTube Channel Subscribers">
+        </a>
+        <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank">
+          <img src="https://img.shields.io/badge/LinkedIn-Rodrigo%20V-blue?style=social" alt="LinkedIn">
+        </a>
+        <a href="https://github.com/rodrigo47363" target="_blank">
+          <img src="https://img.shields.io/github/followers/rodrigo47363?style=social" alt="GitHub Followers">
+        </a>
+        <a href="https://github.com/rodrigo47363" target="_blank">
+          <img src="https://img.shields.io/github/stars/rodrigo47363?style=social" alt="GitHub Stars">
+        </a>
+        <a href="https://rodrigo47363.github.io" target="_blank">
+          <img src="https://img.shields.io/badge/Website-rodrigo47363.github.io-blue?style=social" alt="Website">
+        </a>
+      </div>
     </section>
   </main>
 
