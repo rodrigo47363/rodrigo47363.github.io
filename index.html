@@ -1,264 +1,342 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio</title>
-  <style>
-    /* Estilos globales */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f0f0;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <style>
+        /* Estilos globales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #181818; /* Modo oscuro predeterminado */
+            color: #e0e0e0; /* Modo oscuro predeterminado */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-    /* Estilos del encabezado */
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 0;
-      text-align: center;
-    }
+        body.light-mode {
+            background-color: #f5f5f5; /* Modo claro */
+            color: #333; /* Modo claro */
+        }
 
-    header nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-    }
+        /* Estilos del encabezado */
+        header {
+            background-color: #222; /* Modo oscuro predeterminado */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5em;
-    }
+        header.light-mode {
+            background-color: #ddd; /* Modo claro */
+        }
 
-    header ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
 
-    header ul li {
-      margin-right: 15px;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
 
-    header ul li:last-child {
-      margin-right: 0;
-    }
+        header ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-    header a {
-      text-decoration: none;
-      color: #fff;
-      transition: color 0.3s ease;
-    }
+        header ul li {
+            margin-right: 15px;
+        }
 
-    header a:hover {
-      color: #ddd;
-    }
+        header ul li:last-child {
+            margin-right: 0;
+        }
 
-    /* Estilos del contenido principal */
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
+        header a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
 
-    .profile-container {
-      text-align: center;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        header a:hover {
+            color: #ddd;
+        }
 
-    .profile-container img {
-      border-radius: 50%;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        /* Estilos del contenido principal */
+        main {
+            flex: 1;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
 
-    .languages-tools {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+        .profile-container {
+            text-align: center;
+            background-color: #333; /* Modo oscuro predeterminado */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    .languages-tools a {
-      margin: 5px;
-      transition: transform 0.3s ease;
-    }
+        .profile-container.light-mode {
+            background-color: #f5f5f5; /* Modo claro */
+            color: #333; /* Modo claro */
+        }
 
-    .languages-tools a:hover {
-      transform: scale(1.1);
-    }
+        .profile-container img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .repos-list {
-      list-style-type: none;
-      padding: 0;
-    }
+        .languages-tools {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
 
-    .repos-list li {
-      margin-bottom: 10px;
-    }
+        .languages-tools a {
+            margin: 5px;
+            transition: transform 0.3s ease;
+        }
 
-    .footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      position: relative;
-      width: 100%;
-    }
+        .languages-tools a:hover {
+            transform: scale(1.1);
+        }
 
-    .social-media {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
+        .repos-list {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .social-media a {
-      margin: 0 10px;
-    }
+        .repos-list li {
+            margin-bottom: 10px;
+        }
 
-    /* Estilos para modo oscuro */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #181818;
-        color: #e0e0e0;
-      }
+        .footer {
+            background-color: #222; /* Modo oscuro predeterminado */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }
 
-      header {
-        background-color: #222;
-      }
+        .footer.light-mode {
+            background-color: #ddd; /* Modo claro */
+            color: #333; /* Modo claro */
+        }
 
-      .profile-container {
-        background-color: #333;
-      }
+        /* Estilos para el interruptor de modo oscuro */
+        .toggle-switch {
+            z-index: 1;
+            /* Asegúrate de que el botón no cubra el contenido */
+            width: 70px;
+            height: 35px;
+        }
 
-      .footer {
-        background-color: #222;
-      }
-    }
+        .switch-label {
+            display: flex;
+            align-items: center;
+            background-color: #28292c;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid #28292c;
+            padding: 0 5px;
+        }
 
-    /* Estilos responsivos */
-    @media (max-width: 600px) {
-      header nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        .checkbox {
+            display: none;
+        }
 
-      header ul {
-        margin-top: 10px;
-      }
+        .slider {
+            position: relative;
+            width: 70px;
+            height: 35px;
+            border-radius: 20px;
+            background-color: #28292c;
+            transition: background-color 0.3s;
+        }
 
-      .profile-container img {
-        width: 120px;
-        height: 120px;
-      }
+        .checkbox:checked~.slider {
+            background-color: transparent;
+        }
 
-      .social-media img {
-        max-width: 30px;
-        max-height: 30px;
-      }
-    }
-  </style>
+        .slider::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #dedede;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .checkbox:checked~.slider::before {
+            transform: translateX(27px);
+            position: absolute;
+            background-color: #181818;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 600px) {
+            header nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header ul {
+                margin-top: 10px;
+            }
+
+            .profile-container img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .social-media img {
+                max-width: 30px;
+                max-height: 30px;
+            }
+
+            .toggle-switch {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <nav>
-      <h1>Mi Portafolio</h1>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#acerca-de">Acerca de</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="#cv">CV</a></li>
-        <li><a href="#repositorios">Repositorios</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca-de">Acerca de</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#repositorios">Repositorios</a></li>
+                <div class="toggle-switch">
+                    <label class="switch-label">
+                        <input type="checkbox" class="checkbox" id="theme-switch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <div class="profile-container">
-      <img src="https://avatars.githubusercontent.com/u/157255595?s=400&u=893289db55bcdc9a73944ac6650ecde3bbb7698d&v=4" alt="Foto de perfil de Rodrigo" width="150" height="150">
-      <h2>¡Hola! Soy Rodrigo47363</h2>
+    <main>
+        <div class="profile-container">
+            <img src="https://avatars.githubusercontent.com/u/157255595?s=400&u=893289db55bcdc9a73944ac6650ecde3bbb7698d&v=4" alt="Foto de perfil de Rodrigo" width="150" height="150">
+            <h2>¡Hola! Soy Rodrigo47363</h2>
 
-      <!-- Sección de lenguajes y herramientas -->
-      <div class="languages-tools">
-        <a href="https://www.gnu.org/software/bash/" target="_blank" title="Bash">
-          <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="Bash" width="40" height="40">
-        </a>
-        <a href="https://www.linux.org/" target="_blank" title="Linux">
-          <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" width="40" height="40">
-        </a>
-        <!-- Agrega más herramientas y lenguajes aquí -->
-      </div>
-    </div>
+            <!-- Sección de lenguajes y herramientas -->
+            <div class="languages-tools">
+                <a href="https://www.gnu.org/software/bash/" target="_blank" title="Bash">
+                    <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="Bash" width="40" height="40">
+                </a>
+                <a href="https://www.linux.org/" target="_blank" title="Linux">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" width="40" height="40">
+                </a>
+                <!-- Agrega más herramientas y lenguajes aquí -->
+            </div>
+        </div>
 
-    <!-- Sección de bienvenida y repositorios de GitHub -->
-    <section>
-      <h2>Bienvenidos a mi página web</h2>
-      <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
-      <h3>Mis repositorios de GitHub</h3>
-      <ul class="repos-list" id="repos-list"></ul>
-      
-      <!-- Sección de redes sociales -->
-      <div class="social-media">
-        <a href="https://www.youtube.com/@Rodrigo-47363?sub_confirmation=1" target="_blank" title="YouTube">
-          <img src="https://img.shields.io/youtube/channel/subscribers/UC9sjERLgkeIbbOwLHeah0Aw?style=social" alt="Suscriptores de YouTube">
-        </a>
-        <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" title="LinkedIn">
-          <img src="https://img.shields.io/badge/LinkedIn-Rodrigo%20V-blue?style=social" alt="LinkedIn">
-        </a>
-        <a href="https://github.com/rodrigo47363" target="_blank" title="GitHub Followers">
-          <img src="https://img.shields.io/github/followers/rodrigo47363?style=social" alt="Seguidores de GitHub">
-        </a>
-        <a href="https://github.com/rodrigo47363?tab=stars" target="_blank" title="GitHub Stars">
-          <img src="https://img.shields.io/github/stars/rodrigo47363?style=social" alt="Estrellas de GitHub">
-        </a>
-        <a href="https://rodrigo47363.github.io" target="_blank" title="Website">
-          <img src="https://img.shields.io/badge/Website-rodrigo47363.github.io-blue?style=social" alt="Sitio Web">
-        </a>
-      </div>
-    </section>
-  </main>
+        <!-- Sección de bienvenida y repositorios de GitHub -->
+        <section>
+            <h2>Bienvenidos a mi página web</h2>
+            <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
+            <h3>Mis repositorios de GitHub</h3>
+            <ul class="repos-list" id="repos-list"></ul>
+            
+            <!-- Sección de redes sociales -->
+            <div class="social-media">
+                <a href="https://www.youtube.com/@Rodrigo-47363?sub_confirmation=1" target="_blank" title="YouTube">
+                    <img src="https://img.shields.io/youtube/channel/subscribers/UC9sjERLgkeIbbOwLHeah0Aw?style=social" alt="Suscriptores de YouTube">
+                </a>
+                <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" title="LinkedIn">
+                    <img src="https://img.shields.io/badge/LinkedIn-Rodrigo%20V-blue?style=social" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/rodrigo47363" target="_blank" title="GitHub Followers">
+                    <img src="https://img.shields.io/github/followers/rodrigo47363?style=social" alt="Seguidores de GitHub">
+                </a>
+            </div>
+        </section>
+    </main>
 
-  <footer class="footer">
-    <p>Derechos reservados © 2024 rodrigo47363.github.io</p>
-  </footer>
+    <footer class="footer">
+        <p>&copy; 2024 Rodrigo47363</p>
+    </footer>
 
-  <!-- Script para obtener y mostrar repositorios de GitHub -->
-  <script>
-    const apiUrl = "https://api.github.com/users/rodrigo47363/repos";
+    <script>
+        function toggleDarkMode() {
+            const checkbox = document.getElementById('theme-switch');
+            if (checkbox.checked) {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
 
-    // Hacer la solicitud a la API de GitHub
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        const reposList = document.getElementById("repos-list");
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                document.getElementById('theme-switch').checked = true;
+            } else {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                document.getElementById('theme-switch').checked = false;
+            }
+        }
 
-        // Recorrer los repositorios y agregarlos a la lista
-        data.forEach(repo => {
-          const listItem = document.createElement("li");
-          const link = document.createElement("a");
-          link.href = repo.html_url;
-          link.textContent = repo.name;
-          link.target = "_blank";
-          listItem.appendChild(link);
-          reposList.appendChild(listItem);
-        });
-      })
-      .catch(error => console.error('Error al cargar los repositorios:', error));
-  </script>
+        // Llamar a loadTheme() para aplicar el tema correcto al cargar la página
+        document.addEventListener('DOMContentLoaded', loadTheme);
+
+        // Configurar el evento del cambio de tema
+        document.getElementById('theme-switch').addEventListener('change', toggleDarkMode);
+
+        // Función para cargar los repositorios de GitHub
+        async function loadRepos() {
+            const response = await fetch('https://api.github.com/users/rodrigo47363/repos');
+            const repos = await response.json();
+            const reposList = document.getElementById('repos-list');
+
+            repos.forEach(repo => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+                reposList.appendChild(listItem);
+            });
+        }
+
+        loadRepos();
+    </script>
 </body>
+
 </html>
