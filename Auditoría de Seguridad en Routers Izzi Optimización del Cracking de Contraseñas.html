@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Auditoría de Seguridad en Routers Izzi Optimización del Cracking de Contraseñas">
+    <meta name="keywords" content="Hacking Ético, Pentesting, Ciberseguridad, Certificaciones, Wifi , ">
+    <meta name="author" content="Rodrigo">
+    <title>Auditoría de Seguridad en Routers Izzi Optimización del Cracking de Contraseñas</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f4f4f4;
+        }
+
+        header {
+            background: #1f1f1f;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        section h2 {
+            color: #ffa500;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #ffa500;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Auditoría de Seguridad en Routers Izzi Optimización del Cracking de Contraseñas</h1>
+    </header>
+    <section>
+        <h2>¿Como Auditar Una Red Wifi de Forma Optimizada?</h2>
+        <p>
+            El <strong>Auditar una red wifi </strong>, o hacking wifi (<em>wifi hacking</em>), es la práctica de usar
+            habilidades y herramientas de hacking
+            para identificar vulnerabilidades en sistemas informáticos y redes, con el objetivo de protegerlos de
+            amenazas.
+        </p>
+        <h2>Tipos de Seguridad en Redes WiFi</h2>
+        <ul>
+            <li><strong>WEP (Wired Equivalent Privacy):</strong> Fue el primer estándar de seguridad para redes WiFi.
+                Utiliza un algoritmo de cifrado RC4, pero es vulnerable a varios ataques, lo que lo hace inseguro para
+                uso actual. Su uso es desaconsejado debido a sus fallos de seguridad.</li>
+            <li><strong>WPA (Wi-Fi Protected Access):</strong> Fue introducido como una mejora de WEP. Utiliza el
+                protocolo TKIP (Temporal Key Integrity Protocol) para mejorar la seguridad, pero todavía presenta
+                algunas vulnerabilidades, especialmente en contraseñas débiles. Aunque es más seguro que WEP, no es
+                completamente confiable en entornos sensibles.</li>
+            <li><strong>WPA2 (Wi-Fi Protected Access II):</strong> Es la versión más segura de WPA, utilizando el
+                protocolo AES (Advanced Encryption Standard) para un cifrado mucho más robusto. Es ampliamente utilizado
+                y recomendado hoy en día, aunque aún puede ser vulnerable si se utilizan contraseñas débiles o si se
+                implementan ataques de diccionario o de fuerza bruta.</li>
+        </ul>
+
+        <h2>Objetivos del Artículo</h2>
+        <ul>
+            <li>Identificar vulnerabilidades en sistemas y redes WiFi.</li>
+            <li>Optimizar una auditoría a una red WiFi.</li>
+            <li>Aprender a usar herramientas como crunch y aircrack-ng.</li>
+            <li>Entender los principios y métodos de las pruebas de penetración de redes WiFi.</li>
+        </ul>
+
+        <h2>Herramientas Comunes</h2>
+        <ul>
+            <li><strong>aircrack-ng:</strong> Es una suite de herramientas para la auditoría de redes WiFi,
+                especializada en la recuperación de claves WEP y WPA. Permite capturar paquetes y realizar ataques de
+                fuerza bruta o diccionario para obtener contraseñas.</li>
+            <li><strong>Wireshark:</strong> Analizador de tráfico de red ampliamente utilizado. Permite capturar y
+                examinar los paquetes que circulan en la red, lo que es útil para la detección de vulnerabilidades y la
+                auditoría de seguridad.</li>
+            <li><strong>wifite:</strong> Herramienta automatizada para realizar ataques a redes WiFi protegidas por WEP
+                y WPA/WPA2. Facilita el proceso de hackeo al automatizar varias etapas del ataque, como la captura de
+                handshakes y la ejecución de ataques de diccionario.</li>
+            <li><strong>airgeddon:</strong> Una herramienta de pruebas de penetración WiFi que automatiza varias fases
+                de un ataque, como la desautenticación, captura de handshakes, y la ruptura de contraseñas de redes
+                WiFi. Ideal para realizar auditorías rápidas y efectivas.</li>
+            <li><strong>crunch:</strong> Herramienta para generar listas de contraseñas personalizadas a partir de
+                patrones específicos. Es útil cuando se tiene información parcial sobre la contraseña y se requiere una
+                lista de contraseñas posibles.</li>
+            <li><strong>cupp:</strong> "Custom User Passwords Profiler" es una herramienta para generar listas de
+                contraseñas basadas en información específica del objetivo, como su nombre, fecha de nacimiento, o
+                cualquier otra información personal disponible. Muy útil para ataques dirigidos.</li>
+            <li><strong>hashcat:</strong> Potente herramienta para realizar auditorías de contraseñas utilizando ataques
+                de fuerza bruta, diccionario o híbridos. Soporta múltiples algoritmos de hash, incluyendo MD5, SHA1,
+                SHA256, entre otros, y es ideal para romper contraseñas complejas.</li>
+        </ul>
+
+        <h2>Auditoría de Seguridad en Routers Izzi: Optimización del Cracking de Contraseñas</h2>
+
+        <p>En el mundo de la ciberseguridad, uno de los enfoques más comunes para evaluar la seguridad de las redes WiFi
+            es realizar una <strong>auditoría de contraseñas</strong>. Este tipo de pruebas permite identificar
+            vulnerabilidades, sobre todo en entornos donde los dispositivos o routers aún operan con contraseñas
+            predeterminadas o fáciles de adivinar. En este artículo, exploraremos un <strong>método optimizado</strong>
+            para realizar auditorías de seguridad en routers <strong>Izzi</strong>, una empresa de telecomunicaciones
+            que, por defecto, utiliza contraseñas de 12 caracteres, alfanuméricas y con un patrón específico que puede
+            ser aprovechado en las pruebas de penetración.</p>
+
+        <h3>El Desafío del Cracking de Contraseñas WiFi</h3>
+        <p>Los routers Izzi suelen utilizar contraseñas de 12 caracteres compuestas por una combinación de letras
+            mayúsculas, números y, en algunos casos, caracteres especiales. Estas contraseñas son bastante robustas en
+            teoría, pero debido a los patrones predecibles de generación, pueden ser más vulnerables a ataques de fuerza
+            bruta o diccionario si se conocen ciertas partes de la contraseña.</p>
+
+        <h3>La Estrategia: Optimización con Crunch y Aircrack-ng</h3>
+
+        <p>El <strong>cracking de contraseñas</strong> es una tarea que, en el caso de las redes WiFi, suele ser
+            extremadamente lenta si no se optimiza adecuadamente. Utilizando herramientas como <strong>crunch</strong> y
+            <strong>aircrack-ng</strong>, podemos reducir el tiempo de ataque aprovechando lo que ya sabemos sobre la
+            contraseña.
+        </p>
+
+        <h4>Pasos para la Auditoría</h4>
+
+        <h5>1. Conociendo Parte de la Contraseña: Optimización del Cracking</h5>
+        <p>Si tienes acceso a alguna parte de la contraseña, como el nombre de la red o el patrón de los últimos
+            caracteres, puedes reducir significativamente el tiempo de crackeo utilizando un enfoque de
+            <strong>diccionario controlado</strong>. En este caso, si conoces la <strong>última parte de la
+                contraseña</strong>, como en muchos routers Izzi, puedes utilizar un patrón específico para generar las
+            posibles contraseñas.
+        </p>
+
+        <h5>Comando de Ejemplo: Conociendo Parte de la Contraseña</h5>
+        <pre><code>sudo crunch 12 12 -t F82DC0@@C5DC -f Diccionario.lst anu | aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-C5DC.cap</code></pre>
+
+        <p><strong>Desglosando el comando:</strong></p>
+        <ul>
+            <li><strong>`crunch 12 12`</strong>: Genera contraseñas de <strong>exactamente 12 caracteres</strong>.</li>
+            <li><strong>`-t F82DC0@@C5DC`</strong>: Utiliza el patrón donde los primeros caracteres
+                <strong>F82DC0</strong> y los últimos <strong>C5DC</strong> están predefinidos, y `@@` representa los
+                caracteres desconocidos.
+            </li>
+            <li><strong>`-f Diccionario.lst anu`</strong>: Usa un diccionario <strong>alfanumérico</strong>, en este
+                caso `anu`, que contiene caracteres alfanuméricos y mayúsculas.</li>
+            <li><strong>`aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-C5DC.cap`</strong>: Este comando pasa las
+                contraseñas generadas a <strong>aircrack-ng</strong>, que las probará contra el archivo de captura
+                `.cap`.</li>
+        </ul>
+
+        <p>Este método es considerablemente más rápido que un ataque de fuerza bruta tradicional, ya que reduce las
+            combinaciones posibles al conocer el patrón de la contraseña.</p>
+
+        <h5>2. Sin Conocer Nada de la Contraseña: Fuerza Bruta con Diccionario</h5>
+        <p>Si no tienes ninguna pista sobre la contraseña, el proceso de cracking se vuelve más largo y se deben generar
+            muchas más combinaciones posibles. Sin embargo, este método también puede ser optimizado utilizando
+            diccionarios específicos y ajustando el tamaño de la contraseña.</p>
+
+        <h5>Comando de Ejemplo: Sin Conocer Nada de la Contraseña</h5>
+        <pre><code>sudo crunch 10 12 -f Diccionario.lst anu | aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-0652.cap</code></pre>
+
+        <p><strong>Desglosando el comando:</strong></p>
+        <ul>
+            <li><strong>`crunch 10 12`</strong>: Genera contraseñas con una longitud de entre <strong>10 a 12
+                    caracteres</strong>.</li>
+            <li><strong>`-f Diccionario.lst anu`</strong>: Usa el mismo diccionario alfanumérico para generar
+                contraseñas de forma controlada.</li>
+            <li><strong>`aircrack-ng`</strong>: La herramienta que realizará el análisis y el ataque de diccionario
+                contra el archivo `.cap`.</li>
+        </ul>
+
+        <p>Este comando puede tardar más, ya que el ataque está generando una mayor cantidad de contraseñas posibles,
+            pero sigue siendo mucho más eficiente que un ataque completamente aleatorio.</p>
+
+        <h3>Consideraciones Importantes en el Proceso de Cracking</h3>
+        <ul>
+            <li><strong>Requisitos de Sistema:</strong> Este tipo de ataques pueden ser intensivos en recursos de CPU y
+                RAM. Es importante ejecutar estos comandos en un entorno adecuado, preferiblemente en un sistema con
+                capacidades de procesamiento robustas.</li>
+            <li><strong>Uso de GPUs:</strong> Si cuentas con una GPU potente, puedes utilizar <strong>hashcat</strong>
+                en lugar de <strong>aircrack-ng</strong> para aprovechar la aceleración por hardware. Esto reducirá el
+                tiempo de crackeo de manera significativa.</li>
+            <li><strong>Detener el Proceso:</strong> Dado que los ataques pueden durar mucho tiempo, es importante saber
+                cómo detenerlos correctamente si es necesario. En sistemas Linux, puedes identificar y detener el
+                proceso con los siguientes comandos:
+                <ul>
+                    <li><strong>Identificar el proceso:</strong> <code>ps aux | grep aircrack-ng</code></li>
+                    <li><strong>Detener el proceso:</strong> <code>sudo kill &lt;PID&gt;</code></li>
+                </ul>
+            </li>
+            <li><strong>Ética y Legalidad:</strong> Este método está destinado <strong>únicamente a fines
+                    educativos</strong> y de pruebas de seguridad en entornos controlados. Utilizar estos conocimientos
+                de manera no autorizada es ilegal y puede tener consecuencias graves. Siempre realiza auditorías de
+                seguridad de manera ética y con permisos adecuados.</li>
+        </ul>
+
+        <h3>Conclusión</h3>
+        <p>Realizar una auditoría de contraseñas en redes WiFi, especialmente en routers Izzi, puede ser una tarea
+            desafiante debido a la longitud y complejidad de las contraseñas. Sin embargo, al aprovechar patrones
+            conocidos, herramientas como <strong>crunch</strong> y <strong>aircrack-ng</strong>, y un enfoque
+            sistemático de ataque de diccionario, es posible optimizar este proceso y reducir el tiempo de crackeo.
+            <strong>Recuerda siempre realizar pruebas de penetración y auditorías de manera ética y legal.</strong>
+        </p>
+
+</body>
+
+</html>
+
+<h2>Herramientas Recomendadas</h2>
+<ul>
+    <li>
+        <strong>Wifite:</strong> Herramienta automatizada para realizar ataques a redes WiFi protegidas por WEP
+        y WPA/WPA2. Es ideal para auditores de seguridad que buscan una solución rápida para atacar múltiples
+        redes WiFi simultáneamente.
+    </li>
+    <li>
+        <strong>airgeddon:</strong> Herramienta de pruebas de penetración WiFi que facilita la ejecución de
+        ataques como desautenticaciones, captura de handshakes, y la ruptura de contraseñas. Su interfaz es
+        fácil de usar y automatiza muchos procesos de auditoría.
+    </li>
+    <li>
+        <strong>NekoFi.sh:</strong> Un script de Bash creado para realizar auditorías WiFi, específicamente
+        diseñado para atacar redes con configuraciones comunes. Su principal ventaja es la facilidad de uso, ya
+        que automatiza varios pasos como la selección de interfaces y la configuración del modo monitor para
+        realizar los ataques.
+        <a href="https://github.com/rodrigo47363/NekoFi" target="_blank">Ver en GitHub</a>.
+    </li>
+</ul>
+
+
+
+<h2>Conclusión</h2>
+<p>
+    Este artículo ha sido elaborado para reducir el tiempo de crackeo de un handshake (archivo .pcap) de una red
+    WiFi. Al conocer ciertas características de la contraseña, como su longitud, el uso de caracteres
+    alfanuméricos y la relación con la BSSID del router, es posible optimizar el proceso y hacerlo mucho más
+    eficiente. Herramientas como <strong>crunch</strong> y <strong>aircrack-ng</strong> son esenciales en este
+    tipo de auditorías, y el uso adecuado de patrones y diccionarios de contraseñas puede marcar una gran
+    diferencia en la velocidad del ataque.
+</p>
+
+<footer>
+    <p>Artículo desarrollado por <a href="https://github.com/rodrigo47363" target="_blank">Rodrigo47363</a>.
+        &copy; 2024</p>
+</footer>
+</body>
+
+</html>
