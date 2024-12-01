@@ -155,7 +155,8 @@
         <p>El <strong>cracking de contraseñas</strong> es una tarea que, en el caso de las redes WiFi, suele ser
             extremadamente lenta si no se optimiza adecuadamente. Utilizando herramientas como <strong>crunch</strong> y
             <strong>aircrack-ng</strong>, podemos reducir el tiempo de ataque aprovechando lo que ya sabemos sobre la
-            contraseña.</p>
+            contraseña.
+        </p>
 
         <h4>Pasos para la Auditoría</h4>
 
@@ -164,7 +165,8 @@
             caracteres, puedes reducir significativamente el tiempo de crackeo utilizando un enfoque de
             <strong>diccionario controlado</strong>. En este caso, si conoces la <strong>última parte de la
                 contraseña</strong>, como en muchos routers Izzi, puedes utilizar un patrón específico para generar las
-            posibles contraseñas.</p>
+            posibles contraseñas.
+        </p>
 
         <h5>Comando de Ejemplo: Conociendo Parte de la Contraseña</h5>
         <pre><code>sudo crunch 12 12 -t F82DC0@@C5DC -f Diccionario.lst anu | aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-C5DC.cap</code></pre>
@@ -174,7 +176,8 @@
             <li><strong>`crunch 12 12`</strong>: Genera contraseñas de <strong>exactamente 12 caracteres</strong>.</li>
             <li><strong>`-t F82DC0@@C5DC`</strong>: Utiliza el patrón donde los primeros caracteres
                 <strong>F82DC0</strong> y los últimos <strong>C5DC</strong> están predefinidos, y `@@` representa los
-                caracteres desconocidos.</li>
+                caracteres desconocidos.
+            </li>
             <li><strong>`-f Diccionario.lst anu`</strong>: Usa un diccionario <strong>alfanumérico</strong>, en este
                 caso `anu`, que contiene caracteres alfanuméricos y mayúsculas.</li>
             <li><strong>`aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-C5DC.cap`</strong>: Este comando pasa las
@@ -233,7 +236,8 @@
             desafiante debido a la longitud y complejidad de las contraseñas. Sin embargo, al aprovechar patrones
             conocidos, herramientas como <strong>crunch</strong> y <strong>aircrack-ng</strong>, y un enfoque
             sistemático de ataque de diccionario, es posible optimizar este proceso y reducir el tiempo de crackeo.
-            <strong>Recuerda siempre realizar pruebas de penetración y auditorías de manera ética y legal.</strong></p>
+            <strong>Recuerda siempre realizar pruebas de penetración y auditorías de manera ética y legal.</strong>
+        </p>
 
 </body>
 
@@ -241,16 +245,23 @@
 
 <h2>Herramientas Recomendadas</h2>
 <ul>
-    <li><strong>Wifite:</strong> Herramienta automatizada para realizar ataques a redes WiFi protegidas por WEP
+    <li>
+        <strong>Wifite:</strong> Herramienta automatizada para realizar ataques a redes WiFi protegidas por WEP
         y WPA/WPA2. Es ideal para auditores de seguridad que buscan una solución rápida para atacar múltiples
-        redes WiFi simultáneamente.</li>
-    <li><strong>airgeddon:</strong> Herramienta de pruebas de penetración WiFi que facilita la ejecución de
+        redes WiFi simultáneamente.
+    </li>
+    <li>
+        <strong>airgeddon:</strong> Herramienta de pruebas de penetración WiFi que facilita la ejecución de
         ataques como desautenticaciones, captura de handshakes, y la ruptura de contraseñas. Su interfaz es
-        fácil de usar y automatiza muchos procesos de auditoría.</li>
-    <li><strong>NekoFi.sh:</strong> Un script de Bash creado para realizar auditorías WiFi, específicamente
+        fácil de usar y automatiza muchos procesos de auditoría.
+    </li>
+    <li>
+        <strong>NekoFi.sh:</strong> Un script de Bash creado para realizar auditorías WiFi, específicamente
         diseñado para atacar redes con configuraciones comunes. Su principal ventaja es la facilidad de uso, ya
         que automatiza varios pasos como la selección de interfaces y la configuración del modo monitor para
-        realizar los ataques.</li>
+        realizar los ataques.
+        <a href="https://github.com/rodrigo47363/NekoFi" target="_blank">Ver en GitHub</a>.
+    </li>
 </ul>
 
 
