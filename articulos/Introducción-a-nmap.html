@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Introducción al hacking ético, herramientas y carrera profesional">
+    <meta name="keywords" content="Hacking Ético, Pentesting, Ciberseguridad, Certificaciones">
+    <meta name="author" content="Rodrigo">
+    <title>Introducción a nmap </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f4f4f4;
+        }
+
+        header {
+            background: #1f1f1f;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        section h2 {
+            color: #ffa500;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #ffa500;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+
+
+<section>
+    <h2>¿Qué es Nmap?</h2>
+    <p>Network Mapper (Nmap) es una herramienta de análisis de redes y auditoría de seguridad de código abierto escrita
+        en C, C++, Python y Lua. Está diseñada para escanear redes e identificar qué hosts están disponibles en la red
+        utilizando paquetes sin procesar, y servicios y aplicaciones, incluyendo el nombre y la versión, cuando sea
+        posible. También puede identificar los sistemas operativos y versiones de estos hosts. Además de otras
+        características, Nmap también ofrece capacidades de escaneo que pueden determinar si los filtros de paquetes,
+        firewalls o sistemas de detección de intrusos (IDS) están configurados según sea necesario.</p>
+</section>
+
+<section>
+    <h2>Casos de Uso</h2>
+    <p>La herramienta es una de las más utilizadas por administradores de redes y especialistas en seguridad
+        informática. Se utiliza para:</p>
+    <ul>
+        <li>Auditar los aspectos de seguridad de las redes</li>
+        <li>Simular pruebas de penetración</li>
+        <li>Comprobar configuraciones de firewall y IDS</li>
+        <li>Tipos de conexiones posibles</li>
+        <li>Mapeo de redes</li>
+        <li>Análisis de respuestas</li>
+        <li>Identificar puertos abiertos</li>
+        <li>Evaluación de vulnerabilidades</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Arquitectura de Nmap</h2>
+    <p>Nmap ofrece diferentes tipos de escaneos que pueden usarse para obtener varios resultados sobre nuestros
+        objetivos. Básicamente, Nmap puede dividirse en las siguientes técnicas de escaneo:</p>
+    <ul>
+        <li>Descubrimiento de hosts</li>
+        <li>Escaneo de puertos</li>
+        <li>Enumeración y detección de servicios</li>
+        <li>Detección de sistemas operativos</li>
+        <li>Interacción programable con el servicio objetivo (Motor de Scripts de Nmap)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Sintaxis</h2>
+    <p>La sintaxis para Nmap es bastante simple y se ve de la siguiente manera:</p>
+    <code>Rodrigovil@htb[/htb]$ nmap &lt;tipos de escaneo&gt; &lt;opciones&gt; &lt;objetivo&gt;</code>
+</section>
+
+<section>
+    <h2>Técnicas de Escaneo</h2>
+    <p>Nmap ofrece muchas técnicas de escaneo diferentes, haciendo diferentes tipos de conexiones y utilizando paquetes
+        estructurados de diferentes maneras. Aquí podemos ver todas las técnicas de escaneo que Nmap ofrece:</p>
+    <code>Rodrigovil@htb[/htb]$ nmap --help</code>
+    <p><strong>TÉCNICAS DE ESCANEO:</strong></p>
+    <ul>
+        <li>-sS/sT/sA/sW/sM: Escaneos TCP SYN/Connect()/ACK/Window/Maimon</li>
+        <li>-sU: Escaneo UDP</li>
+        <li>-sN/sF/sX: Escaneos TCP Null, FIN y Xmas</li>
+        <li>--scanflags &lt;flags&gt;: Personalizar las banderas de escaneo TCP</li>
+        <li>-sI &lt;host zombie[:puerto de prueba]&gt;: Escaneo inactivo</li>
+        <li>-sY/sZ: Escaneos SCTP INIT/COOKIE-ECHO</li>
+        <li>-sO: Escaneo de protocolo IP</li>
+        <li>-b &lt;host de retransmisión FTP&gt;: Escaneo de rebote FTP</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Ejemplo de un Escaneo TCP-SYN</h2>
+    <p>Por ejemplo, el escaneo TCP-SYN (-sS) es uno de los valores predeterminados, a menos que hayamos definido lo
+        contrario, y también es uno de los métodos de escaneo más populares. Este método de escaneo permite escanear
+        varios miles de puertos por segundo. El escaneo TCP-SYN envía un paquete con la bandera SYN y, por lo tanto,
+        nunca completa el apretón de manos en tres etapas, lo que resulta en no establecer una conexión TCP completa con
+        el puerto escaneado.</p>
+    <p>Si nuestro objetivo envía un paquete con la bandera SYN-ACK, Nmap detecta que el puerto está abierto.</p>
+    <p>Si el objetivo responde con un paquete con la bandera RST, es un indicador de que el puerto está cerrado.</p>
+    <p>Si Nmap no recibe un paquete de vuelta, lo mostrará como filtrado. Dependiendo de la configuración del firewall,
+        ciertos paquetes pueden ser descartados o ignorados por el firewall.</p>
+    <p>Tomemos un ejemplo de este tipo de escaneo:</p>
+    <code>Rodrigovil@htb[/htb]$ sudo nmap -sS localhost</code>
+    <p>Salida:</p>
+    <pre>
+Iniciando Nmap 7.80 ( https://nmap.org ) a las 2020-06-11 22:50 UTC
+Informe de escaneo de Nmap para localhost (127.0.0.1)
+El host está activo (latencia de 0.000010s).
+No se muestran: 996 puertos cerrados
+PUERTO   ESTADO SERVICIO
+22/tcp   abierto ssh
+80/tcp   abierto http
+5432/tcp abierto postgresql
+5901/tcp abierto vnc-1
+
+Nmap terminado: 1 dirección IP (1 host activo) escaneado en 0.18 segundos
+        </pre>
+    <p>En este ejemplo, podemos ver que tenemos cuatro puertos TCP diferentes abiertos. En la primera columna, vemos el
+        número del puerto. Luego, en la segunda columna, vemos el estado del servicio y el tipo de servicio.</p>
+</section>
+
+<footer>
+    <div style="text-align: center; margin-top: 30px; font-size: 1.1em; color: #f4f4f4;">
+        <p>Creado por <strong><a href="https://www.linkedin.com/in/rodrigo-v-695728215"
+                    style="color: #ffa500; text-decoration: none;">Rodrigo V</a></strong></p>
+        <p>Conecta conmigo en <a href="https://www.linkedin.com/in/rodrigo-v-695728215"
+                style="color: #ffa500; text-decoration: none;">LinkedIn</a> | Explora mis proyectos en <a
+                href="https://github.com/rodrigo47363" style="color: #ffa500; text-decoration: none;">GitHub</a> |
+            Visita mi <a href="https://rodrigo47363.github.io"
+                style="color: #ffa500; text-decoration: none;">Portafolio</a></p>
+        <p>Correo de contacto: <a href="mailto:rodrigovil@proton.me"
+                style="color: #ffa500; text-decoration: none;">rodrigovil@proton.me</a></p>
+        <p style="font-size: 0.9em;">© 2025 Rodrigo V. Todos los derechos reservados.</p>
+    </div>
+</footer>
+</body>
+
+</html>
