@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Blog minimalista de Rodrigo47363 sobre ciberseguridad, hacking ético, desarrollo de software y más.">
-    <meta name="keywords"
-        content="Rodrigo47363, blog minimalista, ciberseguridad, hacking ético, desarrollo de software, tecnología">
+    <meta name="description" content="Blog minimalista de Rodrigo47363 sobre ciberseguridad, hacking ético, desarrollo de software y más.">
+    <meta name="keywords" content="Rodrigo47363, blog minimalista, ciberseguridad, hacking ético, desarrollo de software, tecnología">
     <meta name="author" content="Rodrigo47363">
     <title>Blog de Rodrigo47363</title>
     <style>
@@ -278,58 +276,41 @@
         </nav>
     </header>
 
-   <main>
-    <section id="articulos">
-        <h2>Últimos Artículos</h2>
-        <ul>
-            <!-- Enlace al artículo sobre hacking ético -->
-            <li>
-                <a href="/articulos/introduccion-al-hacking-etico.html">Introducción al Hacking Ético</a>
-            </li>
-            
-            <!-- Enlace al artículo sobre auditoría de seguridad en routers Izzi -->
-            <li>
-                <a href="/articulos/Auditoria-de-Seguridad-en-Routers-Izzi-Optimizacion-del-Cracking-de-Contraseñas.html">
-                    Auditoría de Seguridad en Routers Izzi y Optimización del Cracking de Contraseñas
-                </a>
-            </li>
-
-                       <!-- Enlace al artículo sobre Introducción a nmap -->
-<li>
-    <a href="https://rodrigo47363.github.io/articulos/Introduccion-a-nmap.html">
-        Introducción a Nmap
-    </a>
-</li>
-
-
-
-            
-            
-            <!-- Enlace al artículo sobre protección de redes WiFi -->
-            <li>
-                <a href="/articulos/como-proteger-tus-redes-wifi.html">Cómo Proteger tus Redes WiFi</a>
-            </li>
-            
-            <!-- Enlace al artículo sobre auditorías en redes WiFi -->
-            <li>
-                <a href="/articulos/como-auditar-una-red-wifi.html">Cómo Auditar Una Red WiFi</a>
-            </li>
-            
-            <!-- Enlace al artículo sobre la importancia de un firewall -->
-            <li>
-                <a href="/articulos/la-importancia-de-un-buen-firewall-en-redes.html">
-                    La Importancia de un Buen Firewall en Redes
-                </a>
-            </li>
-        </ul>
-    </section>
-</main>
-
-           
-
-
-
-
+    <main>
+        <section id="articulos">
+    <h2>Últimos Artículos</h2>
+    <ul class="article-list">
+        <li>
+            <a href="/articulos/introduccion-al-hacking-etico.html">
+                <h3>Introducción al Hacking Ético</h3>
+                <p>Una guía básica sobre los principios y prácticas del hacking ético.</p>
+            </a>
+        </li>
+        <li>
+            <a href="/articulos/auditoria-de-seguridad-en-routers-izzi.html">
+                <h3>Auditoría de Seguridad en Routers Izzi</h3>
+                <p>Un análisis detallado de cómo realizar auditorías de seguridad en routers Izzi y optimizar el cracking de contraseñas.</p>
+            </a>
+        </li>
+        <li>
+            <a href="/articulos/hacking-etico-en-redes-wifi.html">
+                <h3>Hacking Ético en Redes WiFi</h3>
+                <p>Exploración de las técnicas utilizadas en el hacking ético de redes WiFi.</p>
+            </a>
+        </li>
+        <li>
+            <a href="/articulos/introduccion-a-linux-para-pentesters.html">
+                <h3>Introducción a Linux para Pentesters</h3>
+                <p>Un enfoque práctico para usar Linux en pruebas de penetración y análisis de seguridad.</p>
+            </a>
+        </li>
+        <li>
+            <a href="/articulos/estrategias-de-defensa-en-ciberseguridad.html">
+                <h3>Estrategias de Defensa en Ciberseguridad</h3>
+                <p>Un vistazo a las mejores prácticas y herramientas para defender tus sistemas en el mundo digital.</p>
+            </a>
+        </li>
+    </ul>
 </section>
 
 
@@ -338,14 +319,19 @@
             <form class="contact-form">
                 <input type="text" placeholder="Tu nombre" required>
                 <input type="email" placeholder="Tu correo" required>
-                <textarea placeholder="Tu mensaje..." required></textarea>
-                <button type="submit"><span>Enviar</span></button>
+                <textarea placeholder="Tu mensaje" required></textarea>
+                <button type="submit"><span>Enviar Mensaje</span></button>
             </form>
+        </section>
+
+        <section id="about">
+            <h2>Sobre mí</h2>
+            <p>Soy Rodrigo47363, un hacker ético y apasionado por la ciberseguridad. Me especializo en pentesting, análisis SOC, y desarrollo de software. Mi objetivo es compartir mis conocimientos y ayudar a otros a mejorar sus habilidades en la seguridad informática.</p>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 Rodrigo47363 - Todos los derechos reservados</p>
+        <p>&copy; 2025 Rodrigo47363 - Todos los derechos reservados</p>
     </footer>
 
     <div class="switch-container">
@@ -357,14 +343,22 @@
 
     <script>
         function toggleTheme() {
-            const currentTheme = document.body.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            document.body.setAttribute("data-theme", newTheme);
-            document.querySelector("header").setAttribute("data-theme", newTheme);
-            document.querySelector("footer").setAttribute("data-theme", newTheme);
-            document.querySelectorAll(".article-list li").forEach(item => {
-                item.setAttribute("data-theme", newTheme);
-            });
+            const body = document.querySelector('body');
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+            const articleList = document.querySelectorAll('.article-list li');
+
+            if (body.dataset.theme === 'dark') {
+                body.dataset.theme = 'light';
+                header.dataset.theme = 'light';
+                footer.dataset.theme = 'light';
+                articleList.forEach(item => item.dataset.theme = 'light');
+            } else {
+                body.dataset.theme = 'dark';
+                header.dataset.theme = 'dark';
+                footer.dataset.theme = 'dark';
+                articleList.forEach(item => item.dataset.theme = 'dark');
+            }
         }
     </script>
 </body>
