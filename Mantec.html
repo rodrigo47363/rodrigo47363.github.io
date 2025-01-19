@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MANTEC - Mantenimiento y Soporte Técnico Especializado" />
+    <title>Acerca de MANTEC - Servicios Especializados</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: "#181818",
+                            text: "#e0e0e0",
+                            header: "#222",
+                            card: "#2a2a2a",
+                        },
+                        light: {
+                            bg: "#f5f5f5",
+                            text: "#333",
+                            header: "#ddd",
+                            card: "#ffffff",
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-4 shadow-md">
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <h1 class="text-2xl font-bold">MANTEC - Mantenimiento y Soporte Técnico</h1>
+            <h2 class="text-lg font-semibold italic text-blue-500 dark:text-blue-400">Cuidamos tu equipo, optimizamos tu experiencia</h2>
+            <button id="theme-toggle" class="p-2 rounded-full bg-gray-600 dark:bg-gray-300" aria-label="Toggle Dark Mode">
+                <svg id="theme-icon" class="w-6 h-6 text-yellow-400 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path id="theme-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="bg-light-card dark:bg-dark-card rounded-lg shadow-lg p-8 mb-8 animate__animated animate__fadeIn">
+            <section id="bio" class="mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-blue-500 dark:text-blue-400">Sobre nosotros</h2>
+                <p class="text-lg leading-7">
+                    Somos una empresa especializada en el mantenimiento de equipos de cómputo, así como en la
+                    optimización de sistemas tecnológicos para empresas y particulares. Nos enorgullece ofrecer
+                    soluciones confiables y adaptadas a las necesidades específicas de nuestros clientes, siempre
+                    garantizando la más alta calidad en nuestros servicios.
+                </p>
+            </section>
+            <!-- Nuestros Servicios -->
+            <section id="services" class="mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-blue-500 dark:text-blue-400">Nuestros Servicios</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Servicios -->
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Instalación completa y configuración personalizada de Microsoft Office para tus necesidades.">
+                        <i class="fas fa-user-secret mr-2"></i>Instalación de Office
+                    </span>
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Realizamos un diagnóstico exhaustivo de tu equipo para identificar posibles fallas o áreas de mejora.">
+                        <i class="fas fa-search mr-2"></i>Evaluación de equipos
+                    </span>
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Instalación de Windows 10/11 o Linux, adaptado a tus preferencias y necesidades.">
+                        <i class="fab fa-linux mr-2"></i>Instalación de Windows 10/11 o Linux (incluso en dual boot)
+                    </span>
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Recuperación del acceso a tu sistema operativo eliminando contraseñas olvidadas de Windows.">
+                        <i class="fas fa-network-wired mr-2"></i>Eliminación de contraseñas de Windows
+                    </span>
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Mejoramos el rendimiento de tu equipo optimizando los recursos de Windows.">
+                        <i class="fas fa-tachometer-alt mr-2"></i>Optimización de Windows
+                    </span>
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Identificación y solución de errores y problemas técnicos para asegurar el funcionamiento adecuado.">
+                        <i class="fas fa-bug mr-2"></i>Detección de errores y problemas
+                    </span>
+                    <span class="px-3 py-2 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold flex items-center" title="Soporte técnico y administración de equipos para garantizar su funcionamiento óptimo.">
+                        <i class="fas fa-users mr-2"></i>Soporte y gestión de equipos
+                    </span>
+                </div>
+            </section>
+
+            <!-- Contacto -->
+            <section id="contact" class="mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-blue-500 dark:text-blue-400">Contacto</h2>
+                <p class="text-lg">
+                    Puedes contactarnos por correo electrónico:
+                    <a href="mailto:rodrigovil@proton.me" class="text-blue-500 hover:underline">rodrigovil@proton.me</a><br>
+                    Instagram:
+                    <a href="https://www.instagram.com/Mantec4736" class="text-blue-500 hover:underline">Mantec4736</a><br>
+                    WhatsApp:
+                    <a href="https://wa.me/528445990112" class="text-blue-500 hover:underline">+52 844 599 0112</a>
+                </p>
+                <form action="enviar_mensaje.php" method="POST" class="mt-6">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 dark:text-gray-300">Nombre</label>
+                        <input type="text" id="name" name="name" class="w-full p-2 mt-2 border border-gray-300 dark:border-gray-700 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 dark:text-gray-300">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="w-full p-2 mt-2 border border-gray-300 dark:border-gray-700 rounded" required>
+                    </div>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-800">Enviar Mensaje</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-4 text-center">
+        <p>&copy; 2025 MANTEC. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        const themePath = document.getElementById("theme-path");
+
+        themeToggle.addEventListener("click", () => {
+            document.documentElement.classList.toggle("dark");
+            if (document.documentElement.classList.contains("dark")) {
+                themePath.setAttribute("d", "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z");
+                themeIcon.setAttribute("stroke", "yellow");
+            } else {
+                themePath.setAttribute("d", "M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z");
+                themeIcon.setAttribute("stroke", "orange");
+            }
+        });
+    </script>
+</body>
+</html>
