@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Completa: Windows + Office Permanente</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff5f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #ff66b3 0%, #ff99cc 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    main {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 1px solid #ffcce6;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #ff66b3;
+      margin-top: 35px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ffe6f2;
+    }
+    h3 {
+      color: #ff80bf;
+      margin-top: 30px;
+    }
+    .intro {
+      font-size: 1.1em;
+      padding: 25px;
+      background: #fff0f7;
+      border-left: 5px solid #ff66b3;
+      margin: 25px 0;
+      border-radius: 0 10px 10px 0;
+    }
+    .paso {
+      padding: 25px;
+      margin-bottom: 20px;
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+      background: #fffafd;
+    }
+    .paso:hover {
+      background: #fff5fb;
+      border-left: 4px solid #ff80bf;
+      transform: translateX(5px);
+    }
+    .nota {
+      background: #fff0f7;
+      padding: 18px;
+      border-left: 5px solid #ff99cc;
+      margin: 25px 0;
+      border-radius: 0 10px 10px 0;
+    }
+    .warning {
+      background: #fff0f0;
+      padding: 18px;
+      border-left: 5px solid #ff6666;
+      margin: 25px 0;
+      border-radius: 0 10px 10px 0;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 25px 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+    }
+    .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 25px 0;
+    }
+    .benefit-card {
+      flex: 1 1 220px;
+      background: #fff0f7;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+      border: 1px solid #ffcce6;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(255, 102, 179, 0.1);
+    }
+    .benefit-card h4 {
+      margin-top: 0;
+      color: #ff66b3;
+      font-size: 1.2em;
+    }
+    .price-card {
+      background: #fff0f7;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      border-left: 5px solid #ff66b3;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+    .price-card h4 {
+      margin-top: 0;
+      color: #ff66b3;
+      font-size: 1.3em;
+      text-align: center;
+    }
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed #ffcce6;
+      font-size: 1.05em;
+    }
+    .price-item:last-child {
+      border-bottom: none;
+    }
+    .service-name {
+      font-weight: 600;
+      color: #4d4d4d;
+    }
+    .service-price {
+      font-weight: 700;
+      color: #ff66b3;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #ff66b3;
+      color: white;
+      margin-top: 50px;
+      border-top: 5px solid #ff99cc;
+    }
+    a {
+      color: #ff66b3;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #e60073;
+      text-decoration: underline;
+    }
+    .btn {
+      display: inline-block;
+      background: #ff80bf;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      margin: 15px 0;
+      transition: all 0.3s;
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #ff66b3;
+      text-decoration: none;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .personal-message {
+      background: #fff0f7;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 30px 0;
+      text-align: center;
+      font-style: italic;
+      border: 1px dashed #ff80bf;
+    }
+    .heart {
+      color: #ff66b3;
+      font-size: 1.2em;
+    }
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 15px 0;
+    }
+    @media (max-width: 768px) {
+      .benefit-card {
+        flex: 1 1 100%;
+      }
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Guía Completa: Windows + Office Permanente <span class="heart">💖</span></h1>
+    <p>Instalación profesional con activación permanente - Guía paso a paso</p>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="personal-message">
+        <p><span class="heart">💕</span> Hola preciosa, esta guía especial te enseñará no solo a instalar Windows, sino también a activar Office PERMANENTEMENTE. ¡Podrás ofrecer un servicio completo y ganar más dinero! <span class="heart">💕</span></p>
+      </div>
+
+      <section class="intro">
+        <h2><span class="heart">✨</span> Todo lo que aprenderás</h2>
+        <p>Esta guía especial incluye:</p>
+        <ul>
+          <li>Instalación de Windows 10/11 con Ventoy</li>
+          <li>Actualización de Windows 7 32-bit a Windows 10 32-bit</li>
+          <li>Descarga legal de Office directamente de Microsoft</li>
+          <li>Activación PERMANENTE de Office (sin caducidad)</li>
+          <li>Trucos profesionales para ofrecer un servicio premium</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="heart">🛠️</span> Materiales Necesarios</h2>
+        <ul>
+          <li>USB de 16GB+ (preferiblemente 32GB)</li>
+          <li>Computadora con Windows para preparar el USB</li>
+          <li>Archivos ISO de Windows y Office</li>
+          <li>Conexión a Internet</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="heart">💻</span> Instalación de Windows</h2>
+        
+        <div class="paso">
+          <h3>Paso 1: Preparar USB con Ventoy</h3>
+          <ol>
+            <li>Descarga Ventoy desde <a href="https://www.ventoy.net" target="_blank">ventoy.net</a></li>
+            <li>Ejecuta Ventoy2Disk y selecciona tu USB</li>
+            <li>Haz clic en "Install" (esto borrará todo el contenido)</li>
+            <li>Copia los ISOs de Windows al USB</li>
+          </ol>
+        </div>
+
+        <div class="paso">
+          <h3>Paso 2: Instalar Windows 10 32-bit</h3>
+          <ol>
+            <li>Arranca desde el USB (F12/F9/F2 al iniciar)</li>
+            <li>Selecciona el ISO de Windows 10 32-bit</li>
+            <li>Elige "Instalación personalizada"</li>
+            <li>Elimina todas las particiones antiguas</li>
+            <li>Completa la instalación y configuración</li>
+          </ol>
+          <div class="nota">
+            <strong>Importante:</strong> Para equipos antiguos con Windows 7 32-bit, esta es la mejor opción.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="heart">📝</span> Activación Permanente de Office</h2>
+        
+        <div class="paso">
+          <h3>Paso 1: Instalar Office</h3>
+          <ol>
+            <li>Descarga Office desde <a href="https://massgrave.dev/genuine-installation-media" target="_blank">massgrave.dev</a></li>
+            <li>Ejecuta setup.exe y completa la instalación</li>
+            <li>Cierra todas las aplicaciones de Office</li>
+          </ol>
+        </div>
+
+        <div class="paso">
+          <h3>Paso 2: Activación Permanente</h3>
+          <div class="warning">
+            <strong>Aviso Legal:</strong> Solo para uso educativo y pruebas. Recomienda licencias oficiales a clientes.
+          </div>
+          <ol>
+            <li>Descarga la herramienta de activación desde <a href="https://massgrave.dev/" target="_blank">massgrave.dev</a></li>
+            <li>Extrae el archivo ZIP</li>
+            <li>Ejecuta "Activation.cmd" como Administrador</li>
+            <li>Selecciona la opción para Office</li>
+            <li>Espera a que complete la activación</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="heart">💰</span> Tarifas Recomendadas</h2>
+        <div class="price-card">
+          <h4>Precios de Servicios</h4>
+          <div class="price-item">
+            <span class="service-name">Instalación Windows</span>
+            <span class="service-price">$400-$600</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Windows + Office</span>
+            <span class="service-price">$800-$1,000</span>
+          </div>
+          <div class="price-item">
+            <span class="service-name">Mantenimiento Anual</span>
+            <span class="service-price">$1,500+</span>
+          </div>
+        </div>
+      </section>
+
+      <section style="text-align: center; padding: 40px 20px;">
+        <h2 style="color: #ff66b3;"><span class="heart">🚀</span> ¡Comienza tu Negocio!</h2>
+        <p>Con esta guía ya tienes todo para ofrecer servicios profesionales. ¡Éxito asegurado!</p>
+        <a href="#top" class="btn">Volver al Inicio</a>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>© 2025 Guía Profesional Completa | Diseñada con 💖 para tu Éxito</p>
+    <p>¿Dudas? Contacta a tu amigo técnico de confianza</p>
+  </footer>
+</body>
+</html>
