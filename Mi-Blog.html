@@ -1,375 +1,228 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog minimalista de Rodrigo47363 sobre ciberseguridad, hacking ético, desarrollo de software y más.">
-    <meta name="keywords" content="Rodrigo47363, blog minimalista, ciberseguridad, hacking ético, desarrollo de software, tecnología">
+    <meta name="description" content="Blog de Rodrigo47363 - Ciberseguridad, Hacking Ético y Desarrollo">
     <meta name="author" content="Rodrigo47363">
-    <title>Blog de Rodrigo47363</title>
-    <style>
-        /* Reset de estilos predeterminados */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Hack Nerd font', sans-serif;
-            line-height: 1.6;
-            background-color: #121212;
-            color: #ccc;
-            padding-top: 50px;
-            transition: all 0.3s ease;
-        }
-
-        header {
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            margin-top: 5px;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #0073e6;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ccc;
-        }
-
-        .article-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .article-list li {
-            background-color: #333;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .article-list li:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .article-list a {
-            text-decoration: none;
-            color: #ccc;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .article-list a:hover {
-            color: #0073e6;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #222;
-            color: #fff;
-            margin-top: 40px;
-        }
-
-        footer p {
-            font-size: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #444;
-            border-radius: 6px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #333;
-        }
-
-        button {
-            align-items: center;
-            background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-            border: 0;
-            border-radius: 8px;
-            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-            box-sizing: border-box;
-            color: #ffffff;
-            display: flex;
-            font-size: 18px;
-            justify-content: center;
-            line-height: 1em;
-            max-width: 100%;
-            min-width: 140px;
-            padding: 3px;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        button:active,
-        button:hover {
-            outline: 0;
-        }
-
-        button span {
-            background-color: rgb(5, 6, 45);
-            padding: 16px 24px;
-            border-radius: 6px;
-            width: 100%;
-            height: 100%;
-            transition: 300ms;
-        }
-
-        button:hover span {
-            background: none;
-        }
-
-        button:active {
-            transform: scale(0.9);
-        }
-
-        .switch-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            border-radius: 50%;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: 0.4s;
-        }
-
-        input:checked+.slider {
-            background-color: #000;
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(26px);
-        }
-
-        /* Modo claro */
-        body[data-theme="light"] {
-            background-color: #ffffff;
-            color: #000;
-        }
-
-        header[data-theme="light"] {
-            background-color: #f1f1f1;
-        }
-
-        footer[data-theme="light"] {
-            background-color: #f1f1f1;
-        }
-
-        .article-list li[data-theme="light"] {
-            background-color: #f9f9f9;
-        }
-
-        /* Modo oscuro */
-        body[data-theme="dark"] {
-            background-color: #121212;
-            color: #ccc;
-        }
-
-        header[data-theme="dark"] {
-            background-color: #222;
-        }
-
-        footer[data-theme="dark"] {
-            background-color: #222;
-        }
-
-        .article-list li[data-theme="dark"] {
-            background-color: #333;
-        }
-    </style>
-</head>
-
-<body data-theme="dark">
-    <header>
-        <h1>Rodrigo47363</h1>
-        <p>Blog profesional sobre ciberseguridad, hacking ético y desarrollo de software</p>
-        <nav class="nav-links">
-            <a href="#articulos">Artículos</a>
-            <a href="#contacto">Contacto</a>
-            <a href="#about">Sobre mí</a> <!-- Ejemplo de otro enlace -->
-        </nav>
-    </header>
-
-    <main>
-        <section id="articulos">
-            <h2>Últimos Artículos</h2>
-            <ul class="article-list">
-                <li>
-                    <a href="/articulos/introduccion-al-hacking-etico.html">
-                        <h3>Introducción al Hacking Ético</h3>
-                        <p>Una guía básica sobre los principios y prácticas del hacking ético.</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/articulos/auditoria-de-seguridad-en-routers-izzi.html">
-                        <h3>Auditoría de Seguridad en Routers Izzi</h3>
-                        <p>Un análisis detallado de cómo realizar auditorías de seguridad en routers Izzi y optimizar el cracking de contraseñas.</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/articulos/hacking-etico-en-redes-wifi.html">
-                        <h3>Hacking Ético en Redes WiFi</h3>
-                        <p>Exploración de las técnicas utilizadas en el hacking ético de redes WiFi.</p>
-                    </a>
-                </li>
-                <li>
-                <a href="/articulos/Introducci%C3%B3n-a-nmap.html">
-                        <h3>Introducción a Nmap</h3>
-                        <p>Exploración a Nmap: Herramienta de escaneo y auditoría de redes.</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/articulos/introduccion-a-linux-para-pentesters.html">
-                        <h3>Introducción a Linux para Pentesters</h3>
-                        <p>Un enfoque práctico para usar Linux en pruebas de penetración y análisis de seguridad.</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/articulos/estrategias-de-defensa-en-ciberseguridad.html">
-                        <h3>Estrategias de Defensa en Ciberseguridad</h3>
-                        <p>Un vistazo a las mejores prácticas y herramientas para defender tus sistemas en el mundo digital.</p>
-                    </a>
-                </li>
-            </ul>
-        </section>
-    </main>
+    <title>Blog | Rodrigo47363</title>
     
-</section>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Tu nombre" required>
-                <input type="email" placeholder="Tu correo" required>
-                <textarea placeholder="Tu mensaje" required></textarea>
-                <button type="submit"><span>Enviar Mensaje</span></button>
-            </form>
-        </section>
-
-        <section id="about">
-            <h2>Sobre mí</h2>
-            <p>Soy Rodrigo47363, un hacker ético y apasionado por la ciberseguridad. Me especializo en pentesting, análisis SOC, y desarrollo de software. Mi objetivo es compartir mis conocimientos y ayudar a otros a mejorar sus habilidades en la seguridad informática.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Rodrigo47363 - Todos los derechos reservados</p>
-    </footer>
-
-    <div class="switch-container">
-        <label class="switch">
-            <input type="checkbox" onchange="toggleTheme()">
-            <span class="slider"></span>
-        </label>
-    </div>
-
+    <!-- Configuración de Tailwind -->
     <script>
-        function toggleTheme() {
-            const body = document.querySelector('body');
-            const header = document.querySelector('header');
-            const footer = document.querySelector('footer');
-            const articleList = document.querySelectorAll('.article-list li');
-
-            if (body.dataset.theme === 'dark') {
-                body.dataset.theme = 'light';
-                header.dataset.theme = 'light';
-                footer.dataset.theme = 'light';
-                articleList.forEach(item => item.dataset.theme = 'light');
-            } else {
-                body.dataset.theme = 'dark';
-                header.dataset.theme = 'dark';
-                footer.dataset.theme = 'dark';
-                articleList.forEach(item => item.dataset.theme = 'dark');
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#121212',
+                            text: '#e0e0e0',
+                            header: '#1f1f1f',
+                            card: '#1e1e1e',
+                            input: '#2a2a2a'
+                        },
+                        light: {
+                            bg: '#f5f5f5',
+                            text: '#333',
+                            header: '#ffffff',
+                            card: '#ffffff',
+                            input: '#f0f0f0'
+                        }
+                    }
+                }
             }
         }
     </script>
-</body>
 
+    <!-- Script para evitar parpadeo del tema al cargar -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300 flex flex-col min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-4 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="flex items-center gap-4">
+                <!-- Enlace al portafolio principal (index.html) -->
+                <a href="index.html" class="text-blue-500 hover:text-blue-700 transition-colors" title="Volver al Portafolio">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fas fa-terminal text-blue-500"></i> Blog de Rodrigo47363
+                </h1>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Navegación de escritorio -->
+                <div class="hidden md:flex gap-4 text-sm font-semibold">
+                    <a href="#articulos" class="hover:text-blue-500 transition">Artículos</a>
+                    <a href="#contacto" class="hover:text-blue-500 transition">Contacto</a>
+                </div>
+
+                <!-- Botón de Tema -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors focus:outline-none">
+                    <svg id="sun-icon" class="w-6 h-6 text-yellow-600 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-6 h-6 text-gray-800 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-6xl">
+        
+        <!-- Título de Bienvenida -->
+        <section class="text-center mb-12 animate__animated animate__fadeInDown">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Bitácora de Seguridad</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Explorando el mundo del hacking ético, pentesting y desarrollo de herramientas de seguridad.
+            </p>
+        </section>
+
+        <!-- Grid de Artículos -->
+        <section id="articulos" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- ARTÍCULO 1: Auditoría WiFi (Nuevo) -->
+                <!-- Asegúrate de guardar el archivo del artículo como 'auditoria-wifi.html' -->
+                <article class="article-card group">
+                    <a href="auditoria-wifi.html" class="block h-full p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">WiFi Hacking</span>
+                            <span class="text-xs text-gray-500"><i class="far fa-calendar mr-1"></i>2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors">Auditoría en Routers Izzi</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                            Guía optimizada para auditar seguridad WiFi usando Crunch y Aircrack-ng con patrones conocidos.
+                        </p>
+                        <span class="text-blue-500 text-sm font-semibold group-hover:underline">Leer artículo &rarr;</span>
+                    </a>
+                </article>
+
+                <!-- ARTÍCULO 2 -->
+                <article class="article-card group">
+                    <a href="#" class="block h-full p-6"> <!-- Actualiza el href cuando tengas este archivo -->
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300">Teoría</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors">Introducción al Hacking Ético</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                            Principios básicos, legalidad y metodología para iniciarse en la seguridad ofensiva.
+                        </p>
+                        <span class="text-blue-500 text-sm font-semibold group-hover:underline">Leer artículo &rarr;</span>
+                    </a>
+                </article>
+
+                <!-- ARTÍCULO 3 -->
+                <article class="article-card group">
+                    <a href="#" class="block h-full p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300">Herramientas</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors">Introducción a Nmap</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                            Guía esencial para el escaneo de puertos, descubrimiento de servicios y evasión de firewalls.
+                        </p>
+                        <span class="text-blue-500 text-sm font-semibold group-hover:underline">Leer artículo &rarr;</span>
+                    </a>
+                </article>
+
+                <!-- ARTÍCULO 4 -->
+                <article class="article-card group">
+                    <a href="#" class="block h-full p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2 py-1 rounded bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300">Linux</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors">Linux para Pentesters</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                            Comandos esenciales y configuración del entorno para pruebas de penetración.
+                        </p>
+                        <span class="text-blue-500 text-sm font-semibold group-hover:underline">Leer artículo &rarr;</span>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="max-w-2xl mx-auto bg-light-card dark:bg-dark-card p-8 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-center"><i class="fas fa-envelope-open-text mr-2"></i>Contacto</h2>
+            <form class="space-y-4" action="https://formspree.io/f/tu-codigo-aqui" method="POST"> <!-- Opcional: Agrega un servicio de forms -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">Nombre</label>
+                    <input type="text" name="name" placeholder="Tu nombre" required class="w-full p-3 rounded bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Correo Electrónico</label>
+                    <input type="email" name="email" placeholder="usuario@ejemplo.com" required class="w-full p-3 rounded bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Mensaje</label>
+                    <textarea name="message" placeholder="¿En qué puedo ayudarte?" rows="4" required class="w-full p-3 rounded bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:outline-none transition"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-3 px-6 text-white font-bold rounded-lg shadow-lg transform hover:-translate-y-1 transition-all duration-200 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                    Enviar Mensaje
+                </button>
+            </form>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-6 text-center border-t border-gray-300 dark:border-gray-800 mt-auto">
+        <p>&copy; 2025 <a href="https://github.com/rodrigo47363" target="_blank" class="font-bold text-blue-500 hover:underline">Rodrigo47363</a> - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Estilos CSS adicionales -->
+    <style>
+        .article-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .dark .article-card {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #3b82f6;
+        }
+    </style>
+
+    <!-- Lógica del Tema (Sincronizada con el resto del sitio) -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
 </html>
