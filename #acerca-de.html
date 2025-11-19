@@ -1,213 +1,200 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Rodrigo47363 - Hacker Ético y Pentester"
-    />
+<html lang="es" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rodrigo47363 - Hacker Ético y Pentester">
     <title>Acerca de Rodrigo - Hacker Ético</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
-        background-color: #1e1e1e;
-        color: #f5f5f5;
-        margin: 0;
-        padding: 0;
-      }
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-      header {
-        background-color: #333;
-        padding: 10px 0;
-        text-align: center;
-      }
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#181818', // Coincide con tu portafolio
+                            text: '#e0e0e0',
+                            header: '#222',
+                            card: '#28292c', // Un poco más claro que el fondo
+                        },
+                        light: {
+                            bg: '#f5f5f5',
+                            text: '#333',
+                            header: '#ddd',
+                            card: '#ffffff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-      header h1 {
-        color: #fff;
-        font-size: 2.5em;
-        margin: 0;
-      }
+    <!-- Script Anti-Flash (Carga el tema antes de mostrar el cuerpo) -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
 
-      section {
-        max-width: 900px;
-        margin: 20px auto;
-        padding: 20px;
-      }
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300 flex flex-col min-h-screen">
+    
+    <!-- Header -->
+    <header class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-4 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="flex items-center gap-4">
+                <!-- Botón para volver al portafolio principal -->
+                <a href="index.html" class="text-blue-500 hover:text-blue-700 transition-colors" title="Volver al Inicio">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl md:text-2xl font-bold">Rodrigo47363</h1>
+            </div>
 
-      h2 {
-        color: #00ddeb; /* Cambié el color naranja por el nuevo */
-        font-size: 1.8em;
-      }
-
-      p {
-        font-size: 1.1em;
-        line-height: 1.8;
-      }
-
-      .skills {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .skills li {
-        background-image: linear-gradient(
-          144deg,
-          #af40ff,
-          #5b42f3 50%,
-          #00ddeb
-        );
-        color: #1e1e1e;
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 5px;
-        font-weight: bold;
-        border-radius: 6px;
-      }
-
-      .contact-info a {
-        color: #00ddeb;
-        text-decoration: none;
-      }
-
-      footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-      }
-
-      /* Estilos del botón personalizados */
-      button {
-        align-items: center;
-        background-image: linear-gradient(
-          144deg,
-          #af40ff,
-          #5b42f3 50%,
-          #00ddeb
-        );
-        border: 0;
-        border-radius: 8px;
-        box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-        box-sizing: border-box;
-        color: #ffffff;
-        display: flex;
-        font-size: 18px;
-        justify-content: center;
-        line-height: 1em;
-        max-width: 100%;
-        min-width: 140px;
-        padding: 3px;
-        text-decoration: none;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        white-space: nowrap;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-
-      button:active,
-      button:hover {
-        outline: 0;
-      }
-
-      button span {
-        background-color: rgb(5, 6, 45);
-        padding: 16px 24px;
-        border-radius: 6px;
-        width: 100%;
-        height: 100%;
-        transition: 300ms;
-      }
-
-      button:hover span {
-        background: none;
-      }
-
-      button:active {
-        transform: scale(0.9);
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <h1>Rodrigo47363 - Hacker Ético & Pentester</h1>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:block text-sm opacity-75">Hacker Ético & Pentester</span>
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors focus:outline-none">
+                    <!-- Icono Sol (Modo Claro) -->
+                    <svg id="sun-icon" class="w-6 h-6 text-yellow-600 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <!-- Icono Luna (Modo Oscuro) -->
+                    <svg id="moon-icon" class="w-6 h-6 text-gray-800 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <section id="bio">
-      <h2>Sobre mí</h2>
-      <p>
-        Soy Rodrigo, un apasionado de la ciberseguridad y el hacking ético. Con
-        experiencia en pruebas de penetración (pentesting) y creación de scripts
-        en Bash y Python, mi objetivo es mejorar la seguridad de sistemas y
-        redes a través de análisis y auditorías profesionales. Actualmente soy
-        estudiante de Ingeniería en Sistemas Computacionales y dedico mi tiempo
-        libre a aprender nuevas técnicas y compartir conocimiento con la
-        comunidad.
-      </p>
-    </section>
+    <!-- Contenido Principal -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-light-card dark:bg-dark-card rounded-lg shadow-lg p-6 md:p-8 mb-8 animate__animated animate__fadeIn">
+            
+            <!-- Sección Sobre Mí -->
+            <section id="bio" class="mb-10 border-b border-gray-300 dark:border-gray-700 pb-6">
+                <h2 class="text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400 flex items-center">
+                    <i class="fas fa-user-circle mr-3"></i>Sobre mí
+                </h2>
+                <p class="text-lg leading-relaxed">
+                    Soy Rodrigo, un apasionado de la ciberseguridad y el hacking ético. Con experiencia en pruebas de penetración (pentesting) y creación de scripts en Bash y Python, mi objetivo es mejorar la seguridad de sistemas y redes a través de análisis y auditorías profesionales. Actualmente soy estudiante de Ingeniería en Sistemas Computacionales y dedico mi tiempo libre a aprender nuevas técnicas y compartir conocimiento con la comunidad.
+                </p>
+            </section>
 
-    <section id="skills">
-      <h2>Habilidades Técnicas</h2>
-      <ul class="skills">
-        <li>Bash</li>
-        <li>Python</li>
-        <li>Kali Linux</li>
-        <li>Hacking Ético</li>
-        <li>Evaluación de Vulnerabilidades</li>
-        <li>Metasploit</li>
-        <li>Nmap</li>
-        <li>Burp Suite</li>
-        <li>XSS</li>
-        <li>Inyección SQL</li>
-        <li>Inteligencia de Ciberamenazas (CTI)</li>
-        <li>Seguridad de Aplicaciones Web</li>
-        <li>Ingeniería Social</li>
-      </ul>
-    </section>
+            <!-- Sección Habilidades -->
+            <section id="skills" class="mb-10">
+                <h2 class="text-3xl font-bold mb-6 text-blue-600 dark:text-blue-400 flex items-center">
+                    <i class="fas fa-laptop-code mr-3"></i>Habilidades Técnicas
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    <!-- Items de habilidades -->
+                    <span class="skill-badge"><i class="fas fa-user-secret mr-2"></i>Hacking Ético</span>
+                    <span class="skill-badge"><i class="fas fa-search mr-2"></i>Pentesting</span>
+                    <span class="skill-badge"><i class="fab fa-python mr-2"></i>Python</span>
+                    <span class="skill-badge"><i class="fab fa-linux mr-2"></i>Kali Linux</span>
+                    <span class="skill-badge"><i class="fas fa-network-wired mr-2"></i>Nmap</span>
+                    <span class="skill-badge"><i class="fas fa-spider mr-2"></i>Burp Suite</span>
+                    <span class="skill-badge"><i class="fas fa-bug mr-2"></i>Metasploit</span>
+                    <span class="skill-badge"><i class="fas fa-code mr-2"></i>XSS & SQLi</span>
+                    <span class="skill-badge"><i class="fas fa-shield-alt mr-2"></i>CTI</span>
+                    <span class="skill-badge"><i class="fab fa-linux mr-2"></i>Parrot OS</span>
+                    <span class="skill-badge"><i class="fas fa-users mr-2"></i>Ing. Social</span>
+                    <span class="skill-badge"><i class="fas fa-terminal mr-2"></i>Bash Scripting</span>
+                </div>
+            </section>
 
-    <section id="certifications">
-      <h2>Certificaciones</h2>
-      <p>CCNA: Switching, Routing, and Wireless Essentials</p>
-      <p>CCNA: Enterprise Networking, Security, and Automation</p>
-      <p>ISC2 Candidate</p>
-    </section>
+            <!-- Sección Certificaciones -->
+            <section id="certifications" class="mb-10">
+                <h2 class="text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400 flex items-center">
+                    <i class="fas fa-certificate mr-3"></i>Certificaciones
+                </h2>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> CCNA: Switching, Routing, and Wireless Essentials</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> CCNA: Enterprise Networking, Security, and Automation</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> ISC2 Candidate</li>
+                    </ul>
+                </div>
+            </section>
 
-    <section id="projects">
-      <h2>Proyectos Relevantes</h2>
-      <p>
-        He desarrollado herramientas como <strong>NekoFi.sh</strong> para
-        hackear redes WiFi, y <strong>checkpass.sh</strong> para verificar
-        contraseñas. Estos proyectos están disponibles en mi GitHub, y sigo
-        trabajando en mejorar la seguridad a través de software y
-        automatización.
-      </p>
-    </section>
+            <!-- Sección Proyectos -->
+            <section id="projects" class="mb-8">
+                <h2 class="text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400 flex items-center">
+                    <i class="fas fa-project-diagram mr-3"></i>Proyectos Relevantes
+                </h2>
+                <p class="text-lg mb-4">
+                    He desarrollado herramientas para automatizar tareas de seguridad:
+                </p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="border border-gray-300 dark:border-gray-700 p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <h3 class="font-bold text-xl mb-2"><i class="fas fa-wifi text-blue-500 mr-2"></i>NekoFi.sh</h3>
+                        <p class="text-sm">Herramienta para auditoría de redes WiFi y automatización de ataques.</p>
+                    </div>
+                    <div class="border border-gray-300 dark:border-gray-700 p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <h3 class="font-bold text-xl mb-2"><i class="fas fa-key text-blue-500 mr-2"></i>checkpass.sh</h3>
+                        <p class="text-sm">Script para verificación de fortaleza de contraseñas en entornos Linux.</p>
+                    </div>
+                </div>
+            </section>
 
-    <section id="contact">
-      <h2>Contacto</h2>
-      <p>
-        Puedes encontrarme en
-        <a
-          href="https://www.linkedin.com/in/rodrigo-v-695728215"
-          target="_blank"
-          >LinkedIn</a
-        >
-        y ver mis proyectos en
-        <a href="https://github.com/rodrigo47363" target="_blank">GitHub</a>.
-        También puedes contactarme por correo electrónico:
-        <a href="mailto:rodrigovil@proton.me">rodrigovil@proton.me</a>
-      </p>
-    </section>
+            <!-- Sección Contacto -->
+            <section id="contact" class="text-center mt-10 pt-6 border-t border-gray-300 dark:border-gray-700">
+                <h2 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Contacto</h2>
+                <div class="flex justify-center gap-6 text-3xl">
+                    <a href="https://www.linkedin.com/in/rodrigo-v-695728215" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 transition-transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/rodrigo47363" target="_blank" class="text-gray-800 hover:text-black dark:text-white dark:hover:text-gray-300 transition-transform hover:scale-110"><i class="fab fa-github"></i></a>
+                    <a href="mailto:rodrigovil@proton.me" class="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-200 transition-transform hover:scale-110"><i class="fas fa-envelope"></i></a>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    <footer>
-      <p>&copy; 2024 Rodrigo47363 - Todos los derechos reservados</p>
+    <footer class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-6 text-center border-t border-gray-300 dark:border-gray-800">
+        <p>&copy; 2025 Rodrigo47363 - Todos los derechos reservados</p>
     </footer>
-  </body>
+
+    <!-- Estilos adicionales para las insignias -->
+    <style>
+        .skill-badge {
+            padding: 0.5rem 0.75rem;
+            background: linear-gradient(to right, #8b5cf6, #3b82f6, #06b6d4);
+            color: white;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .skill-badge:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Lógica para alternar tema
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+
 </html>
