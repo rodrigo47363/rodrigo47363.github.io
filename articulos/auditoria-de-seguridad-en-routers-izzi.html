@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Auditoría de Seguridad en Routers Izzi y Optimización del Cracking de Contraseñas con Crunch y Aircrack-ng">
+    <meta name="author" content="Rodrigo47363">
+    <title>Auditoría WiFi y Optimización de Cracking | Rodrigo47363</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Configuración de Tailwind (Misma que tus otras páginas) -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#181818',
+                            text: '#e0e0e0',
+                            header: '#222',
+                            card: '#28292c',
+                            code: '#1e1e1e'
+                        },
+                        light: {
+                            bg: '#f5f5f5',
+                            text: '#333',
+                            header: '#ddd',
+                            card: '#ffffff',
+                            code: '#f1f1f1'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Script Anti-Flash -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300 flex flex-col min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-4 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="flex items-center gap-4">
+                <!-- Botón para volver -->
+                <a href="javascript:history.back()" class="text-blue-500 hover:text-blue-700 transition-colors" title="Volver atrás">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-lg md:text-xl font-bold truncate">Blog: Auditoría WiFi</h1>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors focus:outline-none">
+                    <svg id="sun-icon" class="w-6 h-6 text-yellow-600 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-6 h-6 text-gray-800 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido del Artículo -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        <article class="bg-light-card dark:bg-dark-card rounded-lg shadow-lg p-6 md:p-10 animate__animated animate__fadeIn">
+            
+            <!-- Título Principal -->
+            <header class="mb-8 border-b border-gray-300 dark:border-gray-700 pb-6">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-blue-600 dark:text-blue-400">
+                    Auditoría de Seguridad en Routers Izzi: Optimización del Cracking
+                </h1>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 gap-4">
+                    <span><i class="fas fa-user mr-2"></i>Rodrigo47363</span>
+                    <span><i class="fas fa-calendar-alt mr-2"></i>2025</span>
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs font-bold">Hacking Ético</span>
+                </div>
+            </header>
+
+            <!-- Introducción -->
+            <section class="mb-8 text-lg leading-relaxed">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">¿Cómo Auditar una Red WiFi de Forma Optimizada?</h2>
+                <p class="mb-4">
+                    La <strong>auditoría de redes WiFi</strong> (o <em>WiFi Hacking</em>) es la práctica de usar habilidades y herramientas técnicas para identificar vulnerabilidades en sistemas informáticos y redes, con el objetivo de protegerlos de amenazas.
+                </p>
+
+                <div class="bg-gray-100 dark:bg-gray-800 p-5 rounded-lg border-l-4 border-blue-500 my-6">
+                    <h3 class="text-xl font-bold mb-3">Tipos de Seguridad en Redes WiFi</h3>
+                    <ul class="space-y-3">
+                        <li><strong class="text-red-500">WEP:</strong> Obsoleto e inseguro. Utiliza algoritmo RC4 vulnerable.</li>
+                        <li><strong class="text-yellow-600 dark:text-yellow-500">WPA:</strong> Mejora de WEP con TKIP, pero vulnerable a diccionarios si la clave es débil.</li>
+                        <li><strong class="text-green-600 dark:text-green-500">WPA2:</strong> Estándar actual con cifrado AES. Robusto, pero susceptible a ataques de fuerza bruta.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Herramientas -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Herramientas Esenciales</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="tool-card">
+                        <h4 class="font-bold text-blue-500"><i class="fas fa-wifi mr-2"></i>Aircrack-ng</h4>
+                        <p class="text-sm">Suite completa para captura de paquetes y ataques de diccionario.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4 class="font-bold text-blue-500"><i class="fas fa-network-wired mr-2"></i>Wireshark</h4>
+                        <p class="text-sm">Analizador de tráfico para examinar paquetes detalladamente.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4 class="font-bold text-blue-500"><i class="fas fa-robot mr-2"></i>Wifite</h4>
+                        <p class="text-sm">Automatiza ataques WEP/WPA para facilitar el proceso.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4 class="font-bold text-blue-500"><i class="fas fa-key mr-2"></i>Crunch</h4>
+                        <p class="text-sm">Generador de diccionarios personalizados basados en patrones.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contenido Principal: El Ataque -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">La Estrategia: Optimización con Crunch y Aircrack-ng</h2>
+                <p class="mb-4">
+                    Los routers Izzi suelen usar contraseñas de <strong>12 caracteres</strong> alfanuméricos. Si conocemos parte del patrón (por ejemplo, el final de la contraseña coincide con parte de la MAC o nombre), podemos reducir drásticamente el tiempo de ataque.
+                </p>
+
+                <!-- Paso 1 -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-2 text-blue-500">Caso 1: Conociendo parte de la contraseña</h3>
+                    <p class="mb-3">Si sabemos que la contraseña termina en <code>C5DC</code> y empieza por <code>F82DC0</code>, usamos:</p>
+                    
+                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto shadow-inner border border-gray-700">
+                        <code>sudo crunch 12 12 -t F82DC0@@C5DC -f Diccionario.lst anu | aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-C5DC.cap</code>
+                    </div>
+                    
+                    <ul class="mt-3 space-y-1 text-sm list-disc pl-5 text-gray-600 dark:text-gray-400">
+                        <li><code>-t</code>: Define el patrón (@@ son los caracteres a adivinar).</li>
+                        <li><code>-w-</code>: Tubería directa (pipe) para no llenar el disco duro con diccionarios gigantes.</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-2 text-blue-500">Caso 2: Fuerza bruta controlada</h3>
+                    <p class="mb-3">Sin patrón conocido, generamos combinaciones de 10 a 12 caracteres:</p>
+                    
+                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto shadow-inner border border-gray-700">
+                        <code>sudo crunch 10 12 -f Diccionario.lst anu | aircrack-ng --bssid 00:11:22:33:44:55 -w- IZZI-0652.cap</code>
+                    </div>
+                </div>
+
+                <!-- Advertencias -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded">
+                    <h4 class="text-red-600 dark:text-red-400 font-bold mb-2"><i class="fas fa-exclamation-triangle mr-2"></i>Consideraciones Importantes</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-sm">
+                        <li>El uso de GPU con <strong>Hashcat</strong> es mucho más rápido que Aircrack-ng (CPU).</li>
+                        <li>Para detener un proceso en Linux usa: <code>ps aux | grep aircrack</code> y luego <code>kill PID</code>.</li>
+                        <li><strong>Ética:</strong> Realiza estas pruebas solo en redes de tu propiedad o con permiso explícito.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Herramientas Recomendadas & Links -->
+            <section class="mb-8 border-t border-gray-300 dark:border-gray-700 pt-6">
+                <h2 class="text-2xl font-bold mb-4">Recursos Adicionales</h2>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <a href="https://github.com/rodrigo47363/NekoFi" target="_blank" class="flex-1 bg-gray-100 dark:bg-gray-800 p-4 rounded hover:bg-blue-50 dark:hover:bg-gray-700 transition border border-gray-200 dark:border-gray-700 group">
+                        <h3 class="font-bold text-lg mb-1 group-hover:text-blue-500"><i class="fab fa-github mr-2"></i>NekoFi.sh</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Mi script automatizado para auditorías WiFi y configuración de modo monitor.</p>
+                    </a>
+                    <a href="https://www.aircrack-ng.org/" target="_blank" class="flex-1 bg-gray-100 dark:bg-gray-800 p-4 rounded hover:bg-blue-50 dark:hover:bg-gray-700 transition border border-gray-200 dark:border-gray-700 group">
+                        <h3 class="font-bold text-lg mb-1 group-hover:text-blue-500"><i class="fas fa-external-link-alt mr-2"></i>Airgeddon</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Herramienta avanzada para pruebas de penetración WiFi multi-propósito.</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Conclusión -->
+            <section class="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-lg text-center">
+                <h2 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Conclusión</h2>
+                <p>
+                    Optimizar el hacking WiFi requiere inteligencia antes que fuerza bruta. Conocer el patrón del ISP (como Izzi) y usar herramientas como <strong>crunch</strong> permite reducir ataques de años a horas. Siempre mantén tus herramientas actualizadas y opera bajo la ley.
+                </p>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-6 text-center border-t border-gray-300 dark:border-gray-800 mt-auto">
+        <p>&copy; 2025 <a href="https://github.com/rodrigo47363" target="_blank" class="text-blue-500 hover:underline font-bold">Rodrigo47363</a>. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Estilos extra para las tarjetas -->
+    <style>
+        .tool-card {
+            background-color: rgba(0,0,0,0.05);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .dark .tool-card {
+            background-color: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.1);
+        }
+    </style>
+
+    <!-- Script de Lógica (Toggle Theme) -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
