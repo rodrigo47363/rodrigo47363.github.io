@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía Profesional de Recuperación de Contraseñas Windows (CMD, chntpw, Hiren's Boot)">
+    <meta name="author" content="Rodrigo47363">
+    <title>Windows Recovery | Rodrigo47363</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: { bg: '#121212', text: '#e0e0e0', header: '#1f1f1f', card: '#1e1e1e', input: '#2a2a2a' },
+                        light: { bg: '#f5f5f5', text: '#333', header: '#ffffff', card: '#ffffff', input: '#f0f0f0' }
+                    },
+                    fontFamily: {
+                        jp: ['"Noto Sans JP"', 'sans-serif'] // Fuente específica para japonés
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); } 
+        else { document.documentElement.classList.add('dark'); }
+    </script>
+</head>
+
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300 flex flex-col min-h-screen font-sans">
+
+    <header class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-4 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-blue-500 hover:text-blue-700 transition-colors" title="Volver al Blog">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fab fa-windows text-blue-500"></i> Windows Recovery Guide
+                </h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors focus:outline-none">
+                    <svg id="sun-icon" class="w-6 h-6 text-yellow-600 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-6 h-6 text-gray-800 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-10 max-w-4xl">
+        
+        <article class="bg-light-card dark:bg-dark-card p-6 md:p-10 rounded-lg shadow-lg animate__animated animate__fadeIn">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-800 dark:text-white">
+                    Windows Local User <span class="text-blue-500">Password Recovery</span>
+                </h1>
+                
+                <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <img src="https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=white" alt="Windows">
+                    <img src="https://img.shields.io/badge/Kali_Linux-557C94?logo=kalilinux&logoColor=white" alt="Kali">
+                    <img src="https://img.shields.io/badge/Method-Red_Team-red" alt="Red Team">
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-4">
+                    <button onclick="switchLang('en', this)" class="lang-btn active px-3 py-1.5 rounded-md border border-blue-500 bg-blue-500 text-white text-sm font-bold transition">🇺🇸 English</button>
+                    <button onclick="switchLang('es', this)" class="lang-btn px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition">🇲🇽 Español</button>
+                    <button onclick="switchLang('jp', this)" class="lang-btn px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition">🇯🇵 日本語</button>
+                    <button onclick="switchLang('it', this)" class="lang-btn px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-sm font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition">🇮🇹 Italiano</button>
+                </div>
+            </div>
+
+            <div id="en-content" class="content-section block">
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-lg mb-4">Professional guide for IT technicians and Red Teamers to recover or reset local Windows user passwords using three proven methodologies.</p>
+                    
+                    <div class="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 mb-6">
+                        <p class="font-bold text-yellow-700 dark:text-yellow-500">⚠️ Disclaimer</p>
+                        <p class="text-sm text-yellow-700 dark:text-yellow-400">All procedures require legal authorization. Unauthorized access is a crime.</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3 text-blue-500">Method Comparison</h3>
+                    <div class="overflow-x-auto mb-8 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Method</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Windows 10/11</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">BitLocker</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">CMD (Admin)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">N/A</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">chntpw (Kali)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">❌</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">Hiren's BootCD</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">⚠️ Key Required</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-terminal mr-2"></i>1. Using CMD (Post-Exploitation)</h3>
+                    <p class="mb-2 text-sm text-gray-500">Requires Administrator shell access.</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>C:\> net user
+C:\> net user target_username ""
+<span class="text-gray-500"># Or set a new password:</span>
+C:\> net user target_username NewPassword123!</code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fab fa-linux mr-2"></i>2. Using chntpw (Kali/Parrot OS)</h3>
+                    <p class="mb-2 text-sm text-gray-500">Requires physical access and Live USB.</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>$ sudo mount /dev/sdXn /mnt/windows
+$ cd /mnt/windows/Windows/System32/config
+$ sudo chntpw -l SAM
+$ sudo chntpw -u username SAM
+<span class="text-gray-500"># Select '1' to clear password
+# Press 'q' then 'y' to save</span></code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-compact-disc mr-2"></i>3. Hiren's BootCD PE</h3>
+                    <p class="mb-4">Use the GUI tool <strong>NT Password Edit</strong> provided in the Utilities folder. Locate the SAM file at <code>C:\Windows\System32\config\SAM</code> and click "Unlock".</p>
+                </div>
+            </div>
+
+            <div id="es-content" class="content-section hidden">
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-lg mb-4">Guía profesional para técnicos de TI y equipos Red Team para recuperar o restablecer contraseñas locales de Windows usando tres metodologías probadas.</p>
+                    
+                    <div class="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 mb-6">
+                        <p class="font-bold text-yellow-700 dark:text-yellow-500">⚠️ Aviso Legal</p>
+                        <p class="text-sm text-yellow-700 dark:text-yellow-400">Todos los procedimientos requieren autorización legal. El acceso no autorizado es un delito.</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3 text-blue-500">Tabla Comparativa</h3>
+                    <div class="overflow-x-auto mb-8 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Método</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Win 10/11</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">BitLocker</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">CMD (Admin)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">N/A</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">chntpw (Kali)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">❌</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">Hiren's BootCD</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">⚠️ Requiere Key</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-terminal mr-2"></i>1. Usando CMD (Post-Explotación)</h3>
+                    <p class="mb-2 text-sm text-gray-500">Requiere acceso de shell como Administrador.</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>C:\> net user
+C:\> net user usuario_objetivo ""
+<span class="text-gray-500"># O asignar una nueva contraseña:</span>
+C:\> net user usuario_objetivo NuevaPass123!</code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fab fa-linux mr-2"></i>2. Usando chntpw (Kali/Parrot OS)</h3>
+                    <p class="mb-2 text-sm text-gray-500">Requiere acceso físico y un Live USB.</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>$ sudo mount /dev/sdXn /mnt/windows
+$ cd /mnt/windows/Windows/System32/config
+$ sudo chntpw -l SAM
+$ sudo chntpw -u usuario SAM
+<span class="text-gray-500"># Selecciona '1' para borrar password
+# Presiona 'q' luego 'y' para guardar</span></code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-compact-disc mr-2"></i>3. Hiren's BootCD PE</h3>
+                    <p class="mb-4">Utiliza la herramienta gráfica <strong>NT Password Edit</strong> incluida en la carpeta Utilities. Localiza el archivo SAM en <code>C:\Windows\System32\config\SAM</code> y haz clic en "Unlock".</p>
+                </div>
+            </div>
+
+            <div id="jp-content" class="content-section hidden font-jp">
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-lg mb-4">IT技術者およびレッドチーム向けの、3つの実証済み手法を使用したWindowsローカルユーザーパスワードの復旧ガイドです。</p>
+                    
+                    <div class="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 mb-6">
+                        <p class="font-bold text-yellow-700 dark:text-yellow-500">⚠️ 免責事項 (Disclaimer)</p>
+                        <p class="text-sm text-yellow-700 dark:text-yellow-400">すべての手順は法的な許可が必要です。不正アクセスは犯罪となります。</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3 text-blue-500">方法の比較 (Method Comparison)</h3>
+                    <div class="overflow-x-auto mb-8 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">方法</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Windows 10/11</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">BitLocker</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">CMD (Admin)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">N/A</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">chntpw (Kali)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">❌</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">Hiren's BootCD</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">⚠️ キーが必要</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-terminal mr-2"></i>1. CMDを使う (ポストエクスプロイテーション)</h3>
+                    <p class="mb-2 text-sm text-gray-500">管理者のシェルアクセスが必要です。</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>C:\> net user
+C:\> net user target_username ""
+<span class="text-gray-500"># または新しいパスワードを設定:</span>
+C:\> net user target_username NewPassword123!</code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fab fa-linux mr-2"></i>2. chntpwを使う (Kali/Parrot OS)</h3>
+                    <p class="mb-2 text-sm text-gray-500">物理アクセスとライブUSB (Live USB) が必要です。</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>$ sudo mount /dev/sdXn /mnt/windows
+$ cd /mnt/windows/Windows/System32/config
+$ sudo chntpw -l SAM
+$ sudo chntpw -u username SAM
+<span class="text-gray-500"># '1'を選択してパスワードをクリア
+# 'q'を押してから'y'で保存</span></code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-compact-disc mr-2"></i>3. Hiren's BootCD PE</h3>
+                    <p class="mb-4">Utilitiesフォルダ内のGUIツール <strong>NT Password Edit</strong> を使用します。 <code>C:\Windows\System32\config\SAM</code> にあるSAMファイルを見つけ、"Unlock"をクリックします。</p>
+                </div>
+            </div>
+
+            <div id="it-content" class="content-section hidden">
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-lg mb-4">Guida professionale per tecnici IT e Red Team per recuperare o reimpostare le password locali degli utenti Windows utilizzando tre metodologie comprovate.</p>
+                    
+                    <div class="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 mb-6">
+                        <p class="font-bold text-yellow-700 dark:text-yellow-500">⚠️ Avviso Legale</p>
+                        <p class="text-sm text-yellow-700 dark:text-yellow-400">Tutte le procedure richiedono autorizzazione legale. L'accesso non autorizzato è un reato.</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3 text-blue-500">Confronto Metodi</h3>
+                    <div class="overflow-x-auto mb-8 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Metodo</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">Win 10/11</th>
+                                    <th class="p-3 border-b border-gray-200 dark:border-gray-700">BitLocker</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">CMD (Admin)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">N/A</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">chntpw (Kali)</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">❌</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700 font-bold">Hiren's BootCD</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">✅</td>
+                                    <td class="p-3 border-b border-gray-200 dark:border-gray-700">⚠️ Richiede Chiave</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-terminal mr-2"></i>1. Usando CMD (Post-Exploitation)</h3>
+                    <p class="mb-2 text-sm text-gray-500">Richiede accesso alla shell come Amministratore.</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>C:\> net user
+C:\> net user nome_utente ""
+<span class="text-gray-500"># O impostare una nuova password:</span>
+C:\> net user nome_utente NuovaPass123!</code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fab fa-linux mr-2"></i>2. Usando chntpw (Kali/Parrot OS)</h3>
+                    <p class="mb-2 text-sm text-gray-500">Richiede accesso fisico e una Live USB.</p>
+                    <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto mb-6 font-mono text-sm shadow-inner"><code>$ sudo mount /dev/sdXn /mnt/windows
+$ cd /mnt/windows/Windows/System32/config
+$ sudo chntpw -l SAM
+$ sudo chntpw -u nome_utente SAM
+<span class="text-gray-500"># Seleziona '1' per cancellare la password
+# Premi 'q' poi 'y' per salvare</span></code></pre>
+
+                    <h3 class="text-xl font-bold mb-3"><i class="fas fa-compact-disc mr-2"></i>3. Hiren's BootCD PE</h3>
+                    <p class="mb-4">Utilizza lo strumento GUI <strong>NT Password Edit</strong> fornito nella cartella Utilities. Individua il file SAM in <code>C:\Windows\System32\config\SAM</code> e clicca su "Unlock".</p>
+                </div>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700 my-8">
+
+            <div class="text-center">
+                <h3 class="text-sm uppercase tracking-wider text-gray-500 mb-4">Support My Work</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div onclick="copyToClipboard('bc1qkzmpd0hry99qms7ef23vsyx9vt34pzzaslpp8y', 'btc-msg')" class="bg-gray-100 dark:bg-gray-800 p-4 rounded border border-transparent hover:border-yellow-500 cursor-pointer transition relative group">
+                        <i class="fab fa-bitcoin text-yellow-500 text-2xl mb-2"></i>
+                        <div class="text-xs font-mono truncate">bc1qk...lpp8y</div>
+                        <span id="btc-msg" class="hidden absolute inset-0 bg-yellow-500 text-white flex items-center justify-center rounded font-bold">Copied!</span>
+                    </div>
+                    <div onclick="copyToClipboard('0xB75bC57C54FCBFF139EBF981A596B019C537d018', 'eth-msg')" class="bg-gray-100 dark:bg-gray-800 p-4 rounded border border-transparent hover:border-blue-500 cursor-pointer transition relative group">
+                        <i class="fab fa-ethereum text-blue-500 text-2xl mb-2"></i>
+                        <div class="text-xs font-mono truncate">0xB75...d018</div>
+                        <span id="eth-msg" class="hidden absolute inset-0 bg-blue-500 text-white flex items-center justify-center rounded font-bold">Copied!</span>
+                    </div>
+                    <div onclick="copyToClipboard('ELekuGHcmZjhXrtHNqHuu8QmdCZr3oCWtTmu3QUQ5hac', 'sol-msg')" class="bg-gray-100 dark:bg-gray-800 p-4 rounded border border-transparent hover:border-purple-500 cursor-pointer transition relative group">
+                        <i class="fas fa-bolt text-purple-500 text-2xl mb-2"></i>
+                        <div class="text-xs font-mono truncate">ELeku...QUQ5hac</div>
+                        <span id="sol-msg" class="hidden absolute inset-0 bg-purple-500 text-white flex items-center justify-center rounded font-bold">Copied!</span>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </main>
+
+    <footer class="bg-light-header dark:bg-dark-header text-light-text dark:text-dark-text py-6 text-center border-t border-gray-300 dark:border-gray-800 mt-auto">
+        <p>&copy; 2025 <a href="https://github.com/rodrigo47363" target="_blank" class="font-bold text-blue-500 hover:underline">Rodrigo47363</a> - All rights reserved</p>
+    </footer>
+
+    <script>
+        // Toggle Theme
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark'); localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark'); localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Switch Language Logic (Updated for multiple languages)
+        function switchLang(lang, btn) {
+            // 1. Hide ALL content sections
+            const contents = document.querySelectorAll('.content-section');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // 2. Show the SELECTED content section
+            document.getElementById(lang + '-content').classList.remove('hidden');
+            
+            // 3. Reset ALL buttons to default style
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.classList.remove('bg-blue-500', 'text-white', 'active');
+                b.classList.add('text-gray-600', 'dark:text-gray-400');
+            });
+
+            // 4. Highlight the CLICKED button
+            btn.classList.remove('text-gray-600', 'dark:text-gray-400');
+            btn.classList.add('bg-blue-500', 'text-white', 'active');
+        }
+
+        // Copy Clipboard
+        function copyToClipboard(text, id) {
+            navigator.clipboard.writeText(text);
+            const msg = document.getElementById(id);
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 2000);
+        }
+    </script>
+</body>
+</html>
