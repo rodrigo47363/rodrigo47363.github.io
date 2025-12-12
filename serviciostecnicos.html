@@ -5,14 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guía VIP: Windows + Office</title>
   <style>
-    /* ESTILOS GENERALES */
+    /* =========================================
+       ESTILOS BASE (MODO CLARO)
+       ========================================= */
+    :root {
+      --bg-body: #fff5f9;
+      --text-main: #333;
+      --bg-card: #ffffff;
+      --bg-subcard: #fff0f7;
+      --bg-hover: #fff5fb;
+      --border-color: #ffcce6;
+      --shadow: rgba(0,0,0,0.08);
+      --price-tag-bg: #ffffff;
+      --note-bg: #e3f2fd;
+      --note-text: #0d47a1;
+      --note-border: #2196f3;
+      --warn-bg: #fff0f0;
+      --warn-text: #c62828;
+      --warn-border: #ff6666;
+    }
+
+    /* VARIABLES MODO OSCURO */
+    body.dark-mode {
+      --bg-body: #121212;
+      --text-main: #e0e0e0;
+      --bg-card: #1e1e1e;
+      --bg-subcard: #2d2d2d;
+      --bg-hover: #333333;
+      --border-color: #444;
+      --shadow: rgba(0,0,0,0.5);
+      --price-tag-bg: #333;
+      --note-bg: #0d2538;
+      --note-text: #90caf9;
+      --note-border: #1e88e5;
+      --warn-bg: #2c0b0e;
+      --warn-text: #ffcdd2;
+      --warn-border: #ef5350;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fff5f9; /* Fondo rosita suave */
-      color: #333;
+      background: var(--bg-body);
+      color: var(--text-main);
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
     
     /* CABECERA */
@@ -24,44 +62,36 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       position: relative;
     }
-    h1 {
-      margin: 0;
-      font-size: 2.2em;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
+    h1 { margin: 0; font-size: 2.2em; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
 
     /* CONTENEDOR PRINCIPAL */
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
+    .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    
     main {
-      background-color: white;
+      background-color: var(--bg-card);
       border-radius: 15px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.08);
+      box-shadow: 0 0 25px var(--shadow);
       overflow: hidden;
-      border: 1px solid #ffcce6;
+      border: 1px solid var(--border-color);
       padding-bottom: 20px;
+      transition: background 0.3s;
     }
 
-    /* TIPOGRAFÍA Y TÍTULOS */
+    /* TIPOGRAFÍA */
     h2 {
       color: #ff66b3;
       margin-top: 35px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #ffe6f2;
+      border-bottom: 2px solid #ff66b3; /* Simplificado para dark mode */
       padding-left: 20px;
       padding-right: 20px;
+      opacity: 0.9;
     }
-    h3 {
-      color: #ff80bf;
-      margin-top: 20px;
-    }
+    h3 { color: #ff80bf; margin-top: 20px; }
 
-    /* MENSAJES PERSONALES */
+    /* MENSAJES Y CAJAS */
     .personal-message {
-      background: #fff0f7;
+      background: var(--bg-subcard);
       padding: 20px;
       border-radius: 10px;
       margin: 30px 20px;
@@ -69,115 +99,96 @@
       font-style: italic;
       border: 1px dashed #ff80bf;
     }
-    .heart {
-      color: #ff66b3;
-      font-size: 1.2em;
-    }
+    .heart { color: #ff66b3; font-size: 1.2em; }
 
-    /* SECCIONES Y PASOS */
     .intro {
       font-size: 1.1em;
       padding: 25px;
-      background: #fff0f7;
+      background: var(--bg-subcard);
       border-left: 5px solid #ff66b3;
       margin: 25px 20px;
       border-radius: 0 10px 10px 0;
     }
+
     .paso {
       padding: 20px 25px;
       margin: 0 20px 20px 20px;
-      border-left: 4px solid #eee;
+      border-left: 4px solid var(--border-color);
       transition: all 0.3s ease;
-      background: #fffafd;
+      background: var(--bg-subcard); /* Ajustado para consistencia */
       border-radius: 8px;
     }
     .paso:hover {
-      background: #fff5fb;
+      background: var(--bg-hover);
       border-left: 4px solid #ff80bf;
       transform: translateX(5px);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     /* NOTAS Y AVISOS */
     .nota {
-      background: #e3f2fd;
-      color: #0d47a1;
+      background: var(--note-bg);
+      color: var(--note-text);
       padding: 15px;
-      border-left: 5px solid #2196f3;
+      border-left: 5px solid var(--note-border);
       margin-top: 15px;
       border-radius: 4px;
       font-size: 0.9em;
     }
     .warning {
-      background: #fff0f0;
+      background: var(--warn-bg);
       padding: 15px;
-      border-left: 5px solid #ff6666;
+      border-left: 5px solid var(--warn-border);
       margin-top: 15px;
       border-radius: 4px;
       font-size: 0.9em;
-      color: #c62828;
+      color: var(--warn-text);
     }
 
     /* TARJETAS DE BENEFICIOS */
-    .benefits {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin: 25px 20px;
-      justify-content: center;
-    }
+    .benefits { display: flex; flex-wrap: wrap; gap: 15px; margin: 25px 20px; justify-content: center; }
+    
     .benefit-card {
       flex: 1 1 250px;
-      background: #ffffff;
+      background: var(--bg-card); /* Ahora responde al modo oscuro */
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 6px var(--shadow);
       transition: transform 0.3s;
-      border: 1px solid #ffcce6;
+      border: 1px solid var(--border-color);
       text-align: center;
     }
     .benefit-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(255, 102, 179, 0.15);
       border-color: #ff66b3;
     }
-    .benefit-card h4 {
-      margin-top: 0;
-      color: #ff66b3;
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
+    .benefit-card h4 { margin-top: 0; color: #ff66b3; font-size: 1.2em; margin-bottom: 10px; }
 
     /* LISTA DE PRECIOS */
     .price-card {
-      background: #fff0f7;
+      background: var(--bg-subcard);
       padding: 25px;
       border-radius: 12px;
       margin: 20px;
       border-left: 5px solid #ff66b3;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 8px var(--shadow);
     }
     .price-card h4 {
-      margin-top: 0;
-      color: #ff66b3;
-      font-size: 1.5em;
-      text-align: center;
-      margin-bottom: 20px;
+      margin-top: 0; color: #ff66b3; font-size: 1.5em; text-align: center; margin-bottom: 20px;
     }
     .price-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px dashed #ffcce6;
-      font-size: 1.1em;
+      display: flex; justify-content: space-between; padding: 12px 0;
+      border-bottom: 1px dashed var(--border-color); font-size: 1.1em;
     }
-    .price-item:last-child {
-      border-bottom: none;
+    .price-item:last-child { border-bottom: none; }
+    
+    .service-name { font-weight: 600; color: var(--text-main); }
+    .service-price {
+      font-weight: 700; color: #ff66b3;
+      background: var(--price-tag-bg);
+      padding: 2px 10px; border-radius: 10px;
     }
-    .service-name { font-weight: 600; color: #4d4d4d; }
-    .service-price { font-weight: 700; color: #ff66b3; background: white; padding: 2px 10px; border-radius: 10px; }
 
-    /* BOTONES Y COMANDOS */
+    /* BOTONES */
     .btn {
       display: inline-block;
       background: linear-gradient(45deg, #ff80bf, #ff66b3);
@@ -188,65 +199,56 @@
       transition: all 0.3s;
       font-weight: 600;
       box-shadow: 0 4px 10px rgba(255, 102, 179, 0.3);
-      border: none;
-      cursor: pointer;
-      text-decoration: none !important;
+      border: none; cursor: pointer; text-decoration: none !important;
     }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(255, 102, 179, 0.5);
-    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 102, 179, 0.5); }
     
     .code-block {
-      background: #282a36; /* Fondo oscuro tipo hacker */
-      color: #f8f8f2;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-family: 'Consolas', 'Courier New', monospace;
-      margin: 15px 0;
-      border-left: 4px solid #50fa7b; /* Borde verde brillante */
-      font-size: 0.9em;
+      background: #282a36; color: #f8f8f2; padding: 15px; border-radius: 8px;
+      overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace;
+      margin: 15px 0; border-left: 4px solid #50fa7b; font-size: 0.9em;
     }
-    .copy-hint {
-      font-size: 0.8em;
-      color: #bd93f9;
-      display: block;
-      margin-bottom: 5px;
-    }
+    .copy-hint { font-size: 0.8em; color: #bd93f9; display: block; margin-bottom: 5px; }
 
-    /* FOOTER NUEVO (MEJORADO) */
+    /* FOOTER */
     footer {
-      background: linear-gradient(to right, #ff99cc, #ff66b3); /* Degradado Rosa */
-      color: white;
-      padding: 60px 20px 40px 20px;
-      margin-top: 60px;
-      text-align: center;
-      border-radius: 50% 50% 0 0 / 25px 25px 0 0; /* Curva suave arriba */
+      background: linear-gradient(to right, #ff99cc, #ff66b3);
+      color: white; padding: 60px 20px 40px 20px; margin-top: 60px;
+      text-align: center; border-radius: 50% 50% 0 0 / 25px 25px 0 0;
       box-shadow: 0 -5px 15px rgba(255, 102, 179, 0.2);
     }
-    footer p {
-      margin: 8px 0;
-      font-size: 0.95em;
-    }
     .footer-btn {
-      background: white;
-      color: #ff66b3;
-      padding: 8px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      margin-top: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s;
-      font-size: 0.9em;
+      background: white; color: #ff66b3; padding: 8px 20px;
+      border-radius: 20px; text-decoration: none; font-weight: bold;
+      display: inline-block; margin-top: 15px; margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s; font-size: 0.9em;
     }
-    .footer-btn:hover {
-      transform: scale(1.05);
-      color: #e60073;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    .footer-btn:hover { transform: scale(1.05); color: #e60073; }
+
+    /* BOTÓN FLOTANTE MODO OSCURO */
+    .theme-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--bg-card);
+        border: 2px solid #ff66b3;
+        color: #ff66b3;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1000;
+        transition: all 0.3s;
+    }
+    .theme-toggle:hover {
+        transform: scale(1.1);
+        background: #ff66b3;
+        color: white;
     }
 
     @media (max-width: 768px) {
@@ -256,6 +258,8 @@
   </style>
 </head>
 <body id="top">
+
+  <button class="theme-toggle" id="themeBtn" title="Cambiar Modo">🌙</button>
 
   <header>
     <h1>Guía Técnica: Windows + Office <span class="heart">💖</span></h1>
@@ -307,7 +311,7 @@
           <h3>Paso A: Preparar la USB con Ventoy</h3>
           <p>Ventoy es la mejor herramienta porque solo copias y pegas los archivos ISO.</p>
           <ol>
-            <li>Descarga Ventoy desde <a href="https://www.ventoy.net" target="_blank">ventoy.net</a></li>
+            <li>Descarga Ventoy desde <a href="https://www.ventoy.net" target="_blank" style="color:#ff66b3;">ventoy.net</a></li>
             <li>Inserta tu USB y abre Ventoy.</li>
             <li>Dale clic a <strong>Install</strong> (Ojo: ¡Se borrará todo lo del USB!).</li>
             <li>Una vez instalado, copia el archivo ISO de Windows dentro de la USB como si fuera un archivo cualquiera.</li>
@@ -370,7 +374,7 @@
         </div>
       </section>
 
-<section>
+      <section>
         <h2><span class="heart">💸</span> Lista de Precios Sugerida</h2>
         <div class="price-card">
           <h4>Tarifas de Servicio</h4>
@@ -400,12 +404,13 @@
             <span class="service-price">$350</span>
           </div>
 
-          <div class="price-item" style="border-bottom: none; margin-top: 15px; background: white; padding: 10px; border-radius: 8px;">
-            <span class="service-name" style="color: #d63384;">✨ Paquete Renovación Total <br><small style="font-weight: normal; font-size: 0.8em; color: #666;">(Incluye SSD 240GB nuevo + Sistema + Office)</small></span>
+          <div class="price-item" style="border-bottom: none; margin-top: 15px; background: var(--price-tag-bg); padding: 10px; border-radius: 8px;">
+            <span class="service-name" style="color: #d63384;">✨ Paquete Renovación Total <br><small style="font-weight: normal; font-size: 0.8em; opacity: 0.8;">(Incluye SSD 240GB nuevo + Sistema + Office)</small></span>
             <span class="service-price">$1,200</span>
           </div>
         </div>
       </section>
+
       <section style="text-align: center; padding: 40px 20px;">
         <h2 style="color: #ff66b3;"><span class="heart">🚀</span> ¡Éxito en tu emprendimiento!</h2>
         <p>Con esta guía ya tienes todo para ofrecer servicios profesionales. ¡Éxito asegurado!</p>
@@ -427,6 +432,29 @@
       <p style="margin-top: 30px; font-size: 0.8em; opacity: 0.7;">© 2025 Diseñada con 💖 para tu Éxito</p>
     </div>
   </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const body = document.body;
+
+    // Verificar si ya hay una preferencia guardada
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      themeBtn.textContent = '☀️';
+    }
+
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+        themeBtn.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeBtn.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
 
 </body>
 </html>
