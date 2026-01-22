@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Generador de Estados Financieros Completos"
+    />
+    <title>Suite Financiera - Resultados, Balance y Flujo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                bg: "#181818",
+                card: "#252525",
+                input: "#333",
+                text: "#e0e0e0",
+              },
+              light: {
+                bg: "#f3f4f6",
+                card: "#ffffff",
+                input: "#f9fafb",
+                text: "#1f2937",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #report-section,
+        #report-section * {
+          visibility: visible;
+        }
+        #report-section {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          background: white !important;
+          color: black !important;
+          box-shadow: none !important;
+          border: none !important;
+          padding: 0 !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+        /* Salto de página después de cada gran sección si es necesario */
+        .page-break {
+          page-break-inside: avoid;
+          margin-bottom: 2rem;
+        }
+        .bg-gray-100 {
+          background-color: #f3f4f6 !important;
+          -webkit-print-color-adjust: exact;
+        }
+        .bg-blue-50 {
+          background-color: #eff6ff !important;
+          -webkit-print-color-adjust: exact;
+        }
+      }
+      /* Animación suave para tabs */
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300 flex flex-col min-h-screen font-sans"
+  >
+    <!-- Header -->
+    <header
+      class="bg-white dark:bg-dark-card shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700"
+    >
+      <nav
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <div class="bg-blue-600 text-white p-2 rounded-lg">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <h1 class="font-bold text-lg tracking-tight">
+            FinanGenerator <span class="text-blue-500">Suite</span>
+          </h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            onclick="window.print()"
+            class="hidden md:flex items-center gap-2 bg-gray-900 dark:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm hover:bg-black transition"
+          >
+            <i class="fas fa-print"></i> Imprimir Reporte
+          </button>
+          <button
+            id="theme-toggle"
+            class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-orange-500 dark:text-yellow-400 hover:bg-gray-200 transition"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- COLUMNA IZQUIERDA: FORMULARIOS (Con Tabs) -->
+        <div class="lg:col-span-4 space-y-4">
+          <!-- Datos Generales -->
+          <div
+            class="bg-light-card dark:bg-dark-card p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700"
+          >
+            <input
+              type="text"
+              id="companyName"
+              placeholder="Nombre Empresa"
+              class="w-full mb-2 bg-transparent border-b border-gray-300 dark:border-gray-600 focus:border-blue-500 outline-none p-2"
+              oninput="updateReport()"
+            />
+            <input
+              type="text"
+              id="period"
+              placeholder="Periodo (Ej. 2025)"
+              class="w-full bg-transparent border-b border-gray-300 dark:border-gray-600 focus:border-blue-500 outline-none p-2 text-sm"
+              oninput="updateReport()"
+            />
+          </div>
+
+          <!-- Navegación de Tabs -->
+          <div class="flex bg-gray-200 dark:bg-gray-800 p-1 rounded-lg">
+            <button
+              onclick="switchTab('tab-results')"
+              id="btn-results"
+              class="flex-1 py-2 text-xs font-bold rounded-md bg-white dark:bg-gray-600 shadow-sm transition"
+            >
+              Resultados
+            </button>
+            <button
+              onclick="switchTab('tab-balance')"
+              id="btn-balance"
+              class="flex-1 py-2 text-xs font-bold rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 transition"
+            >
+              Balance
+            </button>
+            <button
+              onclick="switchTab('tab-flow')"
+              id="btn-flow"
+              class="flex-1 py-2 text-xs font-bold rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 transition"
+            >
+              Flujo
+            </button>
+          </div>
+
+          <!-- CONTENIDO TABS -->
+          <div
+            class="bg-light-card dark:bg-dark-card p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 min-h-[400px]"
+          >
+            <!-- TAB 1: Estado de Resultados -->
+            <div id="tab-results" class="tab-content active space-y-4">
+              <h3 class="text-sm font-bold text-blue-500 uppercase mb-4">
+                Estado de Resultados
+              </h3>
+              <div>
+                <label class="text-xs text-gray-500 font-bold"
+                  >Ventas Totales (+)</label
+                >
+                <input
+                  type="number"
+                  id="revenue"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2"
+                  oninput="calcResults()"
+                />
+              </div>
+              <div>
+                <label class="text-xs text-gray-500 font-bold"
+                  >Costo de Ventas (-)</label
+                >
+                <input
+                  type="number"
+                  id="cogs"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2"
+                  oninput="calcResults()"
+                />
+              </div>
+              <div>
+                <label class="text-xs text-gray-500 font-bold"
+                  >Gastos Operativos (-)</label
+                >
+                <input
+                  type="number"
+                  id="expenses"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2"
+                  oninput="calcResults()"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-xs text-gray-500 font-bold"
+                    >Impuestos %</label
+                  >
+                  <input
+                    type="number"
+                    id="taxRate"
+                    value="30"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2"
+                    oninput="calcResults()"
+                  />
+                </div>
+                <div>
+                  <label class="text-xs text-gray-500 font-bold"
+                    >Inversión (ROI)</label
+                  >
+                  <input
+                    type="number"
+                    id="investment"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2"
+                    oninput="calcResults()"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: Balance General -->
+            <div id="tab-balance" class="tab-content space-y-4">
+              <h3 class="text-sm font-bold text-green-500 uppercase mb-4">
+                Balance General
+              </h3>
+
+              <div class="border-b pb-2 mb-2">
+                <p class="text-xs font-bold text-gray-400 mb-2">
+                  ACTIVOS (Lo que tienes)
+                </p>
+                <div class="space-y-2">
+                  <input
+                    type="number"
+                    id="asset-cash"
+                    placeholder="Efectivo / Bancos"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                    oninput="calcBalance()"
+                  />
+                  <input
+                    type="number"
+                    id="asset-receivable"
+                    placeholder="Cuentas por Cobrar"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                    oninput="calcBalance()"
+                  />
+                  <input
+                    type="number"
+                    id="asset-inventory"
+                    placeholder="Inventarios"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                    oninput="calcBalance()"
+                  />
+                  <input
+                    type="number"
+                    id="asset-fixed"
+                    placeholder="Activos Fijos (Maquinaria/PC)"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                    oninput="calcBalance()"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <p class="text-xs font-bold text-gray-400 mb-2">
+                  PASIVOS (Lo que debes)
+                </p>
+                <div class="space-y-2">
+                  <input
+                    type="number"
+                    id="liab-payable"
+                    placeholder="Cuentas por Pagar"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                    oninput="calcBalance()"
+                  />
+                  <input
+                    type="number"
+                    id="liab-debt"
+                    placeholder="Deuda Bancaria"
+                    class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                    oninput="calcBalance()"
+                  />
+                </div>
+                <p class="text-[10px] text-gray-400 mt-2 italic">
+                  *El Capital se calculará automáticamente para cuadrar el
+                  balance.
+                </p>
+              </div>
+            </div>
+
+            <!-- TAB 3: Flujo de Efectivo -->
+            <div id="tab-flow" class="tab-content space-y-4">
+              <h3 class="text-sm font-bold text-purple-500 uppercase mb-4">
+                Flujo de Efectivo
+              </h3>
+              <div>
+                <label class="text-xs text-gray-500 font-bold"
+                  >Saldo Inicial</label
+                >
+                <input
+                  type="number"
+                  id="flow-start"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2"
+                  oninput="calcFlow()"
+                />
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs text-gray-500 font-bold block"
+                  >Actividades (Neto)</label
+                >
+                <input
+                  type="number"
+                  id="flow-operating"
+                  placeholder="(+) Operación (Ventas - Pagos)"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                  oninput="calcFlow()"
+                />
+                <input
+                  type="number"
+                  id="flow-investing"
+                  placeholder="(-) Inversión (Compra equipos)"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                  oninput="calcFlow()"
+                />
+                <input
+                  type="number"
+                  id="flow-financing"
+                  placeholder="(+/-) Financiamiento (Préstamos)"
+                  class="w-full bg-light-input dark:bg-dark-input border border-gray-300 dark:border-gray-600 rounded p-2 text-sm"
+                  oninput="calcFlow()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: REPORTE INTEGRAL -->
+        <div class="lg:col-span-8">
+          <div
+            id="report-section"
+            class="bg-white text-gray-900 rounded-xl shadow-2xl p-8 min-h-[800px] relative"
+          >
+            <!-- Encabezado del Documento -->
+            <div
+              class="border-b-2 border-gray-800 pb-6 mb-8 flex justify-between items-end"
+            >
+              <div>
+                <h1
+                  id="out-company"
+                  class="text-3xl font-black uppercase tracking-tight"
+                >
+                  NOMBRE DE EMPRESA
+                </h1>
+                <p id="out-period" class="text-gray-500">
+                  Informe Financiero Integral
+                </p>
+              </div>
+              <div class="text-right text-xs">
+                <p class="font-bold text-gray-400">FECHA DE EMISIÓN</p>
+                <p id="out-date">--/--/----</p>
+              </div>
+            </div>
+
+            <!-- 1. ESTADO DE RESULTADOS -->
+            <div class="page-break mb-10">
+              <h2
+                class="text-lg font-bold text-blue-800 border-b border-blue-200 mb-4 pb-1 uppercase"
+              >
+                1. Estado de Resultados
+              </h2>
+              <table class="w-full text-sm">
+                <thead class="bg-gray-100 text-gray-600 font-bold">
+                  <tr>
+                    <td class="p-2">Concepto</td>
+                    <td class="p-2 text-right">Monto</td>
+                    <td class="p-2 text-right text-xs">%</td>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr>
+                    <td class="p-2">Ventas Netas</td>
+                    <td class="p-2 text-right font-bold" id="res-sales">
+                      $0.00
+                    </td>
+                    <td class="p-2 text-right text-gray-400">100%</td>
+                  </tr>
+                  <tr class="text-red-600">
+                    <td class="p-2 pl-4">(-) Costo de Ventas</td>
+                    <td class="p-2 text-right" id="res-cogs">$0.00</td>
+                    <td class="p-2 text-right text-gray-400" id="perc-cogs">
+                      0%
+                    </td>
+                  </tr>
+                  <tr class="bg-blue-50 font-bold text-blue-900">
+                    <td class="p-2">(=) Utilidad Bruta</td>
+                    <td class="p-2 text-right" id="res-gross">$0.00</td>
+                    <td class="p-2 text-right" id="perc-gross">0%</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 pl-4">(-) Gastos Operativos</td>
+                    <td class="p-2 text-right" id="res-expenses">$0.00</td>
+                    <td class="p-2 text-right text-gray-400" id="perc-expenses">
+                      0%
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 pl-4">(-) Impuestos</td>
+                    <td class="p-2 text-right" id="res-tax">$0.00</td>
+                    <td class="p-2 text-right text-gray-400">-</td>
+                  </tr>
+                  <tr class="bg-gray-800 text-white font-bold text-base">
+                    <td class="p-3">(=) Utilidad Neta</td>
+                    <td class="p-3 text-right" id="res-net">$0.00</td>
+                    <td
+                      class="p-3 text-right text-gray-400 text-sm"
+                      id="perc-net"
+                    >
+                      0%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- KPIs Rápidos -->
+              <div class="grid grid-cols-3 gap-4 mt-4">
+                <div
+                  class="bg-gray-50 p-3 rounded text-center border border-gray-100"
+                >
+                  <p class="text-[10px] text-gray-500 uppercase font-bold">
+                    Margen Neto
+                  </p>
+                  <p class="text-lg font-bold text-blue-600" id="kpi-margin">
+                    0%
+                  </p>
+                </div>
+                <div
+                  class="bg-gray-50 p-3 rounded text-center border border-gray-100"
+                >
+                  <p class="text-[10px] text-gray-500 uppercase font-bold">
+                    Markup
+                  </p>
+                  <p class="text-lg font-bold text-purple-600" id="kpi-markup">
+                    0%
+                  </p>
+                </div>
+                <div
+                  class="bg-gray-50 p-3 rounded text-center border border-gray-100"
+                >
+                  <p class="text-[10px] text-gray-500 uppercase font-bold">
+                    ROI
+                  </p>
+                  <p class="text-lg font-bold text-green-600" id="kpi-roi">
+                    0%
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. BALANCE GENERAL -->
+            <div class="page-break mb-10">
+              <h2
+                class="text-lg font-bold text-green-800 border-b border-green-200 mb-4 pb-1 uppercase"
+              >
+                2. Balance General
+              </h2>
+              <div class="flex flex-col sm:flex-row gap-6">
+                <!-- Activos -->
+                <div class="flex-1">
+                  <h4 class="text-sm font-bold bg-gray-100 p-2 mb-2 uppercase">
+                    Activos
+                  </h4>
+                  <table class="w-full text-sm">
+                    <tr>
+                      <td class="py-1 border-b border-dashed">
+                        Efectivo y Bancos
+                      </td>
+                      <td class="text-right py-1" id="bal-cash">$0.00</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 border-b border-dashed">
+                        Cuentas por Cobrar
+                      </td>
+                      <td class="text-right py-1" id="bal-receivable">$0.00</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 border-b border-dashed">Inventarios</td>
+                      <td class="text-right py-1" id="bal-inventory">$0.00</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 border-b border-dashed">Activos Fijos</td>
+                      <td class="text-right py-1" id="bal-fixed">$0.00</td>
+                    </tr>
+                    <tr class="font-bold text-green-700 bg-green-50">
+                      <td class="py-2 mt-2">TOTAL ACTIVOS</td>
+                      <td class="text-right py-2" id="bal-total-assets">
+                        $0.00
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <!-- Pasivos + Capital -->
+                <div class="flex-1">
+                  <h4 class="text-sm font-bold bg-gray-100 p-2 mb-2 uppercase">
+                    Pasivo y Capital
+                  </h4>
+                  <table class="w-full text-sm">
+                    <tr>
+                      <td class="py-1 border-b border-dashed">
+                        Cuentas por Pagar
+                      </td>
+                      <td class="text-right py-1" id="bal-payable">$0.00</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 border-b border-dashed">
+                        Deuda Bancaria
+                      </td>
+                      <td class="text-right py-1" id="bal-debt">$0.00</td>
+                    </tr>
+                    <tr class="font-bold text-gray-700">
+                      <td class="py-2">Total Pasivos</td>
+                      <td class="text-right py-2" id="bal-total-liab">$0.00</td>
+                    </tr>
+
+                    <tr>
+                      <td class="pt-4 pb-1 font-bold text-blue-800">
+                        Capital Social / Utilidades
+                      </td>
+                      <td
+                        class="text-right pt-4 pb-1 font-bold text-blue-800"
+                        id="bal-equity"
+                      >
+                        $0.00
+                      </td>
+                    </tr>
+                    <tr class="font-bold text-green-700 bg-green-50">
+                      <td class="py-2">TOTAL PASIVO + CAPITAL</td>
+                      <td class="text-right py-2" id="bal-total-le">$0.00</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. FLUJO DE EFECTIVO -->
+            <div class="page-break">
+              <h2
+                class="text-lg font-bold text-purple-800 border-b border-purple-200 mb-4 pb-1 uppercase"
+              >
+                3. Flujo de Efectivo
+              </h2>
+              <table class="w-full text-sm">
+                <tr class="bg-gray-100 font-bold">
+                  <td class="p-2">Saldo Inicial de Efectivo</td>
+                  <td class="p-2 text-right" id="cf-start">$0.00</td>
+                </tr>
+                <tr>
+                  <td class="p-2 pl-4 border-b border-dashed">
+                    Flujo Operativo (Neto)
+                  </td>
+                  <td
+                    class="p-2 text-right border-b border-dashed"
+                    id="cf-oper"
+                  >
+                    $0.00
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-2 pl-4 border-b border-dashed">
+                    Flujo de Inversión (Neto)
+                  </td>
+                  <td class="p-2 text-right border-b border-dashed" id="cf-inv">
+                    $0.00
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-2 pl-4 border-b border-dashed">
+                    Flujo de Financiamiento (Neto)
+                  </td>
+                  <td class="p-2 text-right border-b border-dashed" id="cf-fin">
+                    $0.00
+                  </td>
+                </tr>
+                <tr class="font-bold">
+                  <td class="p-2">Flujo Neto del Periodo</td>
+                  <td class="p-2 text-right" id="cf-net">$0.00</td>
+                </tr>
+                <tr
+                  class="bg-purple-100 font-black text-purple-900 border-t-2 border-purple-300"
+                >
+                  <td class="p-3">SALDO FINAL DE EFECTIVO</td>
+                  <td class="p-3 text-right" id="cf-end">$0.00</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Footer -->
+            <div
+              class="mt-8 pt-4 border-t border-gray-200 text-center text-[10px] text-gray-400 uppercase"
+            >
+              Generado automáticamente con FinanGenerator Suite • Documento
+              Confidencial
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // --- UTILIDADES ---
+      const $ = (id) => document.getElementById(id);
+      const formatMoney = (n) =>
+        new Intl.NumberFormat("es-MX", {
+          style: "currency",
+          currency: "MXN",
+        }).format(n);
+      const formatPerc = (n) => (isFinite(n) ? n.toFixed(2) + "%" : "0.00%");
+      const getVal = (id) => parseFloat($(id).value) || 0;
+
+      // --- TABS LOGIC ---
+      function switchTab(tabId) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((el) => el.classList.remove("active"));
+        $(tabId).classList.add("active");
+
+        // Estilos de botones
+        ["btn-results", "btn-balance", "btn-flow"].forEach((btn) => {
+          const el = $(btn);
+          el.classList.remove(
+            "bg-white",
+            "dark:bg-gray-600",
+            "shadow-sm",
+            "text-black",
+          );
+          el.classList.add("text-gray-500", "dark:text-gray-400");
+        });
+        const activeBtn = $("btn-" + tabId.split("-")[1]);
+        activeBtn.classList.add("bg-white", "dark:bg-gray-600", "shadow-sm");
+        activeBtn.classList.remove("text-gray-500", "dark:text-gray-400");
+      }
+
+      // --- CALCULOS ---
+      function updateReport() {
+        $("out-company").innerText = $("companyName").value || "EMPRESA S.A.";
+        $("out-period").innerText = $("period").value
+          ? "Periodo: " + $("period").value
+          : "Informe Financiero Integral";
+        $("out-date").innerText = new Date().toLocaleDateString();
+      }
+
+      function calcResults() {
+        const sales = getVal("revenue");
+        const cogs = getVal("cogs");
+        const exp = getVal("expenses");
+        const taxRate = getVal("taxRate");
+        const invest = getVal("investment");
+
+        const gross = sales - cogs;
+        const ebit = gross - exp;
+        const tax = ebit > 0 ? ebit * (taxRate / 100) : 0;
+        const net = ebit - tax;
+
+        // Update Table
+        $("res-sales").innerText = formatMoney(sales);
+        $("res-cogs").innerText = formatMoney(cogs);
+        $("res-gross").innerText = formatMoney(gross);
+        $("res-expenses").innerText = formatMoney(exp);
+        $("res-tax").innerText = formatMoney(tax);
+        $("res-net").innerText = formatMoney(net);
+
+        // Percents
+        $("perc-cogs").innerText = formatPerc((cogs / sales) * 100);
+        $("perc-gross").innerText = formatPerc((gross / sales) * 100);
+        $("perc-expenses").innerText = formatPerc((exp / sales) * 100);
+        $("perc-net").innerText = formatPerc((net / sales) * 100);
+
+        // KPIs
+        $("kpi-margin").innerText = formatPerc((net / sales) * 100);
+        $("kpi-markup").innerText = formatPerc(
+          cogs > 0 ? (gross / cogs) * 100 : 0,
+        );
+        $("kpi-roi").innerText = formatPerc(
+          invest > 0 ? (net / invest) * 100 : 0,
+        );
+      }
+
+      function calcBalance() {
+        // Assets
+        const cash = getVal("asset-cash");
+        const recv = getVal("asset-receivable");
+        const inv = getVal("asset-inventory");
+        const fixed = getVal("asset-fixed");
+        const totalAssets = cash + recv + inv + fixed;
+
+        // Liabilities
+        const payable = getVal("liab-payable");
+        const debt = getVal("liab-debt");
+        const totalLiab = payable + debt;
+
+        // Equity (Plug) -> Activo - Pasivo = Capital
+        const equity = totalAssets - totalLiab;
+
+        // DOM Update
+        $("bal-cash").innerText = formatMoney(cash);
+        $("bal-receivable").innerText = formatMoney(recv);
+        $("bal-inventory").innerText = formatMoney(inv);
+        $("bal-fixed").innerText = formatMoney(fixed);
+        $("bal-total-assets").innerText = formatMoney(totalAssets);
+
+        $("bal-payable").innerText = formatMoney(payable);
+        $("bal-debt").innerText = formatMoney(debt);
+        $("bal-total-liab").innerText = formatMoney(totalLiab);
+
+        $("bal-equity").innerText = formatMoney(equity);
+        $("bal-total-le").innerText = formatMoney(totalLiab + equity);
+      }
+
+      function calcFlow() {
+        const start = getVal("flow-start");
+        const oper = getVal("flow-operating");
+        const inv = getVal("flow-investing");
+        const fin = getVal("flow-financing");
+
+        const netFlow = oper + inv + fin; // Assuming inputs have signs logic or just sum
+        const end = start + netFlow;
+
+        $("cf-start").innerText = formatMoney(start);
+        $("cf-oper").innerText = formatMoney(oper);
+        $("cf-inv").innerText = formatMoney(inv);
+        $("cf-fin").innerText = formatMoney(fin);
+        $("cf-net").innerText = formatMoney(netFlow);
+        $("cf-end").innerText = formatMoney(end);
+      }
+
+      // Dark Mode Logic
+      const themeToggle = document.getElementById("theme-toggle");
+      themeToggle.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        themeToggle.querySelector("i").classList.toggle("fa-sun");
+        themeToggle.querySelector("i").classList.toggle("fa-moon");
+      });
+
+      // Initialize
+      updateReport();
+      calcResults();
+    </script>
+  </body>
+</html>
