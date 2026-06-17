@@ -1,190 +1,315 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio</title>
+    <!-- Importar fuente moderna de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* --- Estilos globales --- */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #181818; /* Modo oscuro por defecto */
-            color: #e0e0e0;
+        /* --- CSS Variables para paleta moderna y elegante --- */
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #3b82f6;
+            --accent-hover: #60a5fa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --gradient-1: #3b82f6;
+            --gradient-2: #8b5cf6;
+        }
+        /* Modo Claro */
+        body.light-mode {
+            --bg-color: #f1f5f9;
+            --text-color: #0f172a;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            --gradient-1: #2563eb;
+            --gradient-2: #7c3aed;
+        }
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            position: relative;
+            overflow-x: hidden;
         }
-
-        /* Lógica CSS mejorada: Si el body tiene light-mode, cambia los hijos */
-        body.light-mode {
-            background-color: #f5f5f5;
-            color: #333;
+        /* --- Fondo Dinámico con gradientes suaves --- */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+            transition: all 0.5s ease;
+            animation: float 10s infinite ease-in-out alternate;
         }
-
+        body::before {
+            top: -10vw;
+            left: -10vw;
+            background: var(--gradient-1);
+        }
+        body::after {
+            bottom: -10vw;
+            right: -10vw;
+            background: var(--gradient-2);
+            animation-delay: -5s;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(20px) scale(1.05); }
+        }
+        /* --- Utilidad Glassmorphism (Efecto Cristal) --- */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
         /* --- Encabezado --- */
         header {
-            background-color: #222;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-            transition: background-color 0.3s;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 0.3s ease;
         }
-
-        /* El header cambia si el body es light-mode */
-        body.light-mode header {
-            background-color: #ddd;
-            color: #333;
-        }
-
         header nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
-            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            border-radius: 20px;
         }
-
         header h1 {
-            margin: 0;
+            font-weight: 800;
             font-size: 1.5em;
+            background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
         header ul {
             list-style-type: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
             flex-wrap: wrap;
         }
-
         header a {
             text-decoration: none;
-            color: inherit; /* Hereda el color del padre */
+            color: inherit;
+            font-weight: 600;
+            position: relative;
             transition: color 0.3s ease;
         }
-
-        header a:hover {
-            color: #4caf50; /* Un color de acento al pasar el mouse */
+        /* Efecto hover en enlaces */
+        header a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
         }
-
+        header a:hover {
+            color: var(--accent-hover);
+        }
+        header a:hover::after {
+            width: 100%;
+        }
         /* --- Contenido Principal --- */
         main {
             flex: 1;
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 900px;
+            margin: 40px auto;
             padding: 0 20px;
             width: 100%;
-            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            animation: fadeIn 0.8s ease forwards;
         }
-
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* --- Perfil --- */
         .profile-container {
             text-align: center;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, color 0.3s;
+            padding: 40px 20px;
+            border-radius: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        body.light-mode .profile-container {
-            background-color: #fff; /* Blanco puro para contraste en modo claro */
-            color: #333;
+        .profile-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
         }
-
+        body.light-mode .profile-container:hover {
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+        }
         .profile-container img.avatar {
             border-radius: 50%;
             margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--accent-color);
+            padding: 4px;
+            transition: transform 0.5s ease;
         }
-
+        .profile-container:hover img.avatar {
+            transform: scale(1.05) rotate(3deg);
+        }
+        .profile-container h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
         /* --- Sección de Herramientas --- */
+        .section h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
         .languages-tools {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 20px;
-            gap: 15px;
+            gap: 20px;
         }
-
         .languages-tools a {
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
-
         .languages-tools a:hover {
-            transform: scale(1.1);
-        }
-
-        /* --- Repositorios --- */
-        .repos-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .repos-list li {
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            border-radius: 5px;
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
         }
         
-        body.light-mode .repos-list li {
+        body.light-mode .languages-tools a:hover {
             background: rgba(0, 0, 0, 0.05);
         }
-
+        /* --- Bienvenida --- */
+        .welcome-section {
+            text-align: center;
+            padding: 40px;
+            border-radius: 24px;
+        }
+        .welcome-section h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        /* --- Repositorios --- */
+        .repos-section h3 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+        .repos-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .repos-list li {
+            padding: 25px;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+        .repos-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        body.light-mode .repos-list li:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
         .repos-list a {
-            color: #4da6ff;
+            color: var(--accent-color);
             text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
         }
-        
-        body.light-mode .repos-list a {
-            color: #0066cc;
+        .repos-list a:hover {
+            color: var(--accent-hover);
         }
-
+        .repos-desc {
+            font-size: 0.95em;
+            opacity: 0.8;
+            flex: 1;
+        }
         /* --- Redes Sociales --- */
         .social-media {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
             margin-top: 20px;
+            padding: 30px;
+            border-radius: 24px;
         }
-
+        .social-media a {
+            transition: transform 0.3s ease;
+        }
+        .social-media a:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
         /* --- Footer --- */
         .footer {
-            background-color: #222;
-            color: #fff;
             text-align: center;
-            padding: 15px;
+            padding: 30px;
             margin-top: auto;
-            transition: background-color 0.3s;
+            font-size: 0.9em;
+            opacity: 0.7;
+            font-weight: 300;
         }
-
-        body.light-mode .footer {
-            background-color: #ddd;
-            color: #333;
-        }
-
         /* --- Switch Toggle (Modo Oscuro) --- */
+        .theme-toggle-container {
+            display: flex;
+            align-items: center;
+        }
+        
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 30px;
+            width: 54px;
+            height: 28px;
         }
-
         .toggle-switch input { 
             opacity: 0;
             width: 0;
             height: 0;
         }
-
         .slider {
             position: absolute;
             cursor: pointer;
@@ -192,52 +317,50 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc;
+            background-color: #4b5563;
             transition: .4s;
             border-radius: 34px;
         }
-
         .slider:before {
             position: absolute;
             content: "";
-            height: 22px;
-            width: 22px;
+            height: 20px;
+            width: 20px;
             left: 4px;
             bottom: 4px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
         }
-
         input:checked + .slider {
-            background-color: #2196F3;
+            background-color: var(--accent-color);
         }
-
         input:checked + .slider:before {
-            transform: translateX(30px);
+            transform: translateX(26px);
         }
-
         /* --- Responsivo --- */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             header nav {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
+                padding: 20px;
             }
             header ul {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
             }
-            .toggle-switch {
-                margin-top: 10px;
+            .profile-container h2 {
+                font-size: 2em;
+            }
+            .welcome-section h2 {
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
-
 <body>
-
     <header>
-        <nav>
+        <nav class="glass">
             <h1>Mi Portafolio</h1>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
@@ -247,21 +370,20 @@
                 <li><a href="https://rodrigo47363.github.io/Mi-Blog.html" target="_blank">Mi Blog</a></li>
             </ul>
             
-            <!-- Toggle Switch simplificado -->
-            <label class="toggle-switch">
-                <input type="checkbox" id="theme-switch">
-                <span class="slider"></span>
-            </label>
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
         </nav>
     </header>
-
     <main id="inicio">
-        <div class="profile-container">
+        <!-- Perfil -->
+        <div class="profile-container glass">
             <img class="avatar" src="https://avatars.githubusercontent.com/u/157255595?s=400&u=893289db55bcdc9a73944ac6650ecde3bbb7698d&v=4"
                 alt="Foto de perfil de Rodrigo" width="150" height="150">
             <h2>¡Hola! Soy Rodrigo47363</h2>
-
-            <!-- Sección de lenguajes y herramientas -->
             <section class="section" id="lenguajes-herramientas">
                 <h3>Lenguajes y Herramientas</h3>
                 <div class="languages-tools">
@@ -277,66 +399,54 @@
                 </div>
             </section>
         </div>
-
-        <!-- Sección de bienvenida y repositorios -->
-        <section>
-            <div style="text-align: center; margin-top: 30px;">
-                <h2>Bienvenidos a mi página web</h2>
-                <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia.</p>
-            </div>
-            
+        <!-- Bienvenida -->
+        <section class="welcome-section glass">
+            <h2>Bienvenidos a mi página web</h2>
+            <p>En esta página web podrás encontrar información sobre mí, mis habilidades y mi experiencia. Me apasiona la tecnología y la creación de soluciones innovadoras.</p>
+        </section>
+        
+        <!-- Repositorios -->
+        <section class="repos-section">
             <h3>Mis repositorios de GitHub</h3>
             <ul class="repos-list" id="repos-list">
-                <li>Cargando repositorios...</li>
+                <li class="glass">
+                    <strong style="color: var(--accent-color);">Cargando repositorios...</strong>
+                    <p class="repos-desc">Espera un momento.</p>
+                </li>
             </ul>
-
-            <!-- Sección de redes sociales -->
-            <div class="social-media" id="contacto">
-                <!-- YouTube -->
-                <a href="https://www.youtube.com/@Rodrigo47363?sub_confirmation=1" target="_blank" title="YouTube">
-                    <img src="https://img.shields.io/youtube/channel/subscribers/UC9sjERLgkeIbbOwLHeah0Aw?style=social" alt="Suscriptores de YouTube">
-                </a>
-
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" title="LinkedIn">
-                    <img src="https://img.shields.io/badge/LinkedIn-Rodrigo%20V-blue?style=social" alt="LinkedIn">
-                </a>
-
-                <!-- GitHub -->
-                <a href="https://github.com/rodrigo47363" target="_blank" title="GitHub Followers">
-                    <img src="https://img.shields.io/github/followers/rodrigo47363?style=social" alt="Seguidores de GitHub">
-                </a>
-
-                <!-- Twitter/X -->
-                <a href="https://x.com/Rodrigo47363" target="_blank" title="Twitter/X">
-                    <img src="https://img.shields.io/twitter/follow/Rodrigo47363?style=social" alt="Seguidores en Twitter/X">
-                </a>
-            </div>
         </section>
+        <!-- Redes sociales -->
+        <div class="social-media glass" id="contacto">
+            <a href="https://www.youtube.com/@Rodrigo47363?sub_confirmation=1" target="_blank" title="YouTube">
+                <img src="https://img.shields.io/youtube/channel/subscribers/UC9sjERLgkeIbbOwLHeah0Aw?style=social" alt="Suscriptores de YouTube">
+            </a>
+            <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" title="LinkedIn">
+                <img src="https://img.shields.io/badge/LinkedIn-Rodrigo%20V-blue?style=social" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/rodrigo47363" target="_blank" title="GitHub Followers">
+                <img src="https://img.shields.io/github/followers/rodrigo47363?style=social" alt="Seguidores de GitHub">
+            </a>
+            <a href="https://x.com/Rodrigo47363" target="_blank" title="Twitter/X">
+                <img src="https://img.shields.io/twitter/follow/Rodrigo47363?style=social" alt="Seguidores en Twitter/X">
+            </a>
+        </div>
     </main>
-
     <footer class="footer">
-        <p>&copy; 2025 Rodrigo47363</p>
+        <p>&copy; 2025 Rodrigo47363. Construido con pasión y código.</p>
     </footer>
-
     <script>
-        // Función para manejar el cambio de tema
         function toggleDarkMode(e) {
             if (e.target.checked) {
-                document.body.classList.add('light-mode'); // El checkbox activado es modo claro
+                document.body.classList.add('light-mode');
                 localStorage.setItem('theme', 'light');
             } else {
-                document.body.classList.remove('light-mode'); // Desactivado es modo oscuro
+                document.body.classList.remove('light-mode');
                 localStorage.setItem('theme', 'dark');
             }
         }
-
-        // Función para cargar el tema guardado
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme');
             const checkbox = document.getElementById('theme-switch');
-
-            // Por defecto es oscuro (checkbox false). Si guardamos 'light', activamos el checkbox.
             if (savedTheme === 'light') {
                 document.body.classList.add('light-mode');
                 if (checkbox) checkbox.checked = true;
@@ -345,46 +455,38 @@
                 if (checkbox) checkbox.checked = false;
             }
         }
-
-        // Función para cargar los repositorios de GitHub
         async function loadRepos() {
             const reposList = document.getElementById('repos-list');
             try {
                 const response = await fetch('https://api.github.com/users/rodrigo47363/repos?sort=updated');
                 if (!response.ok) throw new Error(`Error: ${response.statusText}`);
-
                 const repos = await response.json();
-                
-                // Limpiar lista (quitar el texto de "Cargando...")
                 reposList.innerHTML = '';
-
-                // Mostrar solo los primeros 5 o todos
-                repos.forEach(repo => {
+                
+                // Mostrar los 6 repositorios actualizados más recientemente para una grilla equilibrada
+                const topRepos = repos.slice(0, 6);
+                topRepos.forEach(repo => {
                     const listItem = document.createElement('li');
+                    listItem.className = 'glass';
                     listItem.innerHTML = `
-                        <a href="${repo.html_url}" target="_blank"><strong>${repo.name}</strong></a>
-                        <p style="margin: 5px 0; font-size: 0.9em;">${repo.description || 'Sin descripción'}</p>
+                        <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                        <p class="repos-desc">${repo.description || 'Sin descripción'}</p>
                     `;
                     reposList.appendChild(listItem);
                 });
             } catch (error) {
                 console.error('Error cargando repositorios:', error.message);
-                reposList.innerHTML = '<li>No se pudieron cargar los repositorios. Verifica la conexión.</li>';
+                reposList.innerHTML = '<li class="glass"><strong style="color: #ef4444;">Error</strong><p class="repos-desc">No se pudieron cargar los repositorios.</p></li>';
             }
         }
-
-        // Inicialización al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
             loadTheme(); 
-            
             const themeSwitch = document.getElementById('theme-switch');
             if (themeSwitch) {
                 themeSwitch.addEventListener('change', toggleDarkMode);
             }
-            
             loadRepos();
         });
     </script>
-
 </body>
 </html>
