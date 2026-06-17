@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-section {
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .contact-section p {
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        body.light-mode .form-group input,
+        body.light-mode .form-group textarea {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        body.light-mode .form-group input:focus,
+        body.light-mode .form-group textarea:focus {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="acerca-de.html">Acerca de</a></li>
+                <li><a href="contacto.html" style="color: var(--accent-color);">Contacto</a></li>
+                <li><a href="repositorios.html">Repositorios</a></li>
+                <li><a href="blog.html">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-section glass">
+            <h2>Ponte en Contacto</h2>
+            <p>¿Tienes alguna pregunta o quieres colaborar en un proyecto? Envíame un mensaje.</p>
+            
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! (Esta es una demo)');">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            </form>
+        </section>
+
+        <!-- Redes sociales reutilizadas del index -->
+        <div class="social-media glass">
+            <a href="https://www.youtube.com/@Rodrigo47363?sub_confirmation=1" target="_blank" title="YouTube">
+                <img src="https://img.shields.io/youtube/channel/subscribers/UC9sjERLgkeIbbOwLHeah0Aw?style=social" alt="Suscriptores de YouTube">
+            </a>
+            <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" title="LinkedIn">
+                <img src="https://img.shields.io/badge/LinkedIn-Rodrigo%20V-blue?style=social" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/rodrigo47363" target="_blank" title="GitHub Followers">
+                <img src="https://img.shields.io/github/followers/rodrigo47363?style=social" alt="Seguidores de GitHub">
+            </a>
+            <a href="https://x.com/Rodrigo47363" target="_blank" title="Twitter/X">
+                <img src="https://img.shields.io/twitter/follow/Rodrigo47363?style=social" alt="Seguidores en Twitter/X">
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode(e) {
+            if (e.target.checked) {
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const checkbox = document.getElementById('theme-switch');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                if (checkbox) checkbox.checked = true;
+            } else {
+                document.body.classList.remove('light-mode');
+                if (checkbox) checkbox.checked = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme(); 
+            const themeSwitch = document.getElementById('theme-switch');
+            if (themeSwitch) {
+                themeSwitch.addEventListener('change', toggleDarkMode);
+            }
+        });
+    </script>
+</body>
+</html>
