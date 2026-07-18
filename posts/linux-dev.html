@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Un recorrido por las ventajas de usar distribuciones de Linux para programar, desde la libertad de personalización hasta la gestión de paquetes.">
+    <meta property="og:title" content="Por qué Linux es el mejor sistema para desarrolladores">
+    <meta property="og:description" content="Descubre por qué tantos programadores prefieren entornos Linux para su trabajo diario.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Por qué Linux es el mejor sistema para desarrolladores - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        .post-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-container glass">
+            <div class="post-header">
+                <span class="post-date">10 Junio, 2026</span>
+                <h1 class="post-title">Por qué Linux es el mejor sistema para desarrolladores</h1>
+            </div>
+
+            <div class="post-content">
+                <p>Desde el momento en que abres la terminal, la experiencia de desarrollo cambia por completo. Trabajar en un entorno GNU/Linux no es sólo una cuestión de preferencia visual, sino de control, rendimiento y libertad técnica.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">1. La Terminal como Centro de Mando</h3>
+                <p>En Windows o macOS, la terminal es una herramienta adicional. En Linux, la terminal <strong>es</strong> el sistema operativo. Herramientas como <code>grep</code>, <code>awk</code>, <code>sed</code>, <code>find</code> y tuberías (<em>pipes</em>) nativas convierten manipulaciones complejas de archivos y datos en comandos de una sola línea.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">2. Gestión de Paquetes Eficiente</h3>
+                <p>Instalar dependencias y herramientas es tan sencillo como:</p>
+                <pre><code>sudo apt install nodejs docker.io python3-pip
+# o en Arch Linux:
+sudo pacman -S nodejs docker python-pip</code></pre>
+                <p>No necesitas buscar instaladores en internet, hacer clics en "Siguiente" o preocuparte por agregar rutas al <code>PATH</code> del sistema. El gestor de paquetes lo hace todo de forma segura.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">3. Entornos Idénticos a Producción</h3>
+                <p>La inmensa mayoría de los servidores y contenedores Docker en el mundo funcionan sobre Linux. Al desarrollar en el mismo sistema operativo donde tu código será desplegado, te ahorras los infames problemas de <em>"pero en mi máquina sí funciona"</em>. Cuestiones de <em>casing</em> en nombres de archivos o permisos de ejecución se comportan igual que en producción.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">4. Personalización Extrema</h3>
+                <p>Tu entorno de escritorio puede ser tan ligero o tan pesado como desees. Puedes usar un entorno completo como GNOME o KDE, o saltar a Tiling Window Managers como <strong>i3wm</strong> o <strong>Sway</strong>, maximizando tu espacio en pantalla y operando únicamente con atajos de teclado.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Conclusión</h3>
+                <p>Migrar a Linux puede tener una curva de aprendizaje inicial, pero el retorno de inversión para un desarrollador es masivo. Te obliga a entender cómo funciona el sistema a bajo nivel y te da las herramientas para automatizar casi cualquier aspecto de tu flujo de trabajo.</p>
+            </div>
+            
+            <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+</body>
+</html>

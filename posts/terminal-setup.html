@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía paso a paso para instalar ZSH, Oh My Zsh y temas para que tu terminal no solo sea útil, sino también visualmente impresionante.">
+    <meta property="og:title" content="Cómo configurar tu terminal para que luzca increíble">
+    <meta property="og:description" content="Personaliza tu terminal con ZSH y temas para un mejor flujo de trabajo.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Cómo configurar tu terminal para que luzca increíble - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        .post-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-container glass">
+            <div class="post-header">
+                <span class="post-date">02 Marzo, 2026</span>
+                <h1 class="post-title">Cómo configurar tu terminal para que luzca increíble</h1>
+            </div>
+
+            <div class="post-content">
+                <p>Pasamos la mayor parte del día mirando la terminal. ¿Por qué conformarse con texto blanco sobre un fondo negro aburrido y sin autocompletado inteligente? Aquí te muestro cómo transformar tu terminal en una herramienta productiva y hermosa usando ZSH y Oh My Zsh.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">1. Instalar ZSH</h3>
+                <p>El primer paso es cambiar el shell por defecto (Bash) a ZSH. ZSH ofrece mejoras masivas en el autocompletado y personalización.</p>
+                <pre><code>sudo apt install zsh
+# O en Arch: sudo pacman -S zsh
+
+# Establecer ZSH como shell por defecto:
+chsh -s $(which zsh)</code></pre>
+                <p>Deberás cerrar sesión y volver a entrar para que los cambios surtan efecto.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">2. Instalar Oh My Zsh</h3>
+                <p>Oh My Zsh es un framework impulsado por la comunidad para gestionar tu configuración de ZSH. Trae miles de funciones útiles, <em>helpers</em>, plugins y temas.</p>
+                <pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">3. Elegir un Tema (Powerlevel10k)</h3>
+                <p>Aunque Oh My Zsh viene con muchos temas (como el clásico <em>agnoster</em>), te recomiendo encarecidamente <strong>Powerlevel10k</strong> por su velocidad y estética.</p>
+                <pre><code>git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k</code></pre>
+                <p>Luego, abre tu archivo <code>~/.zshrc</code> y cambia la variable de tema:</p>
+                <pre><code>ZSH_THEME="powerlevel10k/powerlevel10k"</code></pre>
+                <p>La próxima vez que abras la terminal, se iniciará un asistente de configuración visual interactivo.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">4. Plugins Esenciales</h3>
+                <p>No olvides habilitar plugins. En tu <code>~/.zshrc</code>, busca la línea <code>plugins=(git)</code> y añade mis favoritos:</p>
+                <pre><code>plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)</code></pre>
+                <p><em>Nota: Deberás clonar los repositorios de autosuggestions y syntax-highlighting en tu carpeta de custom plugins de oh-my-zsh.</em></p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Bonus: Instalación de Entorno Pentesting (bspwm)</h3>
+                <p>Si además de mejorar tu terminal quieres un entorno gráfico ultraligero y herramientas completas para Hacking / Ricing en Debian o Ubuntu, este es el script definitivo que utilizo para instalar bspwm, rofi, kitty y todas las dependencias necesarias de compilación y pentesting en un solo comando:</p>
+                <pre><code>sudo apt update -y && sudo apt install -y \
+    xinput git curl wget zsh unzip build-essential cmake pkg-config meson \
+    kitty tmux neovim jq bat locate ranger xclip scrub acpi brightnessctl wmname \
+    bspwm sxhkd rofi picom feh scrot imagemagick \
+    libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-ewmh-dev \
+    libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto \
+    libxcb-image0-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev \
+    libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev \
+    libmpdclient-dev libuv1-dev libnl-genl-3-dev \
+    openvpn aircrack-ng airgeddon hcxdumptool hcxtools \
+    php ruby python3-sphinx zsh-syntax-highlighting zsh-autosuggestions \
+    texlive-latex-recommended cmatrix nmcli golang hashcat seclists wordlists \
+    && sudo updatedb</code></pre>
+                <p>Este comando instalará utilidades de red, herramientas para ataques WiFi (aircrack-ng, airgeddon), diccionarios (seclists) y dependencias base para compilar tus propios <em>polybars</em> o utilidades en C/C++.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Conclusión</h3>
+                <p>Una terminal bien configurada no solo es estéticamente agradable, sino que te ahorra miles de pulsaciones de teclas gracias al autocompletado del historial y te da contexto inmediato (como la rama de Git en la que te encuentras). ¡Pruébalo y nunca querrás volver a Bash estándar!</p>
+            </div>
+            
+            <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+</body>
+</html>

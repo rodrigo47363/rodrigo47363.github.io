@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- CSP Corregido: Se agregaron los dominios de telemetría y Gravatar a img-src -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://github-stats-extended.vercel.app https://streak-stats.demolab.com https://readme-typing-svg.demolab.com https://secure.gravatar.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio personal de Rodrigo47363. Desarrollador, pentester en formación y entusiasta de Linux.">
+    <meta property="og:title" content="Rodrigo47363 - Portafolio Personal">
+    <meta property="og:description" content="Explora mis proyectos, repositorios y artículos sobre tecnología, desarrollo y ciberseguridad.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Rodrigo47363 - Portafolio</title>
+
+    <!-- Preconexión a recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fuentes y CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS con SRI -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" integrity="sha384-/rJKQnzOkEo+daG0jMjU1IwwY9unxt1NBw3Ef2fmOJ3PW/TfAg2KXVoWwMZQZtw9" crossorigin="anonymous">
+    
+    <!-- Estilos locales -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Carga diferida de scripts (Rendimiento) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" integrity="sha384-wziAfh6b/qT+3LrqebF9WeK4+J5sehS6FA10J1t3a866kJ/fvU5UwofWnQyzLtwu" crossorigin="anonymous" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="pages/contacto.html">Contacto</a></li>
+                <li><a href="pages/repositorios.html">Repositorios</a></li>
+                <li><a href="pages/blog.html">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main id="inicio">
+        <!-- Perfil -->
+        <div class="profile-container glass" data-aos="fade-up">
+            <img class="avatar" src="https://secure.gravatar.com/avatar/ff05e4db880099b6b7cee35d5d6a3bfe.jpg?s=200&d=robohash&r=x" alt="Foto de perfil de Rodrigo" width="150" height="150">
+            <h2>¡Hola! Soy Rodrigo47363</h2>
+            <h3 style="color: var(--accent-color); font-weight: 400; margin-bottom: 10px;">Offensive Security Specialist</h3>
+            <img src="https://readme-typing-svg.demolab.com?font=Outfit&weight=600&size=22&duration=4000&pause=1000&color=3b82f6&center=true&vCenter=true&width=600&lines=Ethical+Hacking+Specialist;Red+Team+%26+Pentesting;WiFi+Security+Researcher;Bug+Bounty+Hunter" alt="Especialidades: Ethical Hacking, Red Team, WiFi Security, Bug Bounty" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+            <a href="cv.pdf" download class="btn-cv">Descargar CV</a>
+
+            <section class="section" id="lenguajes-herramientas">
+                <h3>Lenguajes y Herramientas</h3>
+                <div class="languages-tools">
+                    <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noopener noreferrer" title="Bash">
+                        <img src="assets/img/gnu_bash-icon.svg_5db5b9bb02.svg" alt="Bash" width="40" height="40">
+                    </a>
+                    <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer" title="Linux">
+                        <img src="assets/img/linux-original.svg_d95547c5c0.svg" alt="Linux" width="40" height="40">
+                    </a>
+                    <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" title="Python">
+                        <img src="assets/img/python-original.svg_c9d15eda77.svg" alt="Python" width="40" height="40">
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- GitHub Stats -->
+        <section class="welcome-section glass" data-aos="fade-up" data-aos-delay="100">
+            <h2 style="color: var(--accent-color); margin-bottom: 20px;">Estadísticas de GitHub</h2>
+            <div class="stats-container">
+                <!-- Se añaden atributos de tamaño para evitar saltos de layout (CLS) -->
+                <img src="https://github-stats-extended.vercel.app/api?username=rodrigo47363&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&bg_color=0D1117" alt="Estadísticas de Rodrigo" style="max-width: 100%; height: auto; border-radius: 12px;">
+                <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=rodrigo47363&layout=compact&theme=tokyonight&hide_border=true&langs_count=5&bg_color=0D1117" alt="Lenguajes Top" style="max-width: 100%; height: auto; border-radius: 12px;">
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <img src="https://streak-stats.demolab.com?user=rodrigo47363&theme=tokyonight&hide_border=true&background=0D1117" alt="Racha de GitHub" style="max-width: 100%; height: auto; border-radius: 12px;">
+            </div>
+        </section>
+
+        <!-- Proyectos Destacados -->
+        <section class="projects-section" data-aos="fade-up">
+            <h3>Proyectos Destacados</h3>
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <article class="project-card glass">
+                    <img src="assets/img/img_5ff3f127d8.jpg" alt="Proyecto Ciberseguridad" class="project-img" loading="lazy">
+                    <h4 class="project-title">Automatización de Reconocimiento</h4>
+                    <p class="project-desc">Un script en Bash para automatizar la fase de reconocimiento usando Nmap, Ffuf y crtm.sh de forma asíncrona.</p>
+                    <div class="project-tech">
+                        <span class="blog-tag">Bash</span>
+                        <span class="blog-tag">Pentesting</span>
+                    </div>
+                    <a href="https://github.com/rodrigo47363/NekoFI" target="_blank" rel="noopener noreferrer" class="project-link">Ver Código →</a>
+                </article>
+
+                <!-- Proyecto 2 -->
+                <article class="project-card glass">
+                    <img src="assets/img/img_f16e433f13.jpg" alt="Proyecto Desarrollo" class="project-img" loading="lazy">
+                    <h4 class="project-title">Portafolio Glassmorphism</h4>
+                    <p class="project-desc">Diseño e implementación de un portafolio web moderno sin frameworks usando Vanilla CSS y JavaScript.</p>
+                    <div class="project-tech">
+                        <span class="blog-tag">HTML5</span>
+                        <span class="blog-tag">CSS3</span>
+                        <span class="blog-tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/rodrigo47363/rodrigo47363.github.io" target="_blank" rel="noopener noreferrer" class="project-link">Ver Código →</a>
+                </article>
+            </div>
+        </section>
+        
+        <!-- Repositorios -->
+        <section class="repos-section" data-aos="fade-up">
+            <h3>Mis repositorios de GitHub</h3>
+            <ul class="repos-list" id="repos-list">
+                <li class="glass">
+                    <strong style="color: var(--accent-color);">Cargando repositorios...</strong>
+                    <p class="repos-desc">Espera un momento.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Redes sociales -->
+        <div class="social-media glass" id="contacto" data-aos="fade-up">
+            <a href="https://www.youtube.com/@Rodrigo47363?sub_confirmation=1" target="_blank" rel="noopener noreferrer" title="YouTube">
+                <img src="assets/img/img_f9f170d4a0.svg" alt="Suscriptores de YouTube" height="30">
+            </a>
+            <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <img src="assets/img/img_c505fca427.svg" alt="LinkedIn" height="30">
+            </a>
+            <a href="https://github.com/rodrigo47363" target="_blank" rel="noopener noreferrer" title="GitHub Followers">
+                <img src="assets/img/rodrigo47363_62227bff63.svg" alt="Seguidores de GitHub" height="30">
+            </a>
+            <a href="https://x.com/Rodrigo47363" target="_blank" rel="noopener noreferrer" title="Twitter/X">
+                <img src="assets/img/Rodrigo47363_72c9d5bbeb.svg" alt="Seguidores en Twitter/X" height="30">
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+
+</body>
+</html>

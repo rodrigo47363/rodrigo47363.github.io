@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende a crear tus propios scripts de Bash para dejar de repetir comandos interminables en la terminal y mejorar tu productividad.">
+    <meta property="og:title" content="Automatizando tareas con scripts de Bash">
+    <meta property="og:description" content="Domina Bash scripting y optimiza tu flujo de trabajo en la terminal.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Automatizando tareas con scripts de Bash - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        .post-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-container glass">
+            <div class="post-header">
+                <span class="post-date">28 Mayo, 2026</span>
+                <h1 class="post-title">Automatizando tareas con scripts de Bash</h1>
+            </div>
+
+            <div class="post-content">
+                <p>Si te encuentras escribiendo la misma secuencia de comandos más de dos veces a la semana, es momento de automatizarlo. Bash (Bourne Again Shell) es el lenguaje de <em>scripting</em> por excelencia en sistemas tipo Unix, y dominarlo te ahorrará cientos de horas a largo plazo.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Anatomía de un Script Básico</h3>
+                <p>Todo script de Bash debe comenzar con el <strong>Shebang</strong> (<code>#!/bin/bash</code>), el cual le indica al sistema qué intérprete utilizar para ejecutar el archivo.</p>
+                <pre><code>#!/bin/bash
+# Mi primer script de automatización
+
+echo "Iniciando proceso de respaldo..."
+tar -czvf respaldo-$(date +%F).tar.gz /var/www/html
+echo "Respaldo completado con éxito."</code></pre>
+                <p>Recuerda que para poder ejecutar este archivo, necesitas darle permisos de ejecución usando <code>chmod +x miscript.sh</code> y luego correrlo con <code>./miscript.sh</code>.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Variables y Argumentos</h3>
+                <p>Los scripts se vuelven verdaderamente poderosos cuando pueden aceptar parámetros y almacenar información en variables.</p>
+                <pre><code>#!/bin/bash
+
+DIRECTORIO=$1
+
+if [ -z "$DIRECTORIO" ]; then
+    echo "Error: Debes proporcionar un directorio."
+    exit 1
+fi
+
+echo "Analizando el espacio en $DIRECTORIO"
+du -sh $DIRECTORIO/* | sort -hr | head -n 5</code></pre>
+                <p>Este script acepta un directorio como argumento (ej. <code>./top_carpetas.sh /var/log</code>) y muestra los 5 elementos que más espacio consumen.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Bucles para Tareas Repetitivas</h3>
+                <p>Si necesitas aplicar una acción a múltiples archivos, los bucles <code>for</code> son tus mejores amigos. Por ejemplo, para convertir múltiples imágenes PNG a JPG usando ImageMagick:</p>
+                <pre><code>#!/bin/bash
+
+for img in *.png; do
+    echo "Convirtiendo $img a JPG..."
+    convert "$img" "${img%.png}.jpg"
+done</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Conclusión</h3>
+                <p>La automatización con Bash es un superpoder. Comienza automatizando tareas pequeñas: actualizar el sistema, respaldar tu código o limpiar archivos temporales. Poco a poco, irás construyendo un arsenal de herramientas personalizadas que harán tu flujo de trabajo invencible.</p>
+            </div>
+            
+            <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+</body>
+</html>

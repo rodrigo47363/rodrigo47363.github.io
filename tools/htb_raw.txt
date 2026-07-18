@@ -1,0 +1,140 @@
+Web Penetration Tester
+The Web Penetration Tester Job Role Path is for individuals who want to enter the world of web penetration testing with little to no prior experience in it. This path covers core web security assessment and web penetration testing concepts, and provides a deep understanding of the attack tactics used during web penetration testing. Armed with the necessary theoretical background, multiple practical exercises, and a proven web penetration testing methodology, students will go through all web penetration testing stages, from reconnaissance and vulnerability identification to exploitation, documentation, and communication to vendors. Upon completing this job role path, you will have become proficient in the most common web penetration testing and attack techniques against web applications and APIs, and be in the position of professionally reporting vulnerabilities to a vendor.
+Medium Path Sections 279 Sections
+Required: 1410
+Reward: +330
+Path Modules
+20 Modules included
+Basic Toolset
+In this path, modules cover the basic tools needed to be successful in network and web application penetration testing. This is not an exhaustive listing of all tools (both open source and commercial) available to us as security practitioners but covers tried and true tools that we find ourselves using on every technical assessment that we perform. Learning how to use the basic toolset is essential, as many different tools are used in penetration testing. We need to understand which of them to use for the various situations we will come across.
+Medium Path Sections 93 Sections
+Required: 470
+Reward: +110
+Path Modules
+7 Modules included
+Cracking into Hack the Box
+To be successful in any technical information security role, we must have a broad understanding of specialized tools, tactics, and terminology. This path introduces core concepts necessary for anyone interested in a hands-on technical infosec role. The modules also provide the essential prerequisite knowledge for joining the main Hack The Box platform, progressing through Starting Point through easy-rated retired machines, and solving "live" machines with no walkthrough. It also includes helpful information about staying organized, navigating the HTB platforms, common pitfalls, and selecting a penetration testing distribution. Students will complete their first box during this path with a guided walkthrough and be challenged to complete a box on their own by applying the knowledge learned in the Getting Started module.
+Easy Path Sections 42 Sections
+Required: 30
+Reward: +30
+Path Modules
+3 Modules included
+Local Privilege Escalation
+Privilege escalation is a vital phase of the penetration testing process, one we may revisit multiple times during an engagement. During our assessments, we will encounter a large variety of operating systems and applications. Most often, if we can exploit a vulnerability and gain a foothold on a host, it will be running some version of Windows or Linux. Both present a large attack surface with many tactics and techniques available to us for escalating privileges. This path teaches the core concepts of local privilege escalation necessary for being successful against Windows and Linux systems. The path covers manual enumeration and exploitation and the use of tools to aid in the process.
+Medium Path Sections 61 Sections
+Required: 200
+Reward: +40
+Path Modules
+2 Modules included
+Penetration Tester
+The Penetration Tester Job Role Path is for newcomers to information security who aspire to become professional penetration testers. This path covers core security assessment concepts and provides a deep understanding of the specialized tools, attack tactics, and methodology used during penetration testing. Armed with the necessary theoretical background and multiple practical exercises, students will go through all penetration testing stages, from reconnaissance and enumeration to documentation and reporting. Upon completing this job role path, you will have obtained the practical skills and mindset necessary to perform professional security assessments against enterprise-level infrastructure at an intermediate level. The Information Security Foundations skill path can be considered prerequisite knowledge to be successful while working through this job role path.
+Medium Path Sections 495 Sections
+Required: 1970
+Reward: +450
+Path Modules
+28 Modules included
+Intro to Binary Exploitation
+Binary exploitation is a core tenet of penetration testing, but learning it can be daunting. This is mainly due to the complexity of binary files and their underlying machine code and how binary files interact with computer memory and the processor. To learn the basics of binary exploitation, we must first have a firm grasp of Computer Architecture and the Assembly Language. To move into more advanced binary exploitation, we must have a firm grasp on basic buffer overflow attacks, principles such as CPU architecture, and CPU registers for 32-bit Windows and Linux systems. Furthermore, a strong foundation in Python scripting is essential for writing and understanding exploit scripts.
+Hard Path Sections 62 Sections
+Required: 170
+Reward: +50
+Path Modules
+4 Modules included
+Operating System Fundamentals
+To succeed in information security, we must have a deep understanding of the Windows and Linux operating systems and be comfortable navigating the command line on both as a "power user." Much of our time in any role, but especially penetration testing, is spent in a Linux shell, Windows cmd or PowerShell console, so we must have the skills to navigate both types of operating systems with ease, manage system services, install applications, manage permissions, and harden the systems we work from in accordance with security best practices.
+Easy Path Sections 75 Sections
+Required: 40
+Reward: +40
+Path Modules
+4 Modules included
+CREST CPSA/CRT Preparation
+This is a skill path to prepare you for CREST's CPSA and CRT exams. The following CPSA/CRT syllabus areas (IDs) are covered: A1, A2, A3, A4, A5, B1, B4, B5, B6, B8, B9, B13, B14, C1, C2, C3, C4, D1, D2, E1, E2, E3, E4, E5, E9, F1, F2, F3, F4, F5, F6, F7, F8, F9, G1, G2, G4, G5, G6, G7, G8, G9, H1, H2, H3, H4, H5, H6, H8, H9, H10, H11, H12, H13, I1, I2, I3, I6, J1, J2, J3. Take your time to complete all related sections and when you are ready you can book your CREST exam through the following links. CREST CPSA: https://www.crest-approved.org/certification-careers/crest-certifications/crest-practitioner-security-analyst/. CREST CRT: https://www.crest-approved.org/certification-careers/crest-certifications/crest-registered-penetration-tester/.
+Medium Path Sections 843 Sections
+Required: 6800
+Reward: +1480
+Path Modules
+52 Modules included
+CREST CCT APP Preparation
+This is a skill path to prepare you for CREST's CCT APP exam. The following CCT APP syllabus areas (IDs) are covered: A1, A2, A3, A4, A5, B1, B4, B5, B6, B8, B9, B13, B14, C1, C2, C3, C4, D1, D2, E1, E2, E3, E4, E5, E9, F1, F2, F3, F4, F5, F6, F7, F8, F9, G1, G2, G4, G5, G6, G7, G8, G9, H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, H11, H12, H13, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, J1, J2, J3. Take your time to complete all related sections and when you are ready you can book your CREST exam through the following link. https://www.crest-approved.org/certification-careers/crest-certifications/crest-certified-web-application-tester/
+Medium Path Sections 754 Sections
+Required: 4980
+Reward: +1100
+Path Modules
+44 Modules included
+Information Security Foundations
+Information Security is a field with many specialized and highly technical disciplines. Job roles like Penetration Tester & Information Security Analyst require a solid technical foundational understanding of core IT & Information Security topics. This skill path is made up of modules that will assist learners in developing &/or strengthening a foundational understanding before proceeding with learning the more complex security topics. Every long-standing building first needs a solid foundation. Welcome to Information Security Foundations.
+Easy Path Sections 204 Sections
+Required: 200
+Reward: +120
+Path Modules
+12 Modules included
+SOC Analyst
+The SOC Analyst Job Role Path is for newcomers to information security who aspire to become professional SOC analysts. This path covers core security monitoring and security analysis concepts and provides a deep understanding of the specialized tools, attack tactics, and methodology used by adversaries. Armed with the necessary theoretical background and multiple practical exercises, students will go through all security analysis stages, from traffic analysis and SIEM monitoring to DFIR activities and reporting. Upon completing this job role path, you will have obtained the practical skills and mindset necessary to monitor enterprise-level infrastructure and detect intrusions at an intermediate level. The SOC Analyst Prerequisites skill path can be considered prerequisite knowledge to be successful while working through this job role path.
+Medium Path Sections 167 Sections
+Required: 1220
+Reward: +260
+Path Modules
+15 Modules included
+CREST CCT INF Preparation
+This is a skill path to prepare you for CREST's CCT INF exam. The following CCT INF syllabus areas (IDs) are covered: A1, A2, A3, A4, A5, A8, A9, A10, B1, B2, B4, B5, C1, C2, C3, C4, C6, C7, D1, D2, D5, D9, D10, D13, D14, D15, D18, D19, E1, E2, E3 E6, E7, E8, E9, E11, E13, E14, E15, E16, E17, E18, E19, E20, E25, E26, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F15, F16, G1, G2, G3, G4, G5, G6, G7, G8, H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, H11, H12, H13, H14, H15, H16, H17, H19, H20, H21, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H34, H35, H36, H37, H38, H40, I1, I2, I3, I4, I6, K1, K2, K3, K4, N1, N2. Take your time to complete all related sections and when you are ready you can book your CREST exam through the following link. https://www.crest-approved.org/certification-careers/crest-certifications/crest-certified-infrastructure-tester/
+Hard Path Sections 960 Sections
+Required: 11510
+Reward: +2430
+Path Modules
+58 Modules included
+SOC Analyst Prerequisites
+The SOC Analyst Prerequisites path is designed for those looking to become SOC/Security Analysts. It dives into fundamental IT and Information Security subjects including networking, Linux and Windows operating systems, basic programming and scripting, as well as working with Assembly. In addition, students will be exposed to the fundamental concepts of information security and penetration testing. This skill path is made up of modules that will assist learners in developing and strengthening a foundational understanding before proceeding with learning more complex security topics.
+Easy Path Sections 173 Sections
+Required: 350
+Reward: +110
+Path Modules
+10 Modules included
+Senior Web Penetration Tester
+The Senior Web Penetration Tester Job Role Path is designed for individuals who aim to develop skills in identifying advanced and hard-to-find web vulnerabilities using both black box and white box techniques. This path encompasses advanced-level training in web security, web penetration testing, and secure coding concepts. It also provides a deep understanding of the application debugging, source code review, and custom exploit development aspects of web security. Equipped with the necessary theoretical background, multiple practical exercises, and a proven methodology for web vulnerability identification, students will eventually be capable of performing professional security assessments against modern and highly secure web applications, as well as effectively reporting vulnerabilities found in code or arising from logical errors.
+Hard Path Sections 245 Sections
+Required: 7500
+Reward: +1500
+Path Modules
+15 Modules included
+Active Directory Penetration Tester
+The Active Directory Penetration Tester Job Role Path is designed for individuals who aim to develop skills in pentesting large Active Directory (AD) networks and the components commonly found in such environments. This path equips students with the skills needed to evaluate the security of AD environments, navigate complex Windows networks, and identify elusive attack paths. This path includes advanced hands-on labs where participants will practice techniques such as Kerberos attacks, NTLM relay attacks, and the abuse of services like AD Certificate Services (ADCS), Exchange, WSUS, and MSSQL. Students will also learn how to exploit misconfigurations in Active Directory DACLs and Domain Trusts, perform evasion tactics in Windows environments, and leverage Command and Control (C2) frameworks for post-exploitation activities. By combining theoretical foundations with practical exercises and a structured methodology for identifying AD vulnerabilities, this path enables students to conduct professional security assessments on complex AD infrastructures and effectively report security weaknesses discovered by chaining multiple vulnerabilities.
+Hard Path Sections 253 Sections
+Required: 7100
+Reward: +1420
+Path Modules
+15 Modules included
+AI Red Teamer
+The AI Red Teamer Job Role Path, in collaboration with Google, trains cybersecurity professionals to assess, exploit, and secure AI systems. Covering prompt injection, model privacy attacks, adversarial AI, supply chain risks, and deployment threats, it combines theory with hands-on exercises. Aligned with Google’s Secure AI Framework (SAIF), it ensures relevance to real-world AI security challenges. Learners will gain skills to manipulate model behaviors, develop AI-specific red teaming strategies, and perform offensive security testing against AI-driven applications.
+Hard Path Sections 230 Sections
+Required: 970
+Reward: +210
+Path Modules
+12 Modules included
+Junior Cybersecurity Analyst
+The Junior Cybersecurity Analyst Job Role Path is the first step to enter and gain practical, hands-on experience in the cybersecurity field. This path covers essential cybersecurity concepts and builds a foundational understanding of operating systems, offensive and defensive tools, attack tactics, log analysis, and methodologies employed by penetration testers and security operations centers. Students will explore key principles while gaining practical experience in both offensive and defensive cybersecurity assessments, including the basics of penetration testing and security analysis. This job role path equips you with the skills and mindset needed to launch a career in cybersecurity, offering a well-rounded foundation in both offensive and defensive techniques that reflects the evolving demands of real-world cybersecurity operations.
+Easy Path Sections 317 Sections
+Required: 810
+Reward: +250
+Path Modules
+20 Modules included
+Android Application Pentesting
+The Android Application Pentesting Skill Path is a hands-on program covering Android fundamentals, security architecture, static and dynamic analysis, malware investigation, penetration testing automation, and digital forensics. Learners use tools like MobSF, Frida, Objection, ALEAPP, and Autopsy to practice rooting devices, bypassing security, and recovering data. Through module exercises and assessments, they build expertise in identifying vulnerabilities, mitigating threats, and performing professional forensic investigations on Android devices.
+Hard Path Sections 85 Sections
+Required: 3010
+Reward: +610
+Path Modules
+7 Modules included
+Wi-Fi Penetration Tester
+The Wi-Fi Penetration Tester Job Role Path is designed for professionals and aspiring security practitioners who want to build expertise in assessing and securing corporate wireless networks. The course provides hands-on training in evaluating the security of Wi-Fi environments, from attacking modern authentication and encryption protocols to simulating real-world attack scenarios such as rogue access points, man-in-the-middle attacks, and credential harvesting. Students will gain practical experience with industry-standard tools and methodologies, learning how to identify vulnerabilities, exploit misconfigurations, and recommend effective countermeasures. By the end of this Path the participants will be equipped with the knowledge and skills required to perform authorized Wi-Fi penetration tests and strengthen the wireless security posture of enterprise corporate environments.
+Hard Path Sections 170 Sections
+Required: 3400
+Reward: +680
+Path Modules
+10 Modules included
+Active Directory Enumeration
+Active Directory (AD) is widely used by companies across all verticals/sectors, non-profits, government agencies, and educational institutions of all sizes. By its nature, AD is easily misconfigured and has many inherent flaws and widely known vulnerabilities. Due to the sheer number of objects and in AD and complex intertwined relationships that form as an AD network grows, it becomes increasingly difficult to secure and presents a vast attack surface. AD environments can become quite large and often hold many obvious and more difficult to discover flaws. A deep understanding of AD enumeration techniques and tools is essential to becoming a well-rounded information security professional.
+Hard Path Sections 35 Sections
+Required: 1500
+Reward: +300
+Path Modules
+3 Modules included

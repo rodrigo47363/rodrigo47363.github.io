@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía básica de OSINT: Técnicas y herramientas para buscar información pública de manera efectiva y segura.">
+    <meta property="og:title" content="Introducción al OSINT: Herramientas y Técnicas">
+    <meta property="og:description" content="Descubre cómo usar Open Source Intelligence (OSINT) para investigaciones de ciberseguridad.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Introducción al OSINT - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="../js/main.js" defer></script>
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        .post-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-container glass" data-aos="fade-up">
+            <div class="post-header">
+                <span class="post-date">11 Julio, 2026</span>
+                <h1 class="post-title">Introducción al OSINT: Herramientas y Técnicas</h1>
+            </div>
+
+            <div class="post-content">
+                <p>El <strong>OSINT</strong> (Open Source Intelligence, o Inteligencia de Fuentes Abiertas) es el proceso de recolectar, analizar y tomar decisiones basadas en información pública disponible en la web. En el mundo de la ciberseguridad (y especialmente en las fases de reconocimiento o <em>footprinting</em>), el OSINT es una habilidad crítica.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">1. Búsqueda Avanzada en Google (Dorks)</h3>
+                <p>Google es posiblemente la herramienta de OSINT más poderosa. Utilizando operadores avanzados (Google Dorks), puedes encontrar información que no está destinada a ser pública, como bases de datos expuestas, paneles de control o archivos de configuración.</p>
+                <pre><code># Buscar archivos de configuración expuestos
+filetype:env "DB_PASSWORD"
+
+# Buscar paneles de administración expuestos de WordPress
+inurl:wp-admin intext:"Dashboard"</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">2. Análisis de Metadatos</h3>
+                <p>Las imágenes y documentos de Office suelen contener metadatos (EXIF) que pueden revelar el tipo de cámara, coordenadas GPS de donde se tomó la foto, o nombres de usuario del sistema. La herramienta <code>exiftool</code> es indispensable para este propósito.</p>
+                <pre><code># Ver todos los metadatos de una imagen
+exiftool imagen_sospechosa.jpg</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">3. OSINT en Redes Sociales</h3>
+                <p>Las redes sociales son minas de oro para la ingeniería social. Herramientas como <strong>Sherlock</strong> te permiten comprobar si un nombre de usuario existe en cientos de redes sociales de manera automática.</p>
+                <pre><code># Buscar un usuario en +300 plataformas
+python3 sherlock.py nombre_usuario</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">4. Búsqueda Inversa de Imágenes y Correos</h3>
+                <p>Servicios como Yandex, TinEye o Google Images permiten encontrar perfiles asociados a una imagen en concreto. Por otro lado, herramientas como <strong>theHarvester</strong> y portales como <strong>HaveIBeenPwned</strong> te dicen si un correo electrónico ha estado envuelto en una filtración de datos.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Ética y OPSEC</h3>
+                <p>Es importante recordar que el OSINT debe hacerse con ética. Además, debes cuidar tu propio OPSEC (Seguridad Operacional) mientras investigas: utiliza máquinas virtuales aisladas (VMs), VPNs, Tor, y perfiles de investigación falsos para no dejar rastros de tu IP personal.</p>
+            </div>
+            
+            <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

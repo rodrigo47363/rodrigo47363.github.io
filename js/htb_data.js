@@ -1,0 +1,500 @@
+const htbData = [
+    {
+        "title": "Web Penetration Tester",
+        "description": "The Web Penetration Tester Job Role Path is for individuals who want to enter the world of web penetration testing with little to no prior experience in it. This path covers core web security assessment and web penetration testing concepts, and provides a deep understanding of the attack tactics used during web penetration testing. Armed with the necessary theoretical background, multiple practical exercises, and a proven web penetration testing methodology, students will go through all web penetration testing stages, from reconnaissance and vulnerability identification to exploitation, documentation, and communication to vendors. Upon completing this job role path, you will have become proficient in the most common web penetration testing and attack techniques against web applications and APIs, and be in the position of professionally reporting vulnerabilities to a vendor.",
+        "difficulty": "Medium",
+        "required": "1410",
+        "reward": "+330",
+        "modules": [
+            {
+                "title": "Web Requests",
+                "difficulty": "Fundamental",
+                "sections": "8 Sections",
+                "reward": "+10",
+                "description": "This module introduces the topic of HTTP web requests and how different web applications utilize them to communicate with their backends."
+            },
+            {
+                "title": "Introduction to Web Applications",
+                "difficulty": "Fundamental",
+                "sections": "17 Sections",
+                "reward": "+10",
+                "description": "In the Introduction to Web Applications module, you will learn all of the basics of how web applications work and begin to look at them from an information security perspective."
+            },
+            {
+                "title": "Using Web Proxies",
+                "difficulty": "Easy",
+                "sections": "15 Sections",
+                "reward": "+20",
+                "description": "Web application penetration testing frameworks are an essential part of any web penetration test. This module will teach you two of the best frameworks: Burp Suite and OWASP ZAP."
+            },
+            {
+                "title": "Information Gathering - Web Edition",
+                "difficulty": "Easy",
+                "sections": "19 Sections",
+                "reward": "+20",
+                "description": "This module equips learners with essential web reconnaissance skills, crucial for ethical hacking and penetration testing. It explores both active and passive techniques, including DNS enumeration, web crawling, analysis of web archives and HTTP headers, and fingerprinting web technologies."
+            },
+            {
+                "title": "Web Fuzzing",
+                "difficulty": "Easy",
+                "sections": "12 Sections",
+                "reward": "+10",
+                "description": "In this module, we explore the essential techniques and tools for fuzzing web applications, an essential practice in cybersecurity for identifying hidden vulnerabilities and strengthening web application security."
+            },
+            {
+                "title": "JavaScript Deobfuscation",
+                "difficulty": "Easy",
+                "sections": "11 Sections",
+                "reward": "+10",
+                "description": "This module will take you step-by-step through the fundamentals of JavaScript Deobfuscation until you can deobfuscate basic JavaScript code and understand its purpose."
+            },
+            {
+                "title": "Cross-Site Scripting (XSS)",
+                "difficulty": "Easy",
+                "sections": "10 Sections",
+                "reward": "+20",
+                "description": "Cross-Site Scripting (XSS) vulnerabilities are among the most common web application vulnerabilities. An XSS vulnerability may allow an attacker to execute arbitrary JavaScript code within the target's browser and result in complete web application compromise if chained together with other vulnerabilities. This module will teach you how to identify XSS vulnerabilities and exploit them."
+            },
+            {
+                "title": "SQL Injection Fundamentals",
+                "difficulty": "Medium",
+                "sections": "17 Sections",
+                "reward": "+10",
+                "description": "Databases are an important part of web application infrastructure and SQL (Structured Query Language) to store, retrieve, and manipulate information stored in them. SQL injection is a code injection technique used to take advantage of coding vulnerabilities and inject SQL queries via an application to bypass authentication, retrieve data from the back-end database, or achieve code execution on the underlying server."
+            },
+            {
+                "title": "SQLMap Essentials",
+                "difficulty": "Easy",
+                "sections": "11 Sections",
+                "reward": "+20",
+                "description": "The SQLMap Essentials module will teach you the basics of using SQLMap to discover various types of SQL Injection vulnerabilities, all the way to the advanced enumeration of databases to retrieve all data of interest."
+            },
+            {
+                "title": "Command Injections",
+                "difficulty": "Medium",
+                "sections": "12 Sections",
+                "reward": "+20",
+                "description": "Command injection vulnerabilities can be leveraged to compromise a hosting server and its entire network. This module will teach you how to identify and exploit command injection vulnerabilities and how to use various filter bypassing techniques to avoid security mitigations."
+            },
+            {
+                "title": "File Upload Attacks",
+                "difficulty": "Medium",
+                "sections": "11 Sections",
+                "reward": "+20",
+                "description": "Arbitrary file uploads are among the most critical web vulnerabilities. These flaws enable attackers to upload malicious files, execute arbitrary commands on the back-end server, and even take control over the entire server and all web applications hosted on it and potentially gain access to sensitive data or cause a service disruption."
+            },
+            {
+                "title": "Server-side Attacks",
+                "difficulty": "Medium",
+                "sections": "19 Sections",
+                "reward": "+20",
+                "description": "A backend that handles user-supplied input insecurely can lead to devastating security vulnerabilities such as sensitive information disclosure and remote code execution. This module covers how to identify and exploit server-side bugs, including Server-Side Request Forgery (SSRF), Server-Side Template Injection (SSTI), and Server-Side Includes (SSI) injection attacks."
+            },
+            {
+                "title": "Login Brute Forcing",
+                "difficulty": "Easy",
+                "sections": "13 Sections",
+                "reward": "+20",
+                "description": "The module contains an exploration of brute-forcing techniques, including the use of tools like Hydra and Medusa, and the importance of strong password practices. It covers various attack scenarios, such as targeting SSH, FTP, and web login forms."
+            },
+            {
+                "title": "Broken Authentication",
+                "difficulty": "Medium",
+                "sections": "14 Sections",
+                "reward": "+20",
+                "description": "Authentication is probably the most straightforward and prevalent measure used to secure access to resources, and it's the first line of defense against unauthorized access. Broken authentication is listed as #7 on the 2021 OWASP Top 10 Web Application Security Risks, falling under the broader category of Identification and Authentication failures. A vulnerability or misconfiguration at the authentication stage can impact an application's overall security."
+            },
+            {
+                "title": "Web Attacks",
+                "difficulty": "Medium",
+                "sections": "18 Sections",
+                "reward": "+20",
+                "description": "This module covers three common web vulnerabilities, HTTP Verb Tampering, IDOR, and XXE, each of which can have a significant impact on a company's systems. We will cover how to identify, exploit, and prevent each of them through various methods."
+            },
+            {
+                "title": "File Inclusion",
+                "difficulty": "Medium",
+                "sections": "11 Sections",
+                "reward": "+10",
+                "description": "File Inclusion is a common web application vulnerability, which can be easily overlooked as part of a web application's functionality."
+            },
+            {
+                "title": "mini module tag Mini-Module",
+                "difficulty": "Medium",
+                "sections": "9 Sections",
+                "reward": "+20",
+                "description": "GraphQL is a query language for APIs as an alternative to REST APIs. Clients are able to request data through GraphQL queries. If improperly configured or implemented, common web security vulnerabilities such as Information Disclosure, SQL Injection, and Insecure Direct Object Reference (IDOR) may arise."
+            },
+            {
+                "title": "API Attacks",
+                "difficulty": "Medium",
+                "sections": "13 Sections",
+                "reward": "+20",
+                "description": "Web APIs serve as crucial connectors across diverse entities in the modern digital landscape. However, their extensive functionality also exposes them to a range of potential attacks. This module introduces API Attacks, with a specific focus on the OWASP API Security Top 10 - 2023."
+            },
+            {
+                "title": "Attacking Common Applications",
+                "difficulty": "Medium",
+                "sections": "33 Sections",
+                "reward": "+20",
+                "description": "Penetration Testers can come across various applications, such as Content Management Systems, custom web applications, internal portals used by developers and sysadmins, and more. It's common to find the same applications across many different environments. While an application may not be vulnerable in one environment, it may be misconfigured or unpatched in the next. It is important as an assessor to have a firm grasp of enumerating and attacking the common applications discussed in this module. This knowledge will help when encountering other types of applications during assessments."
+            },
+            {
+                "title": "Bug Bounty Hunting Process",
+                "difficulty": "Easy",
+                "sections": "6 Sections",
+                "reward": "+10",
+                "description": "Bug bounty programs encourage security researchers to identify bugs and submit vulnerability reports. Getting into the world of bug bounty hunting without any prior experience can be a daunting task, though. This module covers the bug bounty hunting process to help you start bug bounty hunting in an organized and well-structured way. It's all about effectiveness and professionally communicating your findings."
+            }
+        ]
+    },
+    {
+        "title": "Basic Toolset",
+        "description": "In this path, modules cover the basic tools needed to be successful in network and web application penetration testing. This is not an exhaustive listing of all tools (both open source and commercial) available to us as security practitioners but covers tried and true tools that we find ourselves using on every technical assessment that we perform. Learning how to use the basic toolset is essential, as many different tools are used in penetration testing. We need to understand which of them to use for the various situations we will come across.",
+        "difficulty": "Medium",
+        "required": "470",
+        "reward": "+110",
+        "modules": []
+    },
+    {
+        "title": "Cracking into Hack the Box",
+        "description": "To be successful in any technical information security role, we must have a broad understanding of specialized tools, tactics, and terminology. This path introduces core concepts necessary for anyone interested in a hands-on technical infosec role. The modules also provide the essential prerequisite knowledge for joining the main Hack The Box platform, progressing through Starting Point through easy-rated retired machines, and solving \"live\" machines with no walkthrough. It also includes helpful information about staying organized, navigating the HTB platforms, common pitfalls, and selecting a penetration testing distribution. Students will complete their first box during this path with a guided walkthrough and be challenged to complete a box on their own by applying the knowledge learned in the Getting Started module.",
+        "difficulty": "Easy",
+        "required": "30",
+        "reward": "+30",
+        "modules": []
+    },
+    {
+        "title": "Local Privilege Escalation",
+        "description": "Privilege escalation is a vital phase of the penetration testing process, one we may revisit multiple times during an engagement. During our assessments, we will encounter a large variety of operating systems and applications. Most often, if we can exploit a vulnerability and gain a foothold on a host, it will be running some version of Windows or Linux. Both present a large attack surface with many tactics and techniques available to us for escalating privileges. This path teaches the core concepts of local privilege escalation necessary for being successful against Windows and Linux systems. The path covers manual enumeration and exploitation and the use of tools to aid in the process.",
+        "difficulty": "Medium",
+        "required": "200",
+        "reward": "+40",
+        "modules": []
+    },
+    {
+        "title": "Penetration Tester",
+        "description": "The Penetration Tester Job Role Path is for newcomers to information security who aspire to become professional penetration testers. This path covers core security assessment concepts and provides a deep understanding of the specialized tools, attack tactics, and methodology used during penetration testing. Armed with the necessary theoretical background and multiple practical exercises, students will go through all penetration testing stages, from reconnaissance and enumeration to documentation and reporting. Upon completing this job role path, you will have obtained the practical skills and mindset necessary to perform professional security assessments against enterprise-level infrastructure at an intermediate level. The Information Security Foundations skill path can be considered prerequisite knowledge to be successful while working through this job role path.",
+        "difficulty": "Medium",
+        "required": "1970",
+        "reward": "+450",
+        "modules": [
+            {
+                "title": "Penetration Testing Process",
+                "difficulty": "Fundamental",
+                "sections": "15 Sections",
+                "reward": "+10",
+                "description": "This module teaches the penetration testing process broken down into each stage and discussed in detail. We will cover many aspects of the role of a penetration tester during a penetration test, explained and illustrated with detailed examples. The module also covers pre-engagement steps like the criteria for establishing a contract with a client for a penetration testing engagement."
+            },
+            {
+                "title": "Getting Started",
+                "difficulty": "Fundamental",
+                "sections": "23 Sections",
+                "reward": "+10",
+                "description": "This module covers the fundamentals of penetration testing and an introduction to Hack The Box."
+            },
+            {
+                "title": "Network Enumeration with Nmap",
+                "difficulty": "Easy",
+                "sections": "12 Sections",
+                "reward": "+10",
+                "description": "Nmap is one of the most used networking mapping and discovery tools because of its accurate results and efficiency. The tool is widely used by both offensive and defensive security practitioners. This module covers fundamentals that will be needed to use the Nmap tool for performing effective network enumeration."
+            },
+            {
+                "title": "Footprinting",
+                "difficulty": "Medium",
+                "sections": "21 Sections",
+                "reward": "+20",
+                "description": "This module covers techniques for footprinting the most commonly used services in almost all enterprise and business IT infrastructures. Footprinting is an essential phase of any penetration test or security audit to identify and prevent information disclosure. Using this process, we examine the individual services and attempt to obtain as much information from them as possible."
+            },
+            {
+                "title": "Information Gathering - Web Edition",
+                "difficulty": "Easy",
+                "sections": "19 Sections",
+                "reward": "+20",
+                "description": "This module equips learners with essential web reconnaissance skills, crucial for ethical hacking and penetration testing. It explores both active and passive techniques, including DNS enumeration, web crawling, analysis of web archives and HTTP headers, and fingerprinting web technologies."
+            },
+            {
+                "title": "Vulnerability Assessment",
+                "difficulty": "Easy",
+                "sections": "17 Sections",
+                "reward": "+10",
+                "description": "This module introduces the concept of Vulnerability Assessments. We will review the differences between vulnerability assessments and penetration tests, how to carry out a vulnerability assessment, how to interpret the assessment results, and how to deliver an effective vulnerability assessment report."
+            },
+            {
+                "title": "File Transfers",
+                "difficulty": "Medium",
+                "sections": "10 Sections",
+                "reward": "+10",
+                "description": "During an assessment, it is very common for us to transfer files to and from a target system. This module covers file transfer techniques leveraging tools commonly available across all versions of Windows and Linux systems."
+            },
+            {
+                "title": "Shells & Payloads",
+                "difficulty": "Medium",
+                "sections": "17 Sections",
+                "reward": "+10",
+                "description": "Gain the knowledge and skills to identify and use shells & payloads to establish a foothold on vulnerable Windows & Linux systems. This module utilizes a fictitious scenario where the learner will place themselves in the perspective of a sysadmin trying out for a position on CAT5 Security's network penetration testing team."
+            },
+            {
+                "title": "Using the Metasploit Framework",
+                "difficulty": "Easy",
+                "sections": "15 Sections",
+                "reward": "+10",
+                "description": "The Metasploit Framework is an open-source set of tools used for network enumeration, attacks, testing security vulnerabilities, evading detection, performing privilege escalation attacks, and performing post-exploitation."
+            },
+            {
+                "title": "Password Attacks",
+                "difficulty": "Medium",
+                "sections": "26 Sections",
+                "reward": "+10",
+                "description": "Passwords are still the primary method of authentication in corporate networks. If strong password policies are not enforced, users often choose weak, easy-to-remember passwords that can be cracked offline and leveraged to escalate access. As penetration testers, we encounter passwords in many forms during our assessments. It's essential to understand how passwords are stored, how they can be retrieved, methods for cracking weak passwords, techniques for using hashes that cannot be cracked, and how to identify weak or default password usage."
+            },
+            {
+                "title": "Attacking Common Services",
+                "difficulty": "Medium",
+                "sections": "19 Sections",
+                "reward": "+20",
+                "description": "Organizations regularly use a standard set of services for different purposes. It is vital to conduct penetration testing activities on each service internally and externally to ensure that they are not introducing security threats. This module will cover how to enumerate each service and test it against known vulnerabilities and exploits with a standard set of tools."
+            },
+            {
+                "title": "Pivoting, Tunneling, and Port Forwarding",
+                "difficulty": "Medium",
+                "sections": "18 Sections",
+                "reward": "+20",
+                "description": "Once a foothold is gained during an assessment, it may be in scope to move laterally and vertically within a target network. Using one compromised machine to access another is called pivoting and allows us to access networks and resources that are not directly accessible to us through the compromised host. Port forwarding accepts the traffic on a given IP address and port and redirects it to a different IP address and port combination. Tunneling is a technique that allows us to encapsulate traffic within another protocol so that it looks like a benign traffic stream."
+            },
+            {
+                "title": "Active Directory Enumeration & Attacks",
+                "difficulty": "Medium",
+                "sections": "36 Sections",
+                "reward": "+20",
+                "description": "Active Directory (AD) is the leading enterprise domain management suite, providing identity and access management, centralized domain administration, authentication, and much more. Due to the many features and complexity of AD, it presents a large attack surface that is difficult to secure properly. To be successful as infosec professionals, we must understand AD architectures and how to secure our enterprise environments. As Penetration testers, having a firm grasp of what tools, techniques, and procedures are available to us for enumerating and attacking AD environments and commonly seen AD misconfigurations is a must."
+            },
+            {
+                "title": "Using Web Proxies",
+                "difficulty": "Easy",
+                "sections": "15 Sections",
+                "reward": "+20",
+                "description": "Web application penetration testing frameworks are an essential part of any web penetration test. This module will teach you two of the best frameworks: Burp Suite and OWASP ZAP."
+            },
+            {
+                "title": "Attacking Web Applications with Ffuf",
+                "difficulty": "Easy",
+                "sections": "13 Sections",
+                "reward": "+10",
+                "description": "This module covers the fundamental enumeration skills of web fuzzing and directory brute forcing using the Ffuf tool. The techniques learned in this module will help us in locating hidden pages, directories, and parameters when targeting web applications."
+            },
+            {
+                "title": "Login Brute Forcing",
+                "difficulty": "Easy",
+                "sections": "13 Sections",
+                "reward": "+20",
+                "description": "The module contains an exploration of brute-forcing techniques, including the use of tools like Hydra and Medusa, and the importance of strong password practices. It covers various attack scenarios, such as targeting SSH, FTP, and web login forms."
+            },
+            {
+                "title": "SQL Injection Fundamentals",
+                "difficulty": "Medium",
+                "sections": "17 Sections",
+                "reward": "+10",
+                "description": "Databases are an important part of web application infrastructure and SQL (Structured Query Language) to store, retrieve, and manipulate information stored in them. SQL injection is a code injection technique used to take advantage of coding vulnerabilities and inject SQL queries via an application to bypass authentication, retrieve data from the back-end database, or achieve code execution on the underlying server."
+            },
+            {
+                "title": "SQLMap Essentials",
+                "difficulty": "Easy",
+                "sections": "11 Sections",
+                "reward": "+20",
+                "description": "The SQLMap Essentials module will teach you the basics of using SQLMap to discover various types of SQL Injection vulnerabilities, all the way to the advanced enumeration of databases to retrieve all data of interest."
+            },
+            {
+                "title": "Cross-Site Scripting (XSS)",
+                "difficulty": "Easy",
+                "sections": "10 Sections",
+                "reward": "+20",
+                "description": "Cross-Site Scripting (XSS) vulnerabilities are among the most common web application vulnerabilities. An XSS vulnerability may allow an attacker to execute arbitrary JavaScript code within the target's browser and result in complete web application compromise if chained together with other vulnerabilities. This module will teach you how to identify XSS vulnerabilities and exploit them."
+            },
+            {
+                "title": "File Inclusion",
+                "difficulty": "Medium",
+                "sections": "11 Sections",
+                "reward": "+10",
+                "description": "File Inclusion is a common web application vulnerability, which can be easily overlooked as part of a web application's functionality."
+            },
+            {
+                "title": "File Upload Attacks",
+                "difficulty": "Medium",
+                "sections": "11 Sections",
+                "reward": "+20",
+                "description": "Arbitrary file uploads are among the most critical web vulnerabilities. These flaws enable attackers to upload malicious files, execute arbitrary commands on the back-end server, and even take control over the entire server and all web applications hosted on it and potentially gain access to sensitive data or cause a service disruption."
+            },
+            {
+                "title": "Command Injections",
+                "difficulty": "Medium",
+                "sections": "12 Sections",
+                "reward": "+20",
+                "description": "Command injection vulnerabilities can be leveraged to compromise a hosting server and its entire network. This module will teach you how to identify and exploit command injection vulnerabilities and how to use various filter bypassing techniques to avoid security mitigations."
+            },
+            {
+                "title": "Web Attacks",
+                "difficulty": "Medium",
+                "sections": "18 Sections",
+                "reward": "+20",
+                "description": "This module covers three common web vulnerabilities, HTTP Verb Tampering, IDOR, and XXE, each of which can have a significant impact on a company's systems. We will cover how to identify, exploit, and prevent each of them through various methods."
+            },
+            {
+                "title": "Attacking Common Applications",
+                "difficulty": "Medium",
+                "sections": "33 Sections",
+                "reward": "+20",
+                "description": "Penetration Testers can come across various applications, such as Content Management Systems, custom web applications, internal portals used by developers and sysadmins, and more. It's common to find the same applications across many different environments. While an application may not be vulnerable in one environment, it may be misconfigured or unpatched in the next. It is important as an assessor to have a firm grasp of enumerating and attacking the common applications discussed in this module. This knowledge will help when encountering other types of applications during assessments."
+            },
+            {
+                "title": "Linux Privilege Escalation",
+                "difficulty": "Easy",
+                "sections": "28 Sections",
+                "reward": "+20",
+                "description": "Privilege escalation is a crucial phase during any security assessment. During this phase, we attempt to gain access to additional users, hosts, and resources to move closer to the assessment's overall goal. There are many ways to escalate privileges. This module aims to cover the most common methods emphasizing real-world misconfigurations and flaws that we may encounter in a client environment. The techniques covered in this module are not an exhaustive list of all possibilities and aim to avoid extreme \"edge-case\" tactics that may be seen in a Capture the Flag (CTF) exercise."
+            },
+            {
+                "title": "Windows Privilege Escalation",
+                "difficulty": "Medium",
+                "sections": "33 Sections",
+                "reward": "+20",
+                "description": "After gaining a foothold, elevating our privileges will provide more options for persistence and may reveal information stored locally that can further our access in the environment. Enumeration is the key to privilege escalation. When you gain initial shell access to the host, it is important to gain situational awareness and uncover details relating to the OS version, patch level, any installed software, our current privileges, group memberships, and more. Windows presents an enormous attack surface and, being that most companies run Windows hosts in some way, we will more often than not find ourselves gaining access to Windows machines during our assessments. This covers common methods while emphasizing real-world misconfigurations and flaws that we may encounter during an assessment. There are many additional \"edge-case\" possibilities not covered in this module. We will cover both modern and legacy Windows Server and Desktop versions that may be present in a client environment."
+            },
+            {
+                "title": "Documentation & Reporting",
+                "difficulty": "Easy",
+                "sections": "8 Sections",
+                "reward": "+20",
+                "description": "Proper documentation is paramount during any engagement. The end goal of a technical assessment is the report deliverable which will often be presented to a broad audience within the target organization. We must take detailed notes and be very organized in our documentation, which will help us in the event of an incident during the assessment. This will also help ensure that our reports contain enough detail to illustrate the impact of our findings properly."
+            },
+            {
+                "title": "Attacking Enterprise Networks",
+                "difficulty": "Medium",
+                "sections": "14 Sections",
+                "reward": "+20",
+                "description": "We often encounter large and complex networks during our assessments. We must be comfortable approaching an internal or external network, regardless of the size, and be able to work through each phase of the penetration testing process to reach our goal. This module will guide students through a simulated penetration testing engagement, from start to finish, with an emphasis on hands-on testing steps that are directly applicable to real-world engagements."
+            }
+        ]
+    },
+    {
+        "title": "Intro to Binary Exploitation",
+        "description": "Binary exploitation is a core tenet of penetration testing, but learning it can be daunting. This is mainly due to the complexity of binary files and their underlying machine code and how binary files interact with computer memory and the processor. To learn the basics of binary exploitation, we must first have a firm grasp of Computer Architecture and the Assembly Language. To move into more advanced binary exploitation, we must have a firm grasp on basic buffer overflow attacks, principles such as CPU architecture, and CPU registers for 32-bit Windows and Linux systems. Furthermore, a strong foundation in Python scripting is essential for writing and understanding exploit scripts.",
+        "difficulty": "Hard",
+        "required": "170",
+        "reward": "+50",
+        "modules": []
+    },
+    {
+        "title": "Operating System Fundamentals",
+        "description": "To succeed in information security, we must have a deep understanding of the Windows and Linux operating systems and be comfortable navigating the command line on both as a \"power user.\" Much of our time in any role, but especially penetration testing, is spent in a Linux shell, Windows cmd or PowerShell console, so we must have the skills to navigate both types of operating systems with ease, manage system services, install applications, manage permissions, and harden the systems we work from in accordance with security best practices.",
+        "difficulty": "Easy",
+        "required": "40",
+        "reward": "+40",
+        "modules": []
+    },
+    {
+        "title": "CREST CPSA/CRT Preparation",
+        "description": "This is a skill path to prepare you for CREST's CPSA and CRT exams. The following CPSA/CRT syllabus areas (IDs) are covered: A1, A2, A3, A4, A5, B1, B4, B5, B6, B8, B9, B13, B14, C1, C2, C3, C4, D1, D2, E1, E2, E3, E4, E5, E9, F1, F2, F3, F4, F5, F6, F7, F8, F9, G1, G2, G4, G5, G6, G7, G8, G9, H1, H2, H3, H4, H5, H6, H8, H9, H10, H11, H12, H13, I1, I2, I3, I6, J1, J2, J3. Take your time to complete all related sections and when you are ready you can book your CREST exam through the following links. CREST CPSA: https://www.crest-approved.org/certification-careers/crest-certifications/crest-practitioner-security-analyst/. CREST CRT: https://www.crest-approved.org/certification-careers/crest-certifications/crest-registered-penetration-tester/.",
+        "difficulty": "Medium",
+        "required": "6800",
+        "reward": "+1480",
+        "modules": []
+    },
+    {
+        "title": "CREST CCT APP Preparation",
+        "description": "This is a skill path to prepare you for CREST's CCT APP exam. The following CCT APP syllabus areas (IDs) are covered: A1, A2, A3, A4, A5, B1, B4, B5, B6, B8, B9, B13, B14, C1, C2, C3, C4, D1, D2, E1, E2, E3, E4, E5, E9, F1, F2, F3, F4, F5, F6, F7, F8, F9, G1, G2, G4, G5, G6, G7, G8, G9, H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, H11, H12, H13, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, J1, J2, J3. Take your time to complete all related sections and when you are ready you can book your CREST exam through the following link. https://www.crest-approved.org/certification-careers/crest-certifications/crest-certified-web-application-tester/",
+        "difficulty": "Medium",
+        "required": "4980",
+        "reward": "+1100",
+        "modules": []
+    },
+    {
+        "title": "Information Security Foundations",
+        "description": "Information Security is a field with many specialized and highly technical disciplines. Job roles like Penetration Tester & Information Security Analyst require a solid technical foundational understanding of core IT & Information Security topics. This skill path is made up of modules that will assist learners in developing &/or strengthening a foundational understanding before proceeding with learning the more complex security topics. Every long-standing building first needs a solid foundation. Welcome to Information Security Foundations.",
+        "difficulty": "Easy",
+        "required": "200",
+        "reward": "+120",
+        "modules": []
+    },
+    {
+        "title": "SOC Analyst",
+        "description": "The SOC Analyst Job Role Path is for newcomers to information security who aspire to become professional SOC analysts. This path covers core security monitoring and security analysis concepts and provides a deep understanding of the specialized tools, attack tactics, and methodology used by adversaries. Armed with the necessary theoretical background and multiple practical exercises, students will go through all security analysis stages, from traffic analysis and SIEM monitoring to DFIR activities and reporting. Upon completing this job role path, you will have obtained the practical skills and mindset necessary to monitor enterprise-level infrastructure and detect intrusions at an intermediate level. The SOC Analyst Prerequisites skill path can be considered prerequisite knowledge to be successful while working through this job role path.",
+        "difficulty": "Medium",
+        "required": "1220",
+        "reward": "+260",
+        "modules": []
+    },
+    {
+        "title": "CREST CCT INF Preparation",
+        "description": "This is a skill path to prepare you for CREST's CCT INF exam. The following CCT INF syllabus areas (IDs) are covered: A1, A2, A3, A4, A5, A8, A9, A10, B1, B2, B4, B5, C1, C2, C3, C4, C6, C7, D1, D2, D5, D9, D10, D13, D14, D15, D18, D19, E1, E2, E3 E6, E7, E8, E9, E11, E13, E14, E15, E16, E17, E18, E19, E20, E25, E26, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F15, F16, G1, G2, G3, G4, G5, G6, G7, G8, H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, H11, H12, H13, H14, H15, H16, H17, H19, H20, H21, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H34, H35, H36, H37, H38, H40, I1, I2, I3, I4, I6, K1, K2, K3, K4, N1, N2. Take your time to complete all related sections and when you are ready you can book your CREST exam through the following link. https://www.crest-approved.org/certification-careers/crest-certifications/crest-certified-infrastructure-tester/",
+        "difficulty": "Hard",
+        "required": "11510",
+        "reward": "+2430",
+        "modules": []
+    },
+    {
+        "title": "SOC Analyst Prerequisites",
+        "description": "The SOC Analyst Prerequisites path is designed for those looking to become SOC/Security Analysts. It dives into fundamental IT and Information Security subjects including networking, Linux and Windows operating systems, basic programming and scripting, as well as working with Assembly. In addition, students will be exposed to the fundamental concepts of information security and penetration testing. This skill path is made up of modules that will assist learners in developing and strengthening a foundational understanding before proceeding with learning more complex security topics.",
+        "difficulty": "Easy",
+        "required": "350",
+        "reward": "+110",
+        "modules": []
+    },
+    {
+        "title": "Senior Web Penetration Tester",
+        "description": "The Senior Web Penetration Tester Job Role Path is designed for individuals who aim to develop skills in identifying advanced and hard-to-find web vulnerabilities using both black box and white box techniques. This path encompasses advanced-level training in web security, web penetration testing, and secure coding concepts. It also provides a deep understanding of the application debugging, source code review, and custom exploit development aspects of web security. Equipped with the necessary theoretical background, multiple practical exercises, and a proven methodology for web vulnerability identification, students will eventually be capable of performing professional security assessments against modern and highly secure web applications, as well as effectively reporting vulnerabilities found in code or arising from logical errors.",
+        "difficulty": "Hard",
+        "required": "7500",
+        "reward": "+1500",
+        "modules": []
+    },
+    {
+        "title": "Active Directory Penetration Tester",
+        "description": "The Active Directory Penetration Tester Job Role Path is designed for individuals who aim to develop skills in pentesting large Active Directory (AD) networks and the components commonly found in such environments. This path equips students with the skills needed to evaluate the security of AD environments, navigate complex Windows networks, and identify elusive attack paths. This path includes advanced hands-on labs where participants will practice techniques such as Kerberos attacks, NTLM relay attacks, and the abuse of services like AD Certificate Services (ADCS), Exchange, WSUS, and MSSQL. Students will also learn how to exploit misconfigurations in Active Directory DACLs and Domain Trusts, perform evasion tactics in Windows environments, and leverage Command and Control (C2) frameworks for post-exploitation activities. By combining theoretical foundations with practical exercises and a structured methodology for identifying AD vulnerabilities, this path enables students to conduct professional security assessments on complex AD infrastructures and effectively report security weaknesses discovered by chaining multiple vulnerabilities.",
+        "difficulty": "Hard",
+        "required": "7100",
+        "reward": "+1420",
+        "modules": []
+    },
+    {
+        "title": "AI Red Teamer",
+        "description": "The AI Red Teamer Job Role Path, in collaboration with Google, trains cybersecurity professionals to assess, exploit, and secure AI systems. Covering prompt injection, model privacy attacks, adversarial AI, supply chain risks, and deployment threats, it combines theory with hands-on exercises. Aligned with Google\u2019s Secure AI Framework (SAIF), it ensures relevance to real-world AI security challenges. Learners will gain skills to manipulate model behaviors, develop AI-specific red teaming strategies, and perform offensive security testing against AI-driven applications.",
+        "difficulty": "Hard",
+        "required": "970",
+        "reward": "+210",
+        "modules": []
+    },
+    {
+        "title": "Junior Cybersecurity Analyst",
+        "description": "The Junior Cybersecurity Analyst Job Role Path is the first step to enter and gain practical, hands-on experience in the cybersecurity field. This path covers essential cybersecurity concepts and builds a foundational understanding of operating systems, offensive and defensive tools, attack tactics, log analysis, and methodologies employed by penetration testers and security operations centers. Students will explore key principles while gaining practical experience in both offensive and defensive cybersecurity assessments, including the basics of penetration testing and security analysis. This job role path equips you with the skills and mindset needed to launch a career in cybersecurity, offering a well-rounded foundation in both offensive and defensive techniques that reflects the evolving demands of real-world cybersecurity operations.",
+        "difficulty": "Easy",
+        "required": "810",
+        "reward": "+250",
+        "modules": []
+    },
+    {
+        "title": "Android Application Pentesting",
+        "description": "The Android Application Pentesting Skill Path is a hands-on program covering Android fundamentals, security architecture, static and dynamic analysis, malware investigation, penetration testing automation, and digital forensics. Learners use tools like MobSF, Frida, Objection, ALEAPP, and Autopsy to practice rooting devices, bypassing security, and recovering data. Through module exercises and assessments, they build expertise in identifying vulnerabilities, mitigating threats, and performing professional forensic investigations on Android devices.",
+        "difficulty": "Hard",
+        "required": "3010",
+        "reward": "+610",
+        "modules": []
+    },
+    {
+        "title": "Wi-Fi Penetration Tester",
+        "description": "The Wi-Fi Penetration Tester Job Role Path is designed for professionals and aspiring security practitioners who want to build expertise in assessing and securing corporate wireless networks. The course provides hands-on training in evaluating the security of Wi-Fi environments, from attacking modern authentication and encryption protocols to simulating real-world attack scenarios such as rogue access points, man-in-the-middle attacks, and credential harvesting. Students will gain practical experience with industry-standard tools and methodologies, learning how to identify vulnerabilities, exploit misconfigurations, and recommend effective countermeasures. By the end of this Path the participants will be equipped with the knowledge and skills required to perform authorized Wi-Fi penetration tests and strengthen the wireless security posture of enterprise corporate environments.",
+        "difficulty": "Hard",
+        "required": "3400",
+        "reward": "+680",
+        "modules": []
+    },
+    {
+        "title": "Active Directory Enumeration",
+        "description": "Active Directory (AD) is widely used by companies across all verticals/sectors, non-profits, government agencies, and educational institutions of all sizes. By its nature, AD is easily misconfigured and has many inherent flaws and widely known vulnerabilities. Due to the sheer number of objects and in AD and complex intertwined relationships that form as an AD network grows, it becomes increasingly difficult to secure and presents a vast attack surface. AD environments can become quite large and often hold many obvious and more difficult to discover flaws. A deep understanding of AD enumeration techniques and tools is essential to becoming a well-rounded information security professional.",
+        "difficulty": "Hard",
+        "required": "1500",
+        "reward": "+300",
+        "modules": []
+    }
+];

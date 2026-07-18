@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Una lista de herramientas esenciales en Python que todo desarrollador debería conocer, desde requests hasta pandas y herramientas de CLI.">
+    <meta property="og:title" content="Mis librerías favoritas de Python">
+    <meta property="og:description" content="Las bibliotecas indispensables para proyectos en Python.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Mis librerías favoritas de Python - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .post-title {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        .post-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-container glass">
+            <div class="post-header">
+                <span class="post-date">15 Abril, 2026</span>
+                <h1 class="post-title">Mis librerías favoritas de Python</h1>
+            </div>
+
+            <div class="post-content">
+                <p>Python es famoso por su filosofía de "baterías incluidas", pero el verdadero poder del lenguaje reside en su ecosistema de paquetes de terceros (PyPI). A continuación, comparto mis librerías indispensables que utilizo en casi todos los proyectos.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">1. Requests: HTTP para Humanos</h3>
+                <p>Hacer peticiones web con la librería estándar <code>urllib</code> es engorroso. <strong>Requests</strong> simplifica enormemente la interacción con APIs RESTful.</p>
+                <pre><code>import requests
+
+respuesta = requests.get('https://api.github.com/users/rodrigo47363')
+if respuesta.status_code == 200:
+    data = respuesta.json()
+    print(f"Usuario: {data['login']}")</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">2. Click: Interfaces de Línea de Comandos</h3>
+                <p>Si estás creando herramientas para la terminal, <strong>Click</strong> es infinitamente superior a <code>argparse</code>. Te permite crear comandos complejos usando simples decoradores.</p>
+                <pre><code>import click
+
+@click.command()
+@click.option('--count', default=1, help='Número de saludos.')
+@click.argument('name')
+def hello(count, name):
+    for x in range(count):
+        click.echo(f"Hola {name}!")
+
+if __name__ == '__main__':
+    hello()</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">3. Pandas: Análisis de Datos</h3>
+                <p>Indispensable si trabajas con CSVs, Excel o bases de datos SQL. <strong>Pandas</strong> te permite filtrar, agrupar y transformar datos masivos en cuestión de milisegundos.</p>
+                <pre><code>import pandas as pd
+
+df = pd.read_csv('ventas.csv')
+# Filtrar ventas mayores a 100 y agrupar por mes
+resumen = df[df['total'] > 100].groupby('mes').sum()
+print(resumen)</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">4. BeautifulSoup4: Web Scraping</h3>
+                <p>Cuando la página web no tiene una API, <strong>BeautifulSoup4</strong> (junto con Requests) te permite extraer datos del código HTML de forma estructurada e intuitiva.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Conclusión</h3>
+                <p>Conocer las librerías adecuadas evita reinventar la rueda. Te invito a crear entornos virtuales (<code>python -m venv venv</code>) y experimentar con estas herramientas para llevar tus scripts al siguiente nivel.</p>
+            </div>
+            
+            <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+</body>
+</html>

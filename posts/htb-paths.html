@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Una recopilación completa de los Job Role y Skill Paths de HackTheBox Academy para tu carrera en ciberseguridad.">
+    <meta property="og:title" content="Guía de Paths de HackTheBox - Rodrigo47363">
+    <meta property="og:description" content="Explora todos los módulos y caminos de aprendizaje de HTB interactivos.">
+    <meta property="og:type" content="article">
+    <meta name="theme-color" content="#3b82f6">
+    <title>HackTheBox Paths - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    <script src="../js/htb_data.js"></script>
+    <script src="../js/htb.js" defer></script>
+    <style>
+        .post-container { max-width: 1000px; margin: 0 auto; padding: 40px; border-radius: 24px; margin-bottom: 40px; }
+        .post-header { margin-bottom: 40px; text-align: center; }
+        .post-date { font-size: 0.9em; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .post-title { font-size: 2.8em; color: var(--accent-color); margin: 10px 0; line-height: 1.2; }
+        
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .path-card {
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        body.light-mode .path-card {
+            background: rgba(0, 0, 0, 0.02);
+            border-color: rgba(0,0,0,0.1);
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: var(--accent-color);
+        }
+
+        .path-title { font-size: 1.4em; font-weight: 800; color: var(--text-color); }
+        .path-desc { font-size: 0.95em; opacity: 0.8; line-height: 1.5; flex: 1; }
+
+        .path-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .badge { font-size: 0.8em; padding: 5px 10px; border-radius: 20px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+        .badge.easy { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .badge.medium { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .badge.hard { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge.info { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .badge.reward { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+        
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--bg-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5em;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 40px auto;
+        }
+        
+        body.light-mode .loader {
+            border: 4px solid rgba(0,0,0,0.1);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/blog.html" class="btn-link">← Volver al Blog</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-container glass">
+            <div class="post-header">
+                <span class="post-date">Julio 2026</span>
+                <h1 class="post-title">HackTheBox Skill & Job Role Paths</h1>
+                <p style="font-size: 1.1em; opacity: 0.9;">Una colección completa de los Paths disponibles en HackTheBox Academy para diferentes roles de ciberseguridad. Haz clic en cualquier Path para ver sus módulos en detalle.</p>
+            </div>
+
+            <!-- Dynamic Grid Container -->
+            <div class="paths-grid" id="paths-grid">
+                <div style="grid-column: 1 / -1;">
+                    <div class="loader"></div>
+                    <p style="text-align: center; opacity: 0.7;">Cargando paths...</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="https://academy.hackthebox.com/" target="_blank" rel="noopener noreferrer" class="btn-link">Explorar en HackTheBox Academy →</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Modal for Path Details -->
+    <div class="modal-overlay" id="path-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 style="margin: 0; font-size: 1.2em; opacity: 0.8;">Detalles del Path</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+</body>
+</html>

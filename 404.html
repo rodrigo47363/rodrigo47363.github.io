@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página no encontrada en el portafolio de Rodrigo47363.">
+    <title>404 No Encontrado - Mi Portafolio</title>
+    <!-- Importar fuente moderna de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .error-code {
+            font-size: 8em;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 1.1em;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .btn-home {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="pages/contacto.html">Contacto</a></li>
+                <li><a href="pages/repositorios.html">Repositorios</a></li>
+                <li><a href="pages/blog.html">Mi Blog</a></li>
+            </ul>
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="error-container glass">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">Página No Encontrada</h2>
+            <p class="error-message">Lo sentimos, la página que estás buscando no existe, ha sido movida o está temporalmente fuera de servicio.</p>
+            <a href="index.html" class="btn-home">Volver al Inicio</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+</body>
+</html>
