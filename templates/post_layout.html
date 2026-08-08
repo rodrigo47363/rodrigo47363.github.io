@@ -1,0 +1,149 @@
+<style>
+    .post-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 24px;
+        margin-bottom: 40px;
+    }
+    .post-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .post-date {
+        font-size: 0.9em;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    .post-title {
+        font-size: 2.5em;
+        color: var(--accent-color);
+        margin: 10px 0;
+        line-height: 1.2;
+    }
+    .post-content {
+        font-size: 1.1em;
+        line-height: 1.8;
+        opacity: 0.9;
+    }
+    .post-content p { margin-bottom: 20px; }
+    .post-content blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 15px;
+        margin-left: 0;
+        font-style: italic;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+    }
+    .post-content pre {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+    .post-content code {
+        font-family: monospace;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    .post-content pre code {
+        background: transparent;
+        padding: 0;
+    }
+    .btn-link {
+        display: inline-block;
+        margin-top: 40px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .btn-link:hover { text-decoration: underline; }
+    .nav-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+        background: var(--accent-color);
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .post-container { padding: 20px; border-radius: 16px; margin-top: 20px; }
+        .post-title { font-size: 1.8em; }
+    }
+</style>
+
+<main>
+    <article class="post-container glass" data-aos="fade-up">
+        <div class="post-header">
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
+                <a href="{{base_path}}pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
+            </nav>
+            <span class="post-date">{{date}}</span>
+            <h1 class="post-title">{{title}}</h1>
+        </div>
+
+        <div class="post-content">
+            {{post_content}}
+        </div>
+        
+        <!-- Navegación Siguiente/Anterior -->
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+            <div>
+                {{prev_post_link}}
+            </div>
+            <div style="text-align: right;">
+                {{next_post_link}}
+            </div>
+        </div>
+
+        <!-- Giscus Comments -->
+        <div class="comments-section" style="margin-top: 50px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Comentarios</h3>
+            <div class="giscus"></div>
+            <!--
+            INSTRUCCIONES PARA ACTIVAR GISCUS:
+            1. Asegúrate de que el repositorio en GitHub sea público y tenga "Discussions" activado.
+            2. Ve a https://giscus.app/es y configura tu repo.
+            3. Copia el script `<script src="https://giscus.app/client.js"...` que te da y reemplázalo aquí.
+            -->
+            <script src="https://giscus.app/client.js"
+                data-repo="rodrigo47363/rodrigo47363.github.io"
+                data-repo-id="R_kgDOLOZ-VQ"
+                data-category="General"
+                data-category-id="DIC_kwDOLOZ-Vc4CgqIX"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="dark"
+                data-lang="es"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+        
+        <!-- Artículos Relacionados -->
+        <div class="related-posts" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                {{related_posts}}
+            </div>
+        </div>
+        
+        <a href="{{base_path}}pages/blog.html" class="btn-link">← Volver al Blog</a>
+    </article>
+</main>

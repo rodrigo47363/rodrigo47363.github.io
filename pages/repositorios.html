@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora mis repositorios y proyectos alojados en GitHub. Código abierto, scripts y herramientas.">
+    <meta property="og:title" content="Repositorios - Rodrigo47363">
+    <meta property="og:description" content="Una vitrina dinámica de mis proyectos de GitHub obtenidos mediante su API oficial.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Repositorios - Mi Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    <style>
+        .repos-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .repos-header h2 {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .repos-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .repos-list li {
+            padding: 25px;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .repos-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        body.light-mode .repos-list li:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .repos-list a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        .repos-list a:hover {
+            color: var(--accent-hover);
+        }
+
+        .repos-desc {
+            font-size: 0.95em;
+            opacity: 0.8;
+            flex: 1;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        .repo-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="acerca-de.html">Acerca de</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="repositorios.html" style="color: var(--accent-color);">Repositorios</a></li>
+                <li><a href="blog.html">Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="repos-header" data-aos="fade-down">
+            <h2>Mis Repositorios</h2>
+            <p>Todos mis proyectos públicos alojados en GitHub.</p>
+        </div>
+
+        <h3 style="margin-top: 40px; margin-bottom: 20px; color: var(--accent-color);">🛠️ Herramientas y Proyectos Principales</h3>
+
+        <div class="hero-project" data-aos="fade-up">
+            <h3>📡 NekoFi.sh — Automated WiFi Security Framework</h3>
+            <p>Framework modular en Bash diseñado para la automatización de auditorías WiFi en despliegues reales. Orquesta interfaces, inyección de paquetes y ataques WPS/WPA.</p>
+            <ul>
+                <li><strong>Objetivo:</strong> Reproducibilidad técnica y OPSEC (reducción de errores humanos en operaciones en vivo).</li>
+                <li><strong>Highlights:</strong> Comprobación dinámica de dependencias, modo desatendido (<code>--auto</code>) y gestión transparente de <code>wpa_supplicant</code> y <code>NetworkManager</code>.</li>
+            </ul>
+            <div class="bash-snippet">
+<span class="comment"># Despliegue rápido</span><br>
+<span class="cmd">git clone</span> https://github.com/rodrigo47363/NekoFI.git && <span class="cmd">cd</span> NekoFI<br>
+<span class="cmd">chmod</span> +x nekofi.sh<br>
+<span class="cmd">sudo</span> ./nekofi.sh --auto<br>
+<br>
+<span class="comment"># Output esperado:<br>
+# [*] Iniciando NekoFi.sh framework...<br>
+# [+] Interfaz wlan0 detectada. Aislando procesos conflictivos.<br>
+# [+] Levantando interfaz en modo monitor (wlan0mon)...</span>
+            </div>
+            <a href="https://github.com/rodrigo47363/NekoFI" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-top: 20px;">Ver en GitHub →</a>
+        </div>
+
+        <div class="hero-project" data-aos="fade-up" data-aos-delay="100">
+            <h3>🕵️ OSIdentifier.py — Passive OS Fingerprinting</h3>
+            <p>Herramienta de Python que clasifica sistemas operativos remotos analizando heurísticamente los valores TTL de paquetes ICMP, garantizando cero interacción activa con el target.</p>
+            <ul>
+                <li><strong>Objetivo:</strong> Reconocimiento sigiloso (Stealth) en redes altamente monitorizadas.</li>
+                <li><strong>Stack:</strong> Python 3 + <code>scapy</code> para manipulación y disección de tráfico a bajo nivel.</li>
+            </ul>
+            <div class="bash-snippet">
+<span class="comment"># Ejecución en modo escucha (Sniffing)</span><br>
+<span class="cmd">sudo</span> python3 OSIdentifier.py --interface wlp3s0 --capture-time 60<br>
+<br>
+<span class="comment"># Output esperado:<br>
+# [+] Host: 192.168.1.15 | TTL: 64  | OS Inferido: Linux/Unix<br>
+# [+] Host: 192.168.1.45 | TTL: 128 | OS Inferido: Windows</span>
+            </div>
+            <a href="https://github.com/rodrigo47363/OSIdentifier" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-top: 20px;">Ver en GitHub →</a>
+        </div>
+        
+        <h3 style="margin-top: 60px; margin-bottom: 20px; color: var(--accent-color);">📦 Otros Repositorios</h3>
+
+
+        <ul class="repos-list" id="all-repos-list" data-aos="fade-up" data-aos-delay="100">
+            <li class="glass">
+                <strong style="color: var(--accent-color);">Cargando repositorios...</strong>
+                <p class="repos-desc">Espera un momento.</p>
+            </li>
+        </ul>
+
+        <div class="glass" data-aos="fade-up" style="margin-top: 60px; padding: 30px; border-radius: 16px;">
+            <h3 style="color: var(--accent-color); margin-bottom: 20px;">📜 Rules of Engagement (RoE) y Contribuciones</h3>
+            <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 0 8px 8px 0;">
+                <strong style="color: #ef4444;">⚠️ Aviso Legal y Ética:</strong><br>
+                Todo el código, frameworks y pruebas de concepto (PoCs) alojados en mis repositorios están desarrollados <strong>estrictamente para auditorías autorizadas, operaciones de Red Teaming y entornos de laboratorio</strong>. El uso indebido de estas herramientas fuera del marco legal y ético aplicable es responsabilidad exclusiva del operador final.
+            </div>
+            <p><strong>Política de PRs:</strong> Fomento la colaboración técnica orientada al <em>stealth</em> y la optimización operativa. Si deseas contribuir: realiza un <em>fork</em>, trabaja en una rama descriptiva y documenta el impacto de red de tus cambios. Cualquier modificación que altere payloads debe integrar obligatoriamente validaciones de seguridad (<code>safety-checks</code>).</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+    </footer>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

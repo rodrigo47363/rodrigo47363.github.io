@@ -1,0 +1,23 @@
+<div class="blog-header" data-aos="fade-down">
+    <h2>Mi Blog</h2>
+    <p>Artículos sobre tecnología, Linux, Bash, Python y desarrollo.</p>
+</div>
+
+<div class="blog-controls" data-aos="fade-up" data-aos-delay="100">
+    <div class="blog-search-container">
+        <input type="text" id="blogSearch" class="blog-search-input" placeholder="🔍 Buscar artículos por título...">
+    </div>
+    <div class="blog-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="htb">HTB</button>
+        <button class="filter-btn" data-filter="linux">Linux</button>
+        <button class="filter-btn" data-filter="desarrollo">Desarrollo</button>
+        <button class="filter-btn" data-filter="bash">Bash</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="osint">OSINT</button>
+    </div>
+</div>
+
+<div class="blog-grid" data-aos="fade-up" data-aos-delay="200">
+    {{blog_grid}}
+</div>

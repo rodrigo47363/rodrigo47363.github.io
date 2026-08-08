@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Una lista de herramientas esenciales en Python que todo desarrollador debería conocer, desde requests hasta pandas y herramientas de CLI.">
+    <meta property="og:title" content="Mis librerías favoritas de Python">
+    <meta property="og:description" content="Una lista de herramientas esenciales en Python que todo desarrollador debería conocer, desde requests hasta pandas y herramientas de CLI.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Mis librerías favoritas de Python - Mi Portafolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    
+    
+    
+    <!-- Reading Progress Bar Style -->
+    <style>
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 4px;
+            background: var(--accent-color);
+            width: 0%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de progreso de lectura -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" >Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+    .post-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 24px;
+        margin-bottom: 40px;
+    }
+    .post-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .post-date {
+        font-size: 0.9em;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    .post-title {
+        font-size: 2.5em;
+        color: var(--accent-color);
+        margin: 10px 0;
+        line-height: 1.2;
+    }
+    .post-content {
+        font-size: 1.1em;
+        line-height: 1.8;
+        opacity: 0.9;
+    }
+    .post-content p { margin-bottom: 20px; }
+    .post-content blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 15px;
+        margin-left: 0;
+        font-style: italic;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+    }
+    .post-content pre {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+    .post-content code {
+        font-family: monospace;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    .post-content pre code {
+        background: transparent;
+        padding: 0;
+    }
+    .btn-link {
+        display: inline-block;
+        margin-top: 40px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .btn-link:hover { text-decoration: underline; }
+    .nav-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+        background: var(--accent-color);
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .post-container { padding: 20px; border-radius: 16px; margin-top: 20px; }
+        .post-title { font-size: 1.8em; }
+    }
+</style>
+
+<main>
+    <article class="post-container glass" data-aos="fade-up">
+        <div class="post-header">
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
+                <a href="../pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
+            </nav>
+            <span class="post-date">15 Abril, 2026</span>
+            <h1 class="post-title">Mis librerías favoritas de Python</h1>
+        </div>
+
+        <div class="post-content">
+            <p>Python es famoso por su filosofía de "baterías incluidas", pero el verdadero poder del lenguaje reside en su ecosistema de paquetes de terceros (PyPI). A continuación, comparto mis librerías indispensables que utilizo en casi todos los proyectos.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">1. Requests: HTTP para Humanos</h3>
+                <p>Hacer peticiones web con la librería estándar <code>urllib</code> es engorroso. <strong>Requests</strong> simplifica enormemente la interacción con APIs RESTful.</p>
+                <pre><code>import requests
+
+respuesta = requests.get('https://api.github.com/users/rodrigo47363')
+if respuesta.status_code == 200:
+    data = respuesta.json()
+    print(f"Usuario: {data['login']}")</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">2. Click: Interfaces de Línea de Comandos</h3>
+                <p>Si estás creando herramientas para la terminal, <strong>Click</strong> es infinitamente superior a <code>argparse</code>. Te permite crear comandos complejos usando simples decoradores.</p>
+                <pre><code>import click
+
+@click.command()
+@click.option('--count', default=1, help='Número de saludos.')
+@click.argument('name')
+def hello(count, name):
+    for x in range(count):
+        click.echo(f"Hola {name}!")
+
+if __name__ == '__main__':
+    hello()</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">3. Pandas: Análisis de Datos</h3>
+                <p>Indispensable si trabajas con CSVs, Excel o bases de datos SQL. <strong>Pandas</strong> te permite filtrar, agrupar y transformar datos masivos en cuestión de milisegundos.</p>
+                <pre><code>import pandas as pd
+
+df = pd.read_csv('ventas.csv')
+# Filtrar ventas mayores a 100 y agrupar por mes
+resumen = df[df['total'] > 100].groupby('mes').sum()
+print(resumen)</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">4. BeautifulSoup4: Web Scraping</h3>
+                <p>Cuando la página web no tiene una API, <strong>BeautifulSoup4</strong> (junto con Requests) te permite extraer datos del código HTML de forma estructurada e intuitiva.</p>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">Conclusión</h3>
+                <p>Conocer las librerías adecuadas evita reinventar la rueda. Te invito a crear entornos virtuales (<code>python -m venv venv</code>) y experimentar con estas herramientas para llevar tus scripts al siguiente nivel.</p>
+        </div>
+        
+        <!-- Navegación Siguiente/Anterior -->
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+            <div>
+                <a href="../posts/terminal-setup.html" class="nav-btn">← Anterior</a>
+            </div>
+            <div style="text-align: right;">
+                <a href="../posts/bash-scripts.html" class="nav-btn">Siguiente →</a>
+            </div>
+        </div>
+
+        <!-- Giscus Comments -->
+        <div class="comments-section" style="margin-top: 50px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Comentarios</h3>
+            <div class="giscus"></div>
+            <!--
+            INSTRUCCIONES PARA ACTIVAR GISCUS:
+            1. Asegúrate de que el repositorio en GitHub sea público y tenga "Discussions" activado.
+            2. Ve a https://giscus.app/es y configura tu repo.
+            3. Copia el script `<script src="https://giscus.app/client.js"...` que te da y reemplázalo aquí.
+            -->
+            <script src="https://giscus.app/client.js"
+                data-repo="rodrigo47363/rodrigo47363.github.io"
+                data-repo-id="R_kgDOLOZ-VQ"
+                data-category="General"
+                data-category-id="DIC_kwDOLOZ-Vc4CgqIX"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="dark"
+                data-lang="es"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+        
+        <!-- Artículos Relacionados -->
+        <div class="related-posts" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                
+        <a href="../posts/bash-scripts.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Bash</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Automatizando tareas con scripts de Bash</h4>
+            </div>
+        </a>
+        
+        <a href="../posts/linux-dev.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Linux</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Por qué Linux es el mejor sistema para desarrolladores</h4>
+            </div>
+        </a>
+        
+            </div>
+        </div>
+        
+        <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+    </article>
+</main>
+
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+        <p style="font-size: 0.85em; opacity: 0.6; margin-top: 5px;">
+            <a href="../rss.xml" style="color: inherit; text-decoration: none;">RSS Feed 📡</a>
+        </p>
+    </footer>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Reading Progress Script
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            var bar = document.getElementById("myBar");
+            if (bar) { bar.style.width = scrolled + "%"; }
+        }
+    </script>
+</body>
+</html>

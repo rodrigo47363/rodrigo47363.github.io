@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Mi Portafolio | Rodrigo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="description" content="Portafolio técnico sobre desarrollo, Linux y ciberseguridad.">
+    <meta property="og:title" content="Mi Portafolio - Rodrigo">
+    <meta property="og:description" content="Artículos sobre pentesting, Linux y desarrollo de software.">
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+    <header>
+        <nav class="surface">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="acerca-de.html">Acerca de</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="repositorios.html">Repositorios</a></li>
+                <li><a href="blog.html" style="color: var(--accent-color);">Mi Blog</a></li>
+            </ul>
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <div class="blog-header">
+            <h2>Mi Blog</h2>
+            <p>Análisis técnico sobre tecnología, Linux y ciberseguridad.</p>
+        </div>
+
+        <div class="blog-controls surface" style="padding: 20px; border-radius: 16px;">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar artículos..." aria-label="Buscar artículos">
+            <div class="category-filters" id="categoryFilters"></div>
+        </div>
+
+        <div class="blog-grid" id="blogGrid">
+            </div>
+
+        <div class="pagination" id="pagination"></div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con seguridad y código limpio.</p>
+    </footer>
+
+    <script>
+        // Lógica segura para renderizado
+        function crearElementoArticulo(art) {
+            const article = document.createElement('article');
+            article.className = 'blog-card surface';
+
+            if (art.thumbnail) {
+                const img = document.createElement('img');
+                img.src = art.thumbnail;
+                img.alt = art.title;
+                img.loading = 'lazy'; // Optimización de carga
+                img.className = 'blog-thumbnail';
+                article.appendChild(img);
+            }
+
+            const header = document.createElement('div');
+            header.style.display = 'flex';
+            header.style.justifyContent = 'space-between';
+            header.innerHTML = `<span class="blog-date">${art.date}</span><span style="font-size:0.85em; opacity:0.7;">⏳ ${Math.ceil((art.content?.split(' ').length || 200)/200)} min</span>`;
+            
+            const title = document.createElement('h3');
+            title.textContent = art.title;
+            
+            const excerpt = document.createElement('p');
+            excerpt.textContent = art.excerpt;
+
+            const link = document.createElement('a');
+            link.href = `articulo.html?id=${art.id}`;
+            link.textContent = 'Leer artículo';
+            link.className = 'blog-read-more';
+
+            article.append(header, title, excerpt, link);
+            return article;
+        }
+
+        async function cargarArticulos() {
+            try {
+                const response = await fetch('data/articulos.json');
+                const data = await response.json();
+                renderizarArticulos(data);
+            } catch (err) {
+                console.error("Error crítico:", err);
+            }
+        }
+
+        function renderizarArticulos(articulos) {
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = '';
+            articulos.forEach(art => {
+                grid.appendChild(crearElementoArticulo(art));
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarArticulos);
+    </script>
+</body>
+</html>

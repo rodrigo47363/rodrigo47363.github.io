@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo | Mi Portafolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+
+<body>
+    <div id="progressBar"></div>
+
+    <header>
+        <nav class="surface">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="blog.html">Mi Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="blog.html" class="back-btn">← Volver al blog</a>
+        <article class="single-article surface" id="articleContainer">
+            <div id="contenido">Cargando artículo...</div>
+        </article>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+        // Configuración de seguridad y resaltado
+        marked.setOptions({
+            sanitize: true,
+            highlight: function(code, lang) {
+                return hljs.highlightAuto(code).value;
+            }
+        });
+
+        async function cargarArticulo() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const container = document.getElementById('contenido');
+
+            try {
+                const res = await fetch('data/articulos.json');
+                const articulos = await res.json();
+                const art = articulos.find(a => a.id === id);
+
+                if (!art) {
+                    container.innerHTML = '<h1>404 - Artículo no encontrado</h1>';
+                    return;
+                }
+
+                document.title = art.title + ' | Rodrigo';
+                container.innerHTML = `<h1>${art.title}</h1>` + marked.parse(art.content);
+                
+                // Aplicar resaltado
+                hljs.highlightAll();
+                
+                // Integrar botones de copiar
+                añadirBotonesCopiar();
+                
+            } catch (err) {
+                container.innerHTML = '<p>Error al cargar el contenido.</p>';
+                console.error(err);
+            }
+        }
+
+        function añadirBotonesCopiar() {
+            document.querySelectorAll('pre').forEach(pre => {
+                const btn = document.createElement('button');
+                btn.className = 'copy-code-btn';
+                btn.textContent = 'Copiar';
+                btn.onclick = () => {
+                    const code = pre.querySelector('code');
+                    navigator.clipboard.writeText(code.innerText);
+                    btn.textContent = '¡Copiado!';
+                    setTimeout(() => btn.textContent = 'Copiar', 2000);
+                };
+                pre.style.position = 'relative';
+                pre.appendChild(btn);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarArticulo);
+
+        // Barra de progreso
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progressBar').style.width = (winScroll / height) * 100 +"%";
+        });
+    </script>
+</body>
+</html>

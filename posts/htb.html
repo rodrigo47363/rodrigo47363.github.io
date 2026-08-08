@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mi progreso en el path Basic Toolset de HackTheBox, cubriendo las herramientas fundamentales para penetration testing y aplicaciones web.">
+    <meta property="og:title" content="HackTheBox Path: Basic Toolset">
+    <meta property="og:description" content="Mi progreso en el path Basic Toolset de HackTheBox, cubriendo las herramientas fundamentales para penetration testing y aplicaciones web.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#3b82f6">
+    <title>HackTheBox Path: Basic Toolset - Mi Portafolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    
+    
+    
+    <!-- Reading Progress Bar Style -->
+    <style>
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 4px;
+            background: var(--accent-color);
+            width: 0%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de progreso de lectura -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" >Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+    .post-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 24px;
+        margin-bottom: 40px;
+    }
+    .post-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .post-date {
+        font-size: 0.9em;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    .post-title {
+        font-size: 2.5em;
+        color: var(--accent-color);
+        margin: 10px 0;
+        line-height: 1.2;
+    }
+    .post-content {
+        font-size: 1.1em;
+        line-height: 1.8;
+        opacity: 0.9;
+    }
+    .post-content p { margin-bottom: 20px; }
+    .post-content blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 15px;
+        margin-left: 0;
+        font-style: italic;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+    }
+    .post-content pre {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+    .post-content code {
+        font-family: monospace;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    .post-content pre code {
+        background: transparent;
+        padding: 0;
+    }
+    .btn-link {
+        display: inline-block;
+        margin-top: 40px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .btn-link:hover { text-decoration: underline; }
+    .nav-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+        background: var(--accent-color);
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .post-container { padding: 20px; border-radius: 16px; margin-top: 20px; }
+        .post-title { font-size: 1.8em; }
+    }
+</style>
+
+<main>
+    <article class="post-container glass" data-aos="fade-up">
+        <div class="post-header">
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
+                <a href="../pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
+            </nav>
+            <span class="post-date">Julio 2026</span>
+            <h1 class="post-title">HackTheBox Path: Basic Toolset</h1>
+        </div>
+
+        <div class="post-content">
+            <p style="font-size: 1.1em; opacity: 0.9; margin-bottom: 20px;">
+                    En este path, los módulos cubren las herramientas básicas necesarias para tener éxito en pruebas de penetración de redes y aplicaciones web. Aprender a utilizar este conjunto de herramientas básicas es fundamental.
+                </p>
+                <div class="module-badges" style="justify-content: center; margin-bottom: 20px;">
+                    <span class="badge medium">Medium</span>
+                    <span class="badge duration">6d 2h</span>
+                    <span class="badge duration">7 Modules</span>
+                    <span class="badge duration">60 Secciones</span>
+                    <span class="badge duration">110 Cubes</span>
+                    <span class="badge progress">8.6% Completado</span>
+                </div>
+            </div>
+
+            <div class="module-list">
+                <!-- Modulo 1 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>Network Enumeration with Nmap</h3>
+                        <div class="module-badges">
+                            <span class="badge offensive">OFFENSIVE</span>
+                            <span class="badge easy">Easy</span>
+                            <span class="badge duration">7h</span>
+                            <span class="badge progress">En progreso (66.67%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 2 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>Login Brute Forcing</h3>
+                        <div class="module-badges">
+                            <span class="badge offensive">OFFENSIVE</span>
+                            <span class="badge easy">Easy</span>
+                            <span class="badge duration">6h</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 3 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>Attacking Web Applications with Ffuf</h3>
+                        <div class="module-badges">
+                            <span class="badge offensive">OFFENSIVE</span>
+                            <span class="badge easy">Easy</span>
+                            <span class="badge duration">5h</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 4 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>Cracking Passwords with Hashcat</h3>
+                        <div class="module-badges">
+                            <span class="badge offensive">OFFENSIVE</span>
+                            <span class="badge medium">Medium</span>
+                            <span class="badge duration">1d</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 5 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>SQLMap Essentials</h3>
+                        <div class="module-badges">
+                            <span class="badge offensive">OFFENSIVE</span>
+                            <span class="badge easy">Easy</span>
+                            <span class="badge duration">1d</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 6 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>Intro to Network Traffic Analysis</h3>
+                        <div class="module-badges">
+                            <span class="badge general">GENERAL</span>
+                            <span class="badge medium">Medium</span>
+                            <span class="badge duration">1d</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 7 -->
+                <div class="module-card">
+                    <div class="module-info">
+                        <h3>Using Web Proxies</h3>
+                        <div class="module-badges">
+                            <span class="badge offensive">OFFENSIVE</span>
+                            <span class="badge easy">Easy</span>
+                            <span class="badge duration">1d</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <a href="https://profile.hackthebox.com/profile/019e49a7-87de-70ae-888a-7ba8ec7cb57f" target="_blank" rel="noopener noreferrer" class="btn-cv" style="padding: 10px 20px; font-size: 1.1em; background: linear-gradient(135deg, #10b981, #047857); display: inline-flex; align-items: center; gap: 8px;">🎯 Ver mi perfil de HackTheBox</a>
+                <a href="https://academy.hackthebox.com/app/paths/9/path-progress" target="_blank" rel="noopener noreferrer" class="btn-link">Ver Path Progress Oficial en HackTheBox →</a>
+            </div>
+        </div>
+        
+        <!-- Navegación Siguiente/Anterior -->
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+            <div>
+                <a href="../posts/htb-paths.html" class="nav-btn">← Anterior</a>
+            </div>
+            <div style="text-align: right;">
+                <a href="../posts/osint-guide.html" class="nav-btn">Siguiente →</a>
+            </div>
+        </div>
+
+        <!-- Giscus Comments -->
+        <div class="comments-section" style="margin-top: 50px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Comentarios</h3>
+            <div class="giscus"></div>
+            <!--
+            INSTRUCCIONES PARA ACTIVAR GISCUS:
+            1. Asegúrate de que el repositorio en GitHub sea público y tenga "Discussions" activado.
+            2. Ve a https://giscus.app/es y configura tu repo.
+            3. Copia el script `<script src="https://giscus.app/client.js"...` que te da y reemplázalo aquí.
+            -->
+            <script src="https://giscus.app/client.js"
+                data-repo="rodrigo47363/rodrigo47363.github.io"
+                data-repo-id="R_kgDOLOZ-VQ"
+                data-category="General"
+                data-category-id="DIC_kwDOLOZ-Vc4CgqIX"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="dark"
+                data-lang="es"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+        
+        <!-- Artículos Relacionados -->
+        <div class="related-posts" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                
+        <a href="../posts/htb-paths.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Htb</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Guía de Paths de HackTheBox</h4>
+            </div>
+        </a>
+        
+        <a href="../posts/osint-guide.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Osint</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Introducción al OSINT: Herramientas y Técnicas</h4>
+            </div>
+        </a>
+        
+            </div>
+        </div>
+        
+        <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+    </article>
+</main>
+
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+        <p style="font-size: 0.85em; opacity: 0.6; margin-top: 5px;">
+            <a href="../rss.xml" style="color: inherit; text-decoration: none;">RSS Feed 📡</a>
+        </p>
+    </footer>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Reading Progress Script
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            var bar = document.getElementById("myBar");
+            if (bar) { bar.style.width = scrolled + "%"; }
+        }
+    </script>
+</body>
+</html>

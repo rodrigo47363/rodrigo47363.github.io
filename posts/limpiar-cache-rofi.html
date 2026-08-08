@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende a borrar accesos directos duplicados y solucionar el error de iconos fantasmas de Telegram y Flatpak en Rofi (Linux).">
+    <meta property="og:title" content="¡Adiós a los accesos fantasmas! Cómo limpiar cachés rebeldes en Rofi y XDG">
+    <meta property="og:description" content="Aprende a borrar accesos directos duplicados y solucionar el error de iconos fantasmas de Telegram y Flatpak en Rofi (Linux).">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#3b82f6">
+    <title>¡Adiós a los accesos fantasmas! Cómo limpiar cachés rebeldes en Rofi y XDG - Mi Portafolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" defer></script>
+    
+    
+    
+    <!-- Reading Progress Bar Style -->
+    <style>
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 4px;
+            background: var(--accent-color);
+            width: 0%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de progreso de lectura -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" >Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container">
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+    .post-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 24px;
+        margin-bottom: 40px;
+    }
+    .post-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .post-date {
+        font-size: 0.9em;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    .post-title {
+        font-size: 2.5em;
+        color: var(--accent-color);
+        margin: 10px 0;
+        line-height: 1.2;
+    }
+    .post-content {
+        font-size: 1.1em;
+        line-height: 1.8;
+        opacity: 0.9;
+    }
+    .post-content p { margin-bottom: 20px; }
+    .post-content blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 15px;
+        margin-left: 0;
+        font-style: italic;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+    }
+    .post-content pre {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+    .post-content code {
+        font-family: monospace;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    .post-content pre code {
+        background: transparent;
+        padding: 0;
+    }
+    .btn-link {
+        display: inline-block;
+        margin-top: 40px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .btn-link:hover { text-decoration: underline; }
+    .nav-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+        background: var(--accent-color);
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .post-container { padding: 20px; border-radius: 16px; margin-top: 20px; }
+        .post-title { font-size: 1.8em; }
+    }
+</style>
+
+<main>
+    <article class="post-container glass" data-aos="fade-up">
+        <div class="post-header">
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
+                <a href="../pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
+            </nav>
+            <span class="post-date">22 Julio, 2026</span>
+            <h1 class="post-title">¡Adiós a los accesos fantasmas! Cómo limpiar cachés rebeldes en Rofi y XDG</h1>
+        </div>
+
+        <div class="post-content">
+            <blockquote>
+                    <p><strong>¡Hola, comunidad!</strong> Si estás buscando cómo solucionar el problema de <strong>Telegram duplicado en Rofi</strong> o iconos fantasmas tras desinstalar un paquete <strong>Flatpak</strong> en Linux, llegaste al lugar correcto.</p>
+                    <p>¿Qué fue exactamente lo que me pasó? Instalé Telegram desde Flatpak y, tras desinstalarlo o actualizarlo, el lanzador de aplicaciones (Rofi) se empeñaba en seguir mostrando el viejo icono. Al hacerle clic, no pasaba absolutamente nada (era un acceso dañado o fantasma que solo estorbaba). Hoy vamos a resolver este misterio limpiando la caché de Rofi y XDG paso a paso.</p>
+                    <p>Esta guía tiene un toque especial: combinamos la curiosidad analítica de un <strong>pentester</strong> (buscando rastro por rastro los "artefactos" que deja el software), la cercanía de un <strong>blog tecnológico</strong> de confianza, y una explicación amigable para que <strong>cualquiera</strong> pueda entender qué pasa debajo del capó de nuestro Linux sin morir en el intento. ¡Vamos a darle!</p>
+                </blockquote>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">1. ¿Qué está pasando aquí? (El misterio del acceso fantasma)</h3>
+                <p>Imagina que cambias los muebles de tu casa, pero el plano viejo sigue diciendo que ahí hay una puerta. Eso le pasa a nuestro sistema operativo.</p>
+                <p>Cuando desinstalamos programas de forma un poco abrupta o usamos contenedores, a veces quedan pequeños archivos de configuración olvidados (los llamamos <strong>artefactos</strong> o referencias huérfanas).</p>
+                <p>Cuando abres <strong>Rofi</strong> en su modo de aplicaciones (<code>drun</code>), el sistema revisa una lista gigante de accesos directos. Si encuentra un rastro viejo pero ya no halla el programa real, se confunde, se queja en la terminal y te muestra accesos duplicados o rotos.</p>
+                <ul>
+                    <li><strong>El detalle curioso:</strong> Si usas Rofi en modo de comandos (<code>run</code>), busca directo en las aplicaciones instaladas del sistema y abre todo sin problema. Pero el modo <code>Apps</code> confía ciegamente en una memoria caché muy terca.</li>
+                </ul>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">2. Lo que intentamos y por qué no funcionó (Aprendiendo sobre la marcha)</h3>
+                <p>Antes de dar con la solución definitiva, probamos varias cosas que nos enseñaron cómo piensa Linux:</p>
+                <ul>
+                    <li><strong>Borrar con comodines simples (<code>telegram*.desktop</code>):</strong> Como las aplicaciones modernas (Flatpak, etc.) le ponen nombres raros con códigos larguísimos (como <code>org.telegram.desktop._9cd8531cc...</code>), un simple asterisco a veces no alcanza para atraparlos a todos.</li>
+                    <li><strong>Limpiar solo la carpeta de Rofi:</strong> Borrar únicamente la caché visual de Rofi no servía de nada, porque el sistema operativo guardaba copias de seguridad de esos accesos rotos en otra parte (en archivos de caché de tipos MIME).</li>
+                    <li><strong>Ocultar el acceso con un parche (<code>NoDisplay=true</code>):</strong> Era como esconder la basura debajo de la alfombra. El error seguía rondando en las entrañas del sistema.</li>
+                </ul>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">3. La solución definitiva (¡Manos a la obra!)</h3>
+                <p>Para limpiar nuestra casa digital de raíz y dejar todo impecable, aplicamos una serie de comandos quirúrgicos directamente en la terminal. ¡Siguelos paso a paso!</p>
+                
+                <h4 style="margin-top: 20px;">Paso A: Cazar y destruir los lanzadores olvidados</h4>
+                <p>Primero, borramos de golpe cualquier archivo de acceso directo rebelde que haya quedado en nuestra carpeta de usuario:</p>
+                <pre><code>rm -f ~/.local/share/applications/org.telegram.desktop._*.desktop</code></pre>
+
+                <h4 style="margin-top: 20px;">Paso B: Limpiar la memoria caché terca (Rofi y el sistema)</h4>
+                <p>Aquí es donde estaba el truco principal. Borramos los archivos donde el sistema guardaba las listas viejas y las asociaciones rotas:</p>
+                <pre><code>rm -f ~/.local/share/applications/mimeinfo.cache<br>rm -f ~/.cache/rofi-drun-desktop.cache<br>rm -f ~/.cache/rofi/*(N)</code></pre>
+
+                <h4 style="margin-top: 20px;">Paso C: Forzar al sistema a actualizar su lista</h4>
+                <p>Para que Linux se entere de que ya hicimos limpieza, actualizamos la base de datos de aplicaciones del escritorio:</p>
+                <pre><code>update-desktop-database ~/.local/share/applications/</code></pre>
+
+                <h3 style="color: var(--accent-color); margin-top: 30px;">4. Conclusión</h3>
+                <p>¡Y listo! Al terminar estos pasos, abres tu Rofi de nuevo y verás que todo vuela limpio, sin errores y sin duplicados molestos.</p>
+                <p>Aprendimos que, a veces, los problemas en Linux no se resuelven cambiando la herramienta principal, sino entendiendo cómo guardan sus <strong>cachés y registros</strong> en segundo plano. ¡Espero que este tip te sirva tanto como a mí para dejar tu entorno impecable!</p>
+        </div>
+        
+        <!-- Navegación Siguiente/Anterior -->
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+            <div>
+                <a href="../posts/errores-zsh.html" class="nav-btn">← Anterior</a>
+            </div>
+            <div style="text-align: right;">
+                
+            </div>
+        </div>
+
+        <!-- Giscus Comments -->
+        <div class="comments-section" style="margin-top: 50px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Comentarios</h3>
+            <div class="giscus"></div>
+            <!--
+            INSTRUCCIONES PARA ACTIVAR GISCUS:
+            1. Asegúrate de que el repositorio en GitHub sea público y tenga "Discussions" activado.
+            2. Ve a https://giscus.app/es y configura tu repo.
+            3. Copia el script `<script src="https://giscus.app/client.js"...` que te da y reemplázalo aquí.
+            -->
+            <script src="https://giscus.app/client.js"
+                data-repo="rodrigo47363/rodrigo47363.github.io"
+                data-repo-id="R_kgDOLOZ-VQ"
+                data-category="General"
+                data-category-id="DIC_kwDOLOZ-Vc4CgqIX"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="dark"
+                data-lang="es"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+        
+        <!-- Artículos Relacionados -->
+        <div class="related-posts" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                
+        <a href="../posts/terminal-setup.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Linux</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Cómo configurar tu terminal para que luzca increíble</h4>
+            </div>
+        </a>
+        
+        <a href="../posts/bash-scripts.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Bash</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Automatizando tareas con scripts de Bash</h4>
+            </div>
+        </a>
+        
+            </div>
+        </div>
+        
+        <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+    </article>
+</main>
+
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+        <p style="font-size: 0.85em; opacity: 0.6; margin-top: 5px;">
+            <a href="../rss.xml" style="color: inherit; text-decoration: none;">RSS Feed 📡</a>
+        </p>
+    </footer>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Reading Progress Script
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            var bar = document.getElementById("myBar");
+            if (bar) { bar.style.width = scrolled + "%"; }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "name": "Mi Portafolio - Rodrigo",
+    "short_name": "Portafolio",
+    "icons": [
+        {
+            "src": "/icons/favicon.svg",
+            "sizes": "192x192 512x512",
+            "type": "image/svg+xml"
+        }
+    ],
+    "theme_color": "#0f172a",
+    "background_color": "#0f172a",
+    "display": "standalone"
+}
