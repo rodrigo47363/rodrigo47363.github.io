@@ -4,7 +4,7 @@ import re
 import hashlib
 from datetime import datetime
 
-PORTFOLIO_DIR = '/home/rodrigo47363/Workspace/Desarrollo/Proyectos_github/portafolio_final'
+PORTFOLIO_DIR = os.path.dirname(os.path.abspath(__file__))
 CONTENT_DIR = os.path.join(PORTFOLIO_DIR, 'content')
 TEMPLATES_DIR = os.path.join(PORTFOLIO_DIR, 'templates')
 POSTS_DIR = os.path.join(PORTFOLIO_DIR, 'posts')
@@ -40,6 +40,12 @@ def parse_date(date_str):
             
     return datetime(year, month, day)
 
+def calculate_reading_time(html_content):
+    text = re.sub(r'<[^>]+>', ' ', html_content)
+    words = len(text.split())
+    minutes = max(1, round(words / 200))
+    return minutes
+
 def load_posts():
     posts = []
     for filename in os.listdir(CONTENT_DIR):
@@ -47,6 +53,8 @@ def load_posts():
             with open(os.path.join(CONTENT_DIR, filename), 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 data['parsed_date'] = parse_date(data['date'])
+                content = data.get('content', '') or data.get('raw_body', '')
+                data['reading_time'] = calculate_reading_time(content)
                 posts.append(data)
     
     # Sort chronological (oldest first for linking next/prev properly)
@@ -75,7 +83,7 @@ def generate_related_posts(current_post, all_posts):
         html += f'''
         <a href="../posts/{r['filename']}" style="text-decoration: none; color: inherit; display: block;">
             <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
-                <span style="font-size: 0.8em; opacity: 0.7;">{tag_str}</span>
+                <span style="font-size: 0.8em; opacity: 0.7;">{tag_str} • ⏱️ {r['reading_time']} min</span>
                 <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">{r['title']}</h4>
             </div>
         </a>
@@ -103,6 +111,7 @@ def build_site():
         next_link = f'<a href="../posts/{next_post["filename"]}" class="nav-btn">Siguiente →</a>' if next_post else ''
         
         related_html = generate_related_posts(post, posts)
+        og_image = post.get('og_image', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000')
         
         # Check if it has a custom raw_body
         if 'raw_body' in post:
@@ -111,6 +120,7 @@ def build_site():
             final_content = post_template \
                 .replace('{{title}}', post['title']) \
                 .replace('{{date}}', post['date']) \
+                .replace('{{reading_time}}', str(post['reading_time'])) \
                 .replace('{{post_content}}', post['content']) \
                 .replace('{{prev_post_link}}', prev_link) \
                 .replace('{{next_post_link}}', next_link) \
@@ -120,7 +130,7 @@ def build_site():
         full_html = base_template \
             .replace('{{title}}', post['title']) \
             .replace('{{description}}', post['excerpt']) \
-            .replace('{{og_image}}', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000') \
+            .replace('{{og_image}}', og_image) \
             .replace('{{og_type}}', 'article') \
             .replace('{{content}}', final_content) \
             .replace('{{base_path}}', '../') \
@@ -191,8 +201,10 @@ def build_site():
                 <span class="card-icon">{icon}</span>
             </div>
             <div class="card-content">
-                <div class="blog-meta">
+                <div class="blog-meta" style="display: flex; gap: 8px; align-items: center; font-size: 0.85em; opacity: 0.8; margin-bottom: 6px;">
                     <span class="blog-date">{post['date']}</span>
+                    <span>•</span>
+                    <span class="reading-time">⏱️ {post['reading_time']} min de lectura</span>
                 </div>
                 <h3 class="blog-title">{post['title']}</h3>
                 <p class="blog-excerpt">{post['excerpt']}</p>

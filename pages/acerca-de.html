@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://www.hackthebox.com https://tryhackme-badges.s3.amazonaws.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://www.hackthebox.com https://tryhackme-badges.s3.amazonaws.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Conoce más sobre Rodrigo47363, mi experiencia, habilidades en desarrollo y mi camino en ciberseguridad.">
@@ -37,7 +37,10 @@
                 <li><a href="blog.html">Mi Blog</a></li>
             </ul>
             
-            <div class="theme-toggle-container">
+            <div class="theme-toggle-container" style="display: flex; align-items: center; gap: 15px;">
+                <button class="search-trigger-btn" id="searchTriggerBtn" aria-label="Buscar (Ctrl+K)">
+                    🔍 <span class="search-kbd-shortcut">Ctrl+K</span>
+                </button>
                 <label class="toggle-switch" aria-label="Cambiar tema">
                     <input type="checkbox" id="theme-switch">
                     <span class="slider"></span>
@@ -173,6 +176,22 @@
         <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
     </footer>
 
+
+    <!-- Modal de Búsqueda Global (Ctrl+K) -->
+    <div class="global-search-modal" id="globalSearchModal">
+        <div class="global-search-content glass">
+            <div class="global-search-header">
+                <input type="text" id="globalSearchInput" placeholder="Buscar páginas, artículos, proyectos... (ESC para cerrar)" autocomplete="off">
+                <button class="global-search-close" id="globalSearchClose">&times;</button>
+            </div>
+            <ul class="global-search-results" id="globalSearchResults">
+                <!-- Inyectado por JS -->
+            </ul>
+            <div class="global-search-footer">
+                <span>Usa <strong>↑</strong> <strong>↓</strong> para navegar y <strong>Enter</strong> para seleccionar</span>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

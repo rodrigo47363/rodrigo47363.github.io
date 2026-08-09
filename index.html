@@ -3,7 +3,7 @@
 
 <head>
     <!-- CSP Corregido: Se agregaron los dominios de telemetría y Gravatar a img-src -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://github-stats-extended.vercel.app https://streak-stats.demolab.com https://readme-typing-svg.demolab.com https://secure.gravatar.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://www.hackthebox.com https://tryhackme-badges.s3.amazonaws.com https://github-stats-extended.vercel.app https://streak-stats.demolab.com https://readme-typing-svg.demolab.com https://secure.gravatar.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,10 @@
     <!-- AOS Animation CSS con SRI -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" integrity="sha384-/rJKQnzOkEo+daG0jMjU1IwwY9unxt1NBw3Ef2fmOJ3PW/TfAg2KXVoWwMZQZtw9" crossorigin="anonymous">
     
+    <!-- Favicon y RSS -->
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="Blog de Rodrigo47363" href="rss.xml">
+
     <!-- Estilos locales -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -45,7 +49,10 @@
                 <li><a href="pages/blog.html">Mi Blog</a></li>
             </ul>
             
-            <div class="theme-toggle-container">
+            <div class="theme-toggle-container" style="display: flex; align-items: center; gap: 15px;">
+                <button class="search-trigger-btn" id="searchTriggerBtn" aria-label="Buscar (Ctrl+K)">
+                    🔍 <span class="search-kbd-shortcut">Ctrl+K</span>
+                </button>
                 <label class="toggle-switch" aria-label="Cambiar tema">
                     <input type="checkbox" id="theme-switch">
                     <span class="slider"></span>
@@ -78,6 +85,25 @@
                 </div>
             </section>
         </div>
+
+        <!-- Terminal Interactiva -->
+        <section class="terminal-container" data-aos="fade-up" data-aos-delay="50">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="term-btn close"></span>
+                    <span class="term-btn minimize"></span>
+                    <span class="term-btn maximize"></span>
+                </div>
+                <span class="terminal-title">rodrigo@parrot-os: ~ (zsh)</span>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+                <p class="term-output">Bienvenido a la terminal interactiva de Rodrigo. Escribe <span class="term-cmd">'help'</span> para ver los comandos disponibles.</p>
+                <div class="term-line" id="currentTermLine">
+                    <span class="term-prompt">rodrigo@parrot:~$</span>
+                    <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Escribe un comando...">
+                </div>
+            </div>
+        </section>
 
         <!-- GitHub Stats -->
         <section class="welcome-section glass" data-aos="fade-up" data-aos-delay="100">
@@ -154,6 +180,22 @@
     <footer class="footer">
         <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
     </footer>
+
+    <!-- Modal de Búsqueda Global (Ctrl+K) -->
+    <div class="global-search-modal" id="globalSearchModal">
+        <div class="global-search-content glass">
+            <div class="global-search-header">
+                <input type="text" id="globalSearchInput" placeholder="Buscar páginas, artículos, proyectos... (ESC para cerrar)" autocomplete="off">
+                <button class="global-search-close" id="globalSearchClose">&times;</button>
+            </div>
+            <ul class="global-search-results" id="globalSearchResults">
+                <!-- Inyectado por JS -->
+            </ul>
+            <div class="global-search-footer">
+                <span>Usa <strong>↑</strong> <strong>↓</strong> para navegar y <strong>Enter</strong> para seleccionar</span>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

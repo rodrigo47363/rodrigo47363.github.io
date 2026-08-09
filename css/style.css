@@ -1026,3 +1026,237 @@ body.light-mode .domain-table {
     font-size: 0.9em;
     opacity: 0.7;
 }
+
+/* --- 1. Terminal Interactiva --- */
+.terminal-container {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0d1117 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 30px 0;
+}
+
+.terminal-header {
+    background: #161b22;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.term-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.term-btn.close { background: #ff5f56; }
+.term-btn.minimize { background: #ffbd2e; }
+.term-btn.maximize { background: #27c93f; }
+
+.terminal-title {
+    margin: 0 auto;
+    font-size: 0.85em;
+    color: #8b949e;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.terminal-body {
+    padding: 20px;
+    min-height: 200px;
+    max-height: 320px;
+    overflow-y: auto;
+    font-size: 0.95em;
+    color: #c9d1d9;
+    line-height: 1.6;
+}
+
+.term-output {
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.term-cmd {
+    color: #58a6ff;
+    font-weight: bold;
+}
+
+.term-prompt {
+    color: #3fb950;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.term-line {
+    display: flex;
+    align-items: center;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f0f6fc;
+    font-family: inherit;
+    font-size: inherit;
+    flex: 1;
+}
+
+/* --- 2. Modal de Búsqueda Global (Ctrl+K) --- */
+.search-trigger-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.search-trigger-btn:hover {
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
+.search-kbd-shortcut {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    opacity: 0.8;
+}
+
+.global-search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.global-search-modal.active {
+    display: flex;
+}
+
+.global-search-content {
+    width: 90%;
+    max-width: 650px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    background: #0f172a;
+    border: 1px solid var(--accent-color);
+    animation: modalSlide 0.25s ease-out;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.global-search-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+.global-search-header input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-family: inherit;
+}
+
+.global-search-close {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.6em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.global-search-close:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+.global-search-results {
+    list-style: none;
+    max-height: 350px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.global-search-results li a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.global-search-results li a:hover,
+.global-search-results li.selected a {
+    background: var(--accent-color);
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.global-search-footer {
+    border-top: 1px solid var(--glass-border);
+    margin-top: 15px;
+    padding-top: 10px;
+    font-size: 0.8em;
+    opacity: 0.6;
+    text-align: center;
+}
+
+/* --- 3. Syntax Highlighting Polish --- */
+.post-content pre code.hljs {
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 0.95em;
+    line-height: 1.6;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 4. Habilitar Selección de Texto para Copiar (Ctrl+C) --- */
+pre, code, .term-output, .post-content, body {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}

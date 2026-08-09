@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://www.hackthebox.com https://tryhackme-badges.s3.amazonaws.com https://github-stats-extended.vercel.app https://streak-stats.demolab.com https://readme-typing-svg.demolab.com https://secure.gravatar.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app;">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Guía básica de OSINT: Técnicas y herramientas para buscar información pública de manera efectiva y segura.">
@@ -20,7 +20,14 @@
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Highlight.js Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    
+    <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="Blog de Rodrigo47363" href="../rss.xml">
+    
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
     <script src="../js/main.js" defer></script>
     
     
@@ -62,7 +69,10 @@
                 <li><a href="../pages/blog.html" >Mi Blog</a></li>
             </ul>
             
-            <div class="theme-toggle-container">
+            <div class="theme-toggle-container" style="display: flex; align-items: center; gap: 15px;">
+                <button class="search-trigger-btn" id="searchTriggerBtn" aria-label="Buscar (Ctrl+K)">
+                    🔍 <span class="search-kbd-shortcut">Ctrl+K</span>
+                </button>
                 <label class="toggle-switch" aria-label="Cambiar tema">
                     <input type="checkbox" id="theme-switch">
                     <span class="slider"></span>
@@ -163,7 +173,7 @@
             <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
                 <a href="../pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
             </nav>
-            <span class="post-date">11 Julio, 2026</span>
+            <span class="post-date">11 Julio, 2026 &bull; ⏱️ 1 min de lectura</span>
             <h1 class="post-title">Introducción al OSINT: Herramientas y Técnicas</h1>
         </div>
 
@@ -198,10 +208,10 @@ python3 sherlock.py nombre_usuario</code></pre>
         <!-- Navegación Siguiente/Anterior -->
         <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
             <div>
-                <a href="../posts/htb.html" class="nav-btn">← Anterior</a>
+                <a href="../posts/linux-dev.html" class="nav-btn">← Anterior</a>
             </div>
             <div style="text-align: right;">
-                <a href="../posts/errores-zsh.html" class="nav-btn">Siguiente →</a>
+                <a href="../posts/htb.html" class="nav-btn">Siguiente →</a>
             </div>
         </div>
 
@@ -238,17 +248,17 @@ python3 sherlock.py nombre_usuario</code></pre>
             <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                 
-        <a href="../posts/htb-paths.html" style="text-decoration: none; color: inherit; display: block;">
+        <a href="../posts/htb.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
-                <span style="font-size: 0.8em; opacity: 0.7;">Htb</span>
-                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Guía de Paths de HackTheBox</h4>
+                <span style="font-size: 0.8em; opacity: 0.7;">Htb • ⏱️ 1 min</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">HackTheBox Path: Basic Toolset</h4>
             </div>
         </a>
         
-        <a href="../posts/htb.html" style="text-decoration: none; color: inherit; display: block;">
+        <a href="../posts/htb-paths.html" style="text-decoration: none; color: inherit; display: block;">
             <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
-                <span style="font-size: 0.8em; opacity: 0.7;">Htb</span>
-                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">HackTheBox Path: Basic Toolset</h4>
+                <span style="font-size: 0.8em; opacity: 0.7;">Htb • ⏱️ 1 min</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Guía de Paths de HackTheBox</h4>
             </div>
         </a>
         
@@ -286,5 +296,22 @@ python3 sherlock.py nombre_usuario</code></pre>
             if (bar) { bar.style.width = scrolled + "%"; }
         }
     </script>
+
+    <!-- Modal de Búsqueda Global (Ctrl+K) -->
+    <div class="global-search-modal" id="globalSearchModal">
+        <div class="global-search-content glass">
+            <div class="global-search-header">
+                <input type="text" id="globalSearchInput" placeholder="Buscar páginas, artículos, proyectos... (ESC para cerrar)" autocomplete="off">
+                <button class="global-search-close" id="globalSearchClose">&times;</button>
+            </div>
+            <ul class="global-search-results" id="globalSearchResults">
+                <!-- Inyectado por JS -->
+            </ul>
+            <div class="global-search-footer">
+                <span>Usa <strong>↑</strong> <strong>↓</strong> para navegar y <strong>Enter</strong> para seleccionar</span>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

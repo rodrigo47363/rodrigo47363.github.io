@@ -115,14 +115,15 @@ def parse_htb_data(filepath):
     return paths
 
 if __name__ == "__main__":
-    filepath = '/home/rodrigo47363/.gemini/antigravity/scratch/portfolio/modulos_htb.txt'
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    filepath = os.path.join(BASE_DIR, 'tools', 'modulos_htb.txt')
     if not os.path.exists(filepath):
         print(f"Error: File {filepath} not found.")
         exit(1)
         
     paths = parse_htb_data(filepath)
     
-    out_dir = '/home/rodrigo47363/.gemini/antigravity/scratch/portfolio/data'
+    out_dir = os.path.join(BASE_DIR, 'data')
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, 'htb_data.json')
     

@@ -1,6 +1,10 @@
 import re
+import os
 
-with open('htb_raw.txt', 'r') as f:
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+raw_file = os.path.join(SCRIPT_DIR, 'htb_raw.txt')
+
+with open(raw_file, 'r', encoding='utf-8') as f:
     text = f.read().strip()
 
 blocks = re.split(r'(\d+ Modules included\n?)', text)
@@ -169,5 +173,6 @@ template = f'''<!DOCTYPE html>
 </body>
 </html>'''
 
-with open('post-htb-paths.html', 'w') as f:
+out_html = os.path.join(SCRIPT_DIR, 'post-htb-paths.html')
+with open(out_html, 'w', encoding='utf-8') as f:
     f.write(template)
