@@ -403,17 +403,39 @@ input:checked + .slider:before {
 @media (max-width: 768px) {
     header nav {
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
+        gap: 15px;
+        padding: 15px;
     }
     header ul {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 10px;
+    }
+    header ul li a {
+        font-size: 0.9em;
+        padding: 6px 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        display: inline-block;
+    }
+    body.light-mode header ul li a {
+        background: rgba(0, 0, 0, 0.04);
     }
     .profile-container h2 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .welcome-section h2 {
+        font-size: 1.4em;
+    }
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .blog-card.hero {
+        grid-template-columns: 1fr;
+    }
+    .blog-card.hero .blog-title {
         font-size: 1.5em;
     }
 }
@@ -572,8 +594,8 @@ body.light-mode .blog-tag {
 /* --- Blog Grid Premium (Bento Style) --- */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+    gap: 25px;
     margin-top: 20px;
 }
 

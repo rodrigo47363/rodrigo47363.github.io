@@ -56,6 +56,19 @@
         background: transparent;
         padding: 0;
     }
+    .post-content table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 25px 0;
+        border-collapse: collapse;
+    }
+    .post-content table th,
+    .post-content table td {
+        padding: 10px 14px;
+        white-space: nowrap;
+    }
     .btn-link {
         display: inline-block;
         margin-top: 40px;
@@ -79,8 +92,9 @@
         color: #fff;
     }
     @media (max-width: 768px) {
-        .post-container { padding: 20px; border-radius: 16px; margin-top: 20px; }
-        .post-title { font-size: 1.8em; }
+        .post-container { padding: 20px 15px; border-radius: 16px; margin-top: 15px; }
+        .post-title { font-size: 1.7em; }
+        .post-content { font-size: 1em; line-height: 1.7; }
     }
 </style>
 
