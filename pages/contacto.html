@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com https://formspree.io; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ponte en contacto conmigo. Envíame un mensaje directo desde mi portafolio.">
@@ -35,6 +35,7 @@
         .contact-section p {
             margin-bottom: 30px;
             opacity: 0.8;
+            line-height: 1.6;
         }
 
         .contact-form {
@@ -106,15 +107,87 @@
             margin-top: 10px;
         }
 
-        .btn-submit:hover {
+        .btn-submit:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .form-status.success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid #10b981;
+            color: #10b981;
+        }
+
+        .form-status.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        /* Botón de copiado de direcciones Cripto */
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .crypto-address-cell {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 25px 15px;
+                border-radius: 16px;
+            }
+            .contact-section h2 {
+                font-size: 1.8em;
+            }
+            .crypto-address-cell {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Barra de navegación -->
     <header>
         <nav class="glass">
             <h1>Mi Portafolio</h1>
@@ -141,9 +214,9 @@
     <main>
         <section class="contact-section glass" data-aos="fade-up">
             <h2>Ponte en Contacto</h2>
-            <p>¿Tienes alguna pregunta o quieres colaborar en un proyecto? Envíame un mensaje.</p>
+            <p>¿Tienes alguna pregunta, propuesta de proyecto o auditoría de seguridad? Envíame un mensaje directo.</p>
             
-            <form class="contact-form" action="https://formspree.io/f/TU_ENLACE_DE_FORMSPREE" method="POST">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/TU_ENLACE_DE_FORMSPREE" method="POST">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
@@ -159,29 +232,46 @@
                     <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
                 </div>
                 
-                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                <button type="submit" class="btn-submit" id="submitBtn">Enviar Mensaje</button>
+                
+                <div id="formStatus" class="form-status"></div>
             </form>
         </section>
 
         <section class="contact-section glass" data-aos="fade-up" data-aos-delay="100">
             <h2 style="font-size: 1.8em;">⚡ Apoyo a la Investigación Operativa</h2>
-            <p>Si mis herramientas de automatización han optimizado tus flujos de auditoría o te han servido de referencia técnica, considera respaldar el desarrollo continuo y mi estrategia de acumulación (<strong>HODL</strong>):</p>
+            <p>Si mis herramientas de automatización o writeups técnicos te han sido de utilidad, considera respaldar el desarrollo continuo y mi estrategia de acumulación (<strong>HODL</strong>):</p>
             
             <table class="crypto-table">
                 <tr>
-                    <td><img src="../assets/img/Bitcoin-F7931A_ff04c7c7c5.svg" alt="BTC"></td>
+                    <td><img src="../assets/img/Bitcoin-F7931A_ff04c7c7c5.svg" alt="BTC" width="24" height="24"></td>
                     <td>BTC</td>
-                    <td>bc1qkzmpd0hry99qms7ef23vsyx9vt34pzzaslpp8y</td>
+                    <td>
+                        <div class="crypto-address-cell">
+                            <span id="btc-addr">bc1qkzmpd0hry99qms7ef23vsyx9vt34pzzaslpp8y</span>
+                            <button class="copy-btn" onclick="copyAddress('bc1qkzmpd0hry99qms7ef23vsyx9vt34pzzaslpp8y', this)">📋 Copiar</button>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><img src="../assets/img/Ethereum-3C3C3D_dee5d7b347.svg" alt="ETH"></td>
+                    <td><img src="../assets/img/Ethereum-3C3C3D_dee5d7b347.svg" alt="ETH" width="24" height="24"></td>
                     <td>ETH</td>
-                    <td>0xB75bC57C54FCBFF139EBF981A596B019C537d018</td>
+                    <td>
+                        <div class="crypto-address-cell">
+                            <span id="eth-addr">0xB75bC57C54FCBFF139EBF981A596B019C537d018</span>
+                            <button class="copy-btn" onclick="copyAddress('0xB75bC57C54FCBFF139EBF981A596B019C537d018', this)">📋 Copiar</button>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><img src="../assets/img/Solana-14F195_9b97bf1c90.svg" alt="SOL"></td>
+                    <td><img src="../assets/img/Solana-14F195_9b97bf1c90.svg" alt="SOL" width="24" height="24"></td>
                     <td>SOL</td>
-                    <td>ELekuGHcmZjhXrtHNqHuu8QmdCZr3oCWtTmu3QUQ5hac</td>
+                    <td>
+                        <div class="crypto-address-cell">
+                            <span id="sol-addr">ELekuGHcmZjhXrtHNqHuu8QmdCZr3oCWtTmu3QUQ5hac</span>
+                            <button class="copy-btn" onclick="copyAddress('ELekuGHcmZjhXrtHNqHuu8QmdCZr3oCWtTmu3QUQ5hac', this)">📋 Copiar</button>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </section>
@@ -214,6 +304,85 @@
             duration: 800,
             once: true,
             offset: 100
+        });
+
+        // Copiar dirección al portapapeles con feedback
+        function copyAddress(address, btn) {
+            navigator.clipboard.writeText(address).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✓ ¡Copiado!';
+                btn.style.background = 'rgba(16, 185, 129, 0.3)';
+                btn.style.borderColor = '#10b981';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.style.borderColor = '';
+                }, 2000);
+            }).catch(() => {
+                const tempInput = document.createElement('input');
+                tempInput.value = address;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                btn.innerHTML = '✓ ¡Copiado!';
+                setTimeout(() => { btn.innerHTML = '📋 Copiar'; }, 2000);
+            });
+        }
+
+        // Manejador Asíncrono para el formulario de contacto (AJAX)
+        const form = document.getElementById('contactForm');
+        const statusDiv = document.getElementById('formStatus');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Enviando... ⏳';
+            statusDiv.style.display = 'none';
+
+            const formData = new FormData(form);
+
+            // Si el endpoint aún no está configurado, proveer fallback amigable
+            if (form.action.includes('TU_ENLACE_DE_FORMSPREE')) {
+                setTimeout(() => {
+                    statusDiv.className = 'form-status error';
+                    statusDiv.innerHTML = '⚠️ El formulario está en modo demostración. Puedes contactarme directamente a través de <a href="https://github.com/rodrigo47363" target="_blank" style="color: inherit; text-decoration: underline; font-weight: bold;">GitHub</a> o <a href="https://linkedin.com/in/rodrigo-v-695728215" target="_blank" style="color: inherit; text-decoration: underline; font-weight: bold;">LinkedIn</a>.';
+                    statusDiv.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'Enviar Mensaje';
+                }, 500);
+                return;
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    statusDiv.className = 'form-status success';
+                    statusDiv.innerHTML = '✅ ¡Gracias por tu mensaje! Me pondré en contacto contigo a la brevedad.';
+                    statusDiv.style.display = 'block';
+                    form.reset();
+                } else {
+                    const data = await response.json().catch(() => null);
+                    statusDiv.className = 'form-status error';
+                    statusDiv.innerHTML = data && data.errors 
+                        ? '❌ ' + data.errors.map(err => err.message).join(', ')
+                        : '❌ Hubo un error al enviar el mensaje. Inténtalo de nuevo o contáctame por redes.';
+                    statusDiv.style.display = 'block';
+                }
+            } catch (error) {
+                statusDiv.className = 'form-status error';
+                statusDiv.innerHTML = '❌ Error de conexión al enviar el mensaje. Puedes contactarme directamente por GitHub o LinkedIn.';
+                statusDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Enviar Mensaje';
+            }
         });
     </script>
 
