@@ -6,6 +6,13 @@
     <description>Tutoriales y recursos sobre ciberseguridad y desarrollo</description>
     
         <item>
+            <title><![CDATA[AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust]]></title>
+            <link>https://rodrigo47363.github.io/portfolio/posts/acersense-linux-rust.html</link>
+            <description><![CDATA[Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.]]></description>
+            <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+        </item>
+        
+        <item>
             <title><![CDATA[¡Adiós a los accesos fantasmas! Cómo limpiar cachés rebeldes en Rofi y XDG]]></title>
             <link>https://rodrigo47363.github.io/portfolio/posts/limpiar-cache-rofi.html</link>
             <description><![CDATA[Aprende a borrar accesos directos duplicados y solucionar el error de iconos fantasmas de Telegram y Flatpak en Rofi (Linux).]]></description>

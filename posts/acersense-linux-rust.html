@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://www.hackthebox.com https://tryhackme-badges.s3.amazonaws.com https://github-stats-extended.vercel.app https://streak-stats.demolab.com https://readme-typing-svg.demolab.com https://secure.gravatar.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app;">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.">
+    <meta property="og:title" content="AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust">
+    <meta property="og:description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#3b82f6">
+    <title>AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Highlight.js Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    
+    <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="Blog de Rodrigo47363" href="../rss.xml">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    
+    
+    
+    <!-- Reading Progress Bar Style -->
+    <style>
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 4px;
+            background: var(--accent-color);
+            width: 0%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de progreso de lectura -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <header>
+        <nav class="glass">
+            <h1>Mi Portafolio</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../pages/acerca-de.html">Acerca de</a></li>
+                <li><a href="../pages/contacto.html">Contacto</a></li>
+                <li><a href="../pages/repositorios.html">Repositorios</a></li>
+                <li><a href="../pages/blog.html" >Mi Blog</a></li>
+            </ul>
+            
+            <div class="theme-toggle-container" style="display: flex; align-items: center; gap: 15px;">
+                <button class="search-trigger-btn" id="searchTriggerBtn" aria-label="Buscar (Ctrl+K)">
+                    🔍 <span class="search-kbd-shortcut">Ctrl+K</span>
+                </button>
+                <label class="toggle-switch" aria-label="Cambiar tema">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+    .post-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 24px;
+        margin-bottom: 40px;
+    }
+    .post-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .post-date {
+        font-size: 0.9em;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    .post-title {
+        font-size: 2.5em;
+        color: var(--accent-color);
+        margin: 10px 0;
+        line-height: 1.2;
+    }
+    .post-content {
+        font-size: 1.1em;
+        line-height: 1.8;
+        opacity: 0.9;
+    }
+    .post-content p { margin-bottom: 20px; }
+    .post-content blockquote {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 15px;
+        margin-left: 0;
+        font-style: italic;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+    }
+    .post-content pre {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+    .post-content code {
+        font-family: monospace;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    .post-content pre code {
+        background: transparent;
+        padding: 0;
+    }
+    .btn-link {
+        display: inline-block;
+        margin-top: 40px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .btn-link:hover { text-decoration: underline; }
+    .nav-btn {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+        background: var(--accent-color);
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .post-container { padding: 20px; border-radius: 16px; margin-top: 20px; }
+        .post-title { font-size: 1.8em; }
+    }
+</style>
+
+<main>
+    <article class="post-container glass" data-aos="fade-up">
+        <div class="post-header">
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
+                <a href="../pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
+            </nav>
+            <span class="post-date">03 Septiembre, 2026 &bull; ⏱️ 5 min de lectura</span>
+            <h1 class="post-title">AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust</h1>
+        </div>
+
+        <div class="post-content">
+            <p>Uno de los mayores dolores de cabeza para cualquier usuario de Linux en laptops gaming (como las series <strong>Acer Nitro 5</strong> y <strong>Predator Helios</strong>) es la ausencia total de software oficial para gestionar los ventiladores, el umbral de carga de la batería y la iluminación RGB del teclado. Durante años, los usuarios han tenido que conformarse con curvas automáticas mediocres impuestas por la BIOS o scripts lentos que no sincronizaban ambas turbinas.</p>
+
+<p>En este artículo detallo el proceso técnico de <strong>ingeniería inversa de firmware UEFI (InsydeH2O)</strong>, el análisis de opcodes WMI/ACPI en Ring-0 y Ring -2 (SMM), y la construcción de <strong><a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" style="color: var(--accent-color); font-weight: bold;">AcerSense Pro Linux v2.0</a></strong>: una suite completa escrita 100% en <strong>Rust</strong> con interfaz acelerada por GPU a 60+ FPS.</p>
+
+<div style="text-align: center; margin: 30px 0;">
+    <img src="../img/acersense_gui_dashboard.png" alt="AcerSense Pro Dashboard en Linux" style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
+    <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">Dashboard nativo en Rust (egui/eframe) corriendo sobre Parrot OS / BSPWM</p>
+</div>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">1. El Problema: El Candado Térmico de la GPU en Linux</h3>
+<p>En el chasis Acer Nitro 5 (AN515-55 con GPU NVIDIA RTX 3050), al intentar forzar el modo de máxima refrigeración desde Linux escribiendo directamente en los registros del microcontrolador <em>Embedded Controller</em> (EC Compal en puertos <code>0x62</code> y <code>0x66</code>), nos topábamos con un comportamiento anómalo:</p>
+<ul>
+    <li>La turbina del <strong>CPU</strong> aceleraba de inmediato hasta su límite físico (~5,400–5,660 RPM).</li>
+    <li>La turbina de la <strong>GPU</strong> permanecía congelada a velocidad basal (~2,400 RPM), ignorando la anulación manual si la tarjeta gráfica estaba a menos de 50 °C.</li>
+</ul>
+<p>¿La causa? El firmware de la placa base ejecuta un bucle de control en <strong>System Management Mode (SMM, Ring -2)</strong>. Cada pocos milisegundos, el controlador EFI evalúa la carga térmica de la GPU y sobrescribe cualquier valor inyectado en el EC si la GPU está en reposo.</p>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">2. Ingeniería Inversa del Firmware UEFI BIOS (InsydeH2O)</h3>
+<p>Para desbloquear el control legítimo del hardware, extrajimos la imagen de la BIOS <code>GH51Mx64.fd</code> (25.56 MB) utilizando <code>uefi-firmware-parser</code>, <code>iasl</code> y <strong>Ghidra</strong>, analizando más de 68 tablas ACPI y 300 módulos DXE/SMM.</p>
+
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│                          ACPI &amp; SMM EXECUTION FLOW                          │
+│                                                                             │
+│   Linux OS (/proc/acpi/call)                                                │
+│        │                                                                    │
+│        ▼                                                                    │
+│   \_SB.PCI0.WMID.WMBH (Instance 1 - Gaming DSDT Table)                      │
+│        │                                                                    │
+│        ▼                                                                    │
+│   Method (WSMI, 2)  ──&gt;  Escribe 0xD0 en Puerto I/O 0xB2 (SMI Interrupt)    │
+│        │                                                                    │
+│        ▼                                                                    │
+│   System Management Mode (Ring -2)  ──&gt;  Driver: `efi_module_0xA033C8.efi`  │
+│        │                                                                    │
+│        ▼                                                                    │
+│   Embedded Controller (EC RAM)  ──&gt;  Registros 0x10, 0x20, 0x14, 0x24       │
+└─────────────────────────────────────────────────────────────────────────────┘</code></pre>
+
+<p>Analizando la tabla DSDT <code>SSDT_ACRSYS_ACRPRDCT</code> y el binario <code>NitroSenseService.exe</code> de Windows, descubrimos la estructura del <strong>Opcode Maestro de 64 bits (<code>0x820009</code>)</strong> despachado a través del <strong>Método WMI 14 (<code>0x0E</code>)</strong>:</p>
+
+<pre><code>                  Bits 22..27        Bits 16..21       Bits 0..7
+Valor Hex:         0x800000     |     0x020000    |      0x09
+Representación:  [ GPU Turbo ]  |  [ CPU Turbo ]  | [ Dual Fan Mask ]
+
+• Modo MAX TURBO DUAL:  0x09 | 0x020000 | 0x800000 = 0x820009
+• Modo AUTO DUAL:       0x09 | 0x010000 | 0x400000 = 0x410009
+• Modo CUSTOM DUAL:     0x09 | 0x030000 | 0xC00000 = 0xC30009</code></pre>
+
+<p>Al despachar la instrucción oficial por la compuerta WMBH y configurar el Método 16 (Target PWM 100%):</p>
+<pre><code># Desbloquear comportamiento en BIOS e inyectar máxima potencia en GPU
+echo "\_SB.PCI0.WMID.WMBH 1 0x0E 0x820009" &gt; /proc/acpi/call
+echo "\_SB.PCI0.WMID.WMBH 1 0x10 0x6404" &gt; /proc/acpi/call</code></pre>
+<p>La turbina de la GPU rompió el candado SMM alcanzando su <strong>récord físico de 6,122 RPM</strong> de forma estable y sostenida.</p>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">3. ¿Por qué reescribir la suite en Rust?</h3>
+<p>Las primeras iteraciones del proyecto utilizaban Python y PyQt5. Aunque funcionales, presentaban problemas intrínsecos para software de administración de sistemas:</p>
+<ul>
+    <li><strong>Consumo de memoria elevado:</strong> ~52 MB para una interfaz básica (y más de 280 MB en el NitroSense original de Windows con sus 3 servicios en segundo plano).</li>
+    <li><strong>Latencia en arranque:</strong> El intérprete de Python requería ~180 ms para inicializarse al consultar telemetría por CLI.</li>
+</ul>
+
+<p>La versión <strong>2.0 en Rust puro</strong> cambió las reglas del juego:</p>
+
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em;">
+    <thead>
+        <tr style="border-bottom: 2px solid var(--accent-color); text-align: left;">
+            <th style="padding: 10px;">Métrica</th>
+            <th style="padding: 10px;">NitroSense (Windows)</th>
+            <th style="padding: 10px;">AcerSense Pro v2.0 (Rust)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <td style="padding: 10px;"><strong>Uso de RAM</strong></td>
+            <td style="padding: 10px; color: #ef4444;">~280 MB</td>
+            <td style="padding: 10px; color: #10b981; font-weight: bold;">~16 MB (GUI) / ~3 MB (CLI)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <td style="padding: 10px;"><strong>Tiempo de Ejecución CLI</strong></td>
+            <td style="padding: 10px;">N/A</td>
+            <td style="padding: 10px; color: #10b981; font-weight: bold;">&lt; 2 ms (Binario Nativo ELF)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <td style="padding: 10px;"><strong>Latencia I/O ACPI</strong></td>
+            <td style="padding: 10px;">45–120 ms (WMI COM)</td>
+            <td style="padding: 10px; color: #10b981; font-weight: bold;">&lt; 150 µs (/proc/acpi/call directo)</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>Tasa de Refresco GUI</strong></td>
+            <td style="padding: 10px;">30 FPS</td>
+            <td style="padding: 10px; color: #10b981; font-weight: bold;">60+ FPS (OpenGL / Hardware-Accelerated)</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">4. Características Implementadas</h3>
+<ul>
+    <li><strong>Sincronización Dual de Ventiladores (5,400 / 6,122 RPM):</strong> Calibración de modulación de ancho de pulsos PWM a 8 bits (0–255).</li>
+    <li><strong>Protección de Batería al 80% (Battery Health Care):</strong> Límite químico directo en el microcontrolador para evitar la degradación de celdas de litio al estar conectado a CA.</li>
+    <li><strong>Control de Iluminación RGB 4 Zonas:</strong> Presets como <em>cyberpunk</em>, <em>toxic</em>, <em>ice</em> y selección hexadecimal por zona.</li>
+    <li><strong>Mapeo de la Tecla Física [N]:</strong> Detección del scancode <code>0xf5</code> mediante reglas UDEV/HWDB y mapeo a <code>XF86Launch1</code> para lanzar la GUI con una sola pulsación.</li>
+    <li><strong>Módulos Nativos para Polybar y JSON:</strong> Conmutación rápida en barras de estado mediante <code>acersense --polybar</code>.</li>
+</ul>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">5. Instalación y Uso</h3>
+<p>Puedes compilar directamente desde el código fuente o instalar el paquete Debian precompilado:</p>
+
+<pre><code># Clonar repositorio
+git clone https://github.com/rodrigo47363/acersense-linux.git
+cd acersense-linux
+
+# Instalador automatizado
+sudo ./install.sh
+
+# O compilar con Cargo
+cargo build --release</code></pre>
+
+<p>Comandos tácticos desde la terminal:</p>
+<pre><code># Ver telemetría completa de sensores
+acersense status
+
+# Forzar ventiladores al 100% para sesiones de cracking de contraseñas (Hashcat)
+acersense fan --mode max
+
+# Activar límite de carga de batería al 80%
+acersense battery --limit-80 on
+
+# Lanzar interfaz gráfica interactiva
+acersense-gui</code></pre>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">Conclusión</h3>
+<p>Con <strong>AcerSense Pro</strong> demostramos que la ingeniería inversa de bajo nivel combinada con el poder y seguridad de memoria de <strong>Rust</strong> permite crear utilidades de hardware que superan con creces en rendimiento, consumo y estética a las herramientas privativas de los fabricantes en Windows.</p>
+
+<p>El código es 100% de código abierto bajo licencia GPL-3.0 y está disponible en GitHub: <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" style="color: var(--accent-color); font-weight: bold;">github.com/rodrigo47363/acersense-linux</a>.</p>
+        </div>
+        
+        <!-- Navegación Siguiente/Anterior -->
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+            <div>
+                <a href="../posts/limpiar-cache-rofi.html" class="nav-btn">← Anterior</a>
+            </div>
+            <div style="text-align: right;">
+                
+            </div>
+        </div>
+
+        <!-- Giscus Comments -->
+        <div class="comments-section" style="margin-top: 50px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Comentarios</h3>
+            <div class="giscus"></div>
+            <!--
+            INSTRUCCIONES PARA ACTIVAR GISCUS:
+            1. Asegúrate de que el repositorio en GitHub sea público y tenga "Discussions" activado.
+            2. Ve a https://giscus.app/es y configura tu repo.
+            3. Copia el script `<script src="https://giscus.app/client.js"...` que te da y reemplázalo aquí.
+            -->
+            <script src="https://giscus.app/client.js"
+                data-repo="rodrigo47363/rodrigo47363.github.io"
+                data-repo-id="R_kgDOLOZ-VQ"
+                data-category="General"
+                data-category-id="DIC_kwDOLOZ-Vc4CgqIX"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="dark"
+                data-lang="es"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+        
+        <!-- Artículos Relacionados -->
+        <div class="related-posts" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-bottom: 30px;">
+            <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                
+        <a href="../posts/terminal-setup.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Linux • ⏱️ 2 min</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Cómo configurar tu terminal para que luzca increíble</h4>
+            </div>
+        </a>
+        
+        <a href="../posts/bash-scripts.html" style="text-decoration: none; color: inherit; display: block;">
+            <div class="glass" style="padding: 20px; border-radius: 12px; transition: transform 0.3s; height: 100%;">
+                <span style="font-size: 0.8em; opacity: 0.7;">Bash • ⏱️ 1 min</span>
+                <h4 style="margin: 10px 0; font-size: 1.1em; color: var(--accent-color);">Automatizando tareas con scripts de Bash</h4>
+            </div>
+        </a>
+        
+            </div>
+        </div>
+        
+        <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
+    </article>
+</main>
+
+
+    <footer class="footer">
+        <p>&copy; 2026 Rodrigo47363. Construido con pasión y código.</p>
+        <p style="font-size: 0.85em; opacity: 0.6; margin-top: 5px;">
+            <a href="../rss.xml" style="color: inherit; text-decoration: none;">RSS Feed 📡</a>
+        </p>
+    </footer>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Reading Progress Script
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            var bar = document.getElementById("myBar");
+            if (bar) { bar.style.width = scrolled + "%"; }
+        }
+    </script>
+
+    <!-- Modal de Búsqueda Global (Ctrl+K) -->
+    <div class="global-search-modal" id="globalSearchModal">
+        <div class="global-search-content glass">
+            <div class="global-search-header">
+                <input type="text" id="globalSearchInput" placeholder="Buscar páginas, artículos, proyectos... (ESC para cerrar)" autocomplete="off">
+                <button class="global-search-close" id="globalSearchClose">&times;</button>
+            </div>
+            <ul class="global-search-results" id="globalSearchResults">
+                <!-- Inyectado por JS -->
+            </ul>
+            <div class="global-search-footer">
+                <span>Usa <strong>↑</strong> <strong>↓</strong> para navegar y <strong>Enter</strong> para seleccionar</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

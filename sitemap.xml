@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/index.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/404.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/pages/acerca-de.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/pages/contacto.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/pages/repositorios.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/pages/blog.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -87,6 +87,12 @@
     <url>
         <loc>https://rodrigo47363.github.io/portfolio/posts/limpiar-cache-rofi.html</loc>
         <lastmod>2026-07-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://rodrigo47363.github.io/portfolio/posts/acersense-linux-rust.html</loc>
+        <lastmod>2026-09-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
