@@ -152,54 +152,74 @@ def build_site():
             
         hero_class = ' hero' if post.get('tags') and 'osint' in post.get('tags') else ''
         
+        tags_lower = [t.lower() for t in post.get('tags', [])]
+        
         # Determinar icono y gradiente dinámicamente usando hash del título para variedad determinista
         def get_variation(options, seed_text):
             idx = int(hashlib.md5(seed_text.encode('utf-8')).hexdigest(), 16) % len(options)
             return options[idx]
 
-        tags_lower = [t.lower() for t in post.get('tags', [])]
-        
-        if "linux" in tags_lower:
-            icon = get_variation(["🐧", "💻", "⚙️", "🚀", "🛡️"], post['title'])
-            gradient = get_variation([
-                "linear-gradient(135deg, #000000, #434343)",
-                "linear-gradient(135deg, #141e30, #243b55)",
-                "linear-gradient(135deg, #232526, #414345)"
-            ], post['title'])
-        elif "htb" in tags_lower:
-            icon = get_variation(["🟩", "🏴‍☠️", "🎯", "👾", "🔓"], post['title'])
-            gradient = get_variation([
-                "linear-gradient(135deg, #111827, #10b981)",
-                "linear-gradient(135deg, #0f2027, #2c5364)",
-                "linear-gradient(135deg, #000000, #0f9b0f)"
-            ], post['title'])
-        elif "python" in tags_lower:
-            icon = get_variation(["🐍", "⌨️", "📊", "🤖", "🧠"], post['title'])
-            gradient = get_variation([
-                "linear-gradient(135deg, #f59e0b, #3b82f6)",
-                "linear-gradient(135deg, #1e3c72, #2a5298)",
-                "linear-gradient(135deg, #2c3e50, #fd746c)"
-            ], post['title'])
-        elif "osint" in tags_lower:
-            icon = get_variation(["🔍", "👁️", "🕵️", "🌐", "📡"], post['title'])
-            gradient = get_variation([
-                "linear-gradient(135deg, #ef4444, #b91c1c)",
-                "linear-gradient(135deg, #870000, #190a05)",
-                "linear-gradient(135deg, #cb2d3e, #ef473a)"
-            ], post['title'])
+        if post.get('card_image'):
+            icon = post.get('icon', '⚡')
+            visual_html = f'''
+            <div class="card-visual" style="background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.65)), url('{post['card_image']}') center/cover no-repeat;">
+                <span class="card-icon">{icon}</span>
+            </div>'''
         else:
-            icon = get_variation(["📄", "💡", "📝", "✨", "📌"], post['title'])
-            gradient = get_variation([
-                "linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))",
-                "linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2))",
-                "linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(239, 68, 68, 0.2))"
-            ], post['title'])
+            if post.get('icon'):
+                icon = post['icon']
+                gradient = "linear-gradient(135deg, #141e30, #243b55)"
+            elif "rust" in tags_lower or "hardware" in tags_lower:
+                icon = get_variation(["⚡", "🦀", "💻", "🔬", "🛡️"], post['title'])
+                gradient = get_variation([
+                    "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+                    "linear-gradient(135deg, #141e30, #243b55)",
+                    "linear-gradient(135deg, #1f1c2c, #928dab)"
+                ], post['title'])
+            elif "linux" in tags_lower:
+                icon = get_variation(["🐧", "💻", "⚙️", "🚀", "🛡️"], post['title'])
+                gradient = get_variation([
+                    "linear-gradient(135deg, #000000, #434343)",
+                    "linear-gradient(135deg, #141e30, #243b55)",
+                    "linear-gradient(135deg, #232526, #414345)"
+                ], post['title'])
+            elif "htb" in tags_lower:
+                icon = get_variation(["🟩", "🏴‍☠️", "🎯", "👾", "🔓"], post['title'])
+                gradient = get_variation([
+                    "linear-gradient(135deg, #111827, #10b981)",
+                    "linear-gradient(135deg, #0f2027, #2c5364)",
+                    "linear-gradient(135deg, #000000, #0f9b0f)"
+                ], post['title'])
+            elif "python" in tags_lower:
+                icon = get_variation(["🐍", "⌨️", "📊", "🤖", "🧠"], post['title'])
+                gradient = get_variation([
+                    "linear-gradient(135deg, #f59e0b, #3b82f6)",
+                    "linear-gradient(135deg, #1e3c72, #2a5298)",
+                    "linear-gradient(135deg, #2c3e50, #fd746c)"
+                ], post['title'])
+            elif "osint" in tags_lower:
+                icon = get_variation(["🔍", "👁️", "🕵️", "🌐", "📡"], post['title'])
+                gradient = get_variation([
+                    "linear-gradient(135deg, #ef4444, #b91c1c)",
+                    "linear-gradient(135deg, #870000, #190a05)",
+                    "linear-gradient(135deg, #cb2d3e, #ef473a)"
+                ], post['title'])
+            else:
+                icon = get_variation(["📄", "💡", "📝", "✨", "📌"], post['title'])
+                gradient = get_variation([
+                    "linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))",
+                    "linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2))",
+                    "linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(239, 68, 68, 0.2))"
+                ], post['title'])
+                
+            visual_html = f'''
+            <div class="card-visual" style="background: {gradient};">
+                <span class="card-icon">{icon}</span>
+            </div>'''
             
         cards_html += f'''
         <article class="blog-card glass{hero_class}" data-title="{post['title']}" data-tags="{','.join(post['tags'])}">
-            <div class="card-visual" style="background: {gradient};">
-                <span class="card-icon">{icon}</span>
-            </div>
+            {visual_html}
             <div class="card-content">
                 <div class="blog-meta" style="display: flex; gap: 8px; align-items: center; font-size: 0.85em; opacity: 0.8; margin-bottom: 6px;">
                     <span class="blog-date">{post['date']}</span>
