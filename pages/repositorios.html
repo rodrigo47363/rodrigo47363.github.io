@@ -25,15 +25,17 @@
         }
 
         .repos-header h2 {
-            font-size: 2.5em;
+            font-size: clamp(1.8em, 5vw, 2.5em);
             color: var(--accent-color);
             margin-bottom: 10px;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .repos-list {
             list-style-type: none;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
             gap: 20px;
         }
 
@@ -160,6 +162,29 @@
 # [+] Host: 192.168.1.45 | TTL: 128 | OS Inferido: Windows</span>
             </div>
             <a href="https://github.com/rodrigo47363/OSIdentifier" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-top: 20px;">Ver en GitHub →</a>
+        </div>
+
+        <div class="hero-project" data-aos="fade-up" data-aos-delay="200">
+            <h3>⚡ AcerSense Pro — InsydeH2O BIOS Reversing & Linux Suite</h3>
+            <p>Suite nativa en Rust con interfaz acelerada por GPU para control térmico a 6,122 RPM y gestión de hardware en Linux, desarrollada tras realizar ingeniería inversa de firmware UEFI InsydeH2O.</p>
+            <ul>
+                <li><strong>Objetivo:</strong> Superar el bucle de anulación en Ring -2 (SMM) y otorgar control directo del Embedded Controller (EC) en Ring-0.</li>
+                <li><strong>Stack:</strong> Rust + <code>egui/eframe</code> + ingeniería inversa ACPI/WMI con Ghidra e <code>iasl</code>.</li>
+            </ul>
+            <div class="bash-snippet">
+<span class="comment"># Compilación e inicio de la suite nativa</span><br>
+<span class="cmd">git clone</span> https://github.com/rodrigo47363/acersense-linux.git && <span class="cmd">cd</span> acersense-linux<br>
+<span class="cmd">cargo</span> build --release<br>
+<span class="cmd">sudo</span> ./target/release/acersense-gui<br>
+<br>
+<span class="comment"># Telemetría en tiempo real:<br>
+# [*] Embedded Controller EC Compal inicializado (0x62 / 0x66)<br>
+# [+] CPU Fan: 5,660 RPM | GPU Fan: 6,122 RPM [Max Cool Mode: ACTIVE]</span>
+            </div>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub →</a>
+                <a href="../posts/acersense-linux-rust.html" class="project-link" style="color: var(--text-color); opacity: 0.85;">Leer Writeup Técnico →</a>
+            </div>
         </div>
         
         <h3 style="margin-top: 60px; margin-bottom: 20px; color: var(--accent-color);">📦 Otros Repositorios</h3>

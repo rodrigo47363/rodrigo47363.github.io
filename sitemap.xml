@@ -1,97 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/index.html</loc>
-        <lastmod>2026-09-03</lastmod>
+        <loc>https://rodrigo47363.github.io/index.html</loc>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/404.html</loc>
-        <lastmod>2026-09-03</lastmod>
+        <loc>https://rodrigo47363.github.io/pages/acerca-de.html</loc>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/pages/acerca-de.html</loc>
-        <lastmod>2026-09-03</lastmod>
+        <loc>https://rodrigo47363.github.io/pages/contacto.html</loc>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/pages/contacto.html</loc>
-        <lastmod>2026-09-03</lastmod>
+        <loc>https://rodrigo47363.github.io/pages/repositorios.html</loc>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/pages/repositorios.html</loc>
-        <lastmod>2026-09-03</lastmod>
+        <loc>https://rodrigo47363.github.io/pages/blog.html</loc>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/pages/blog.html</loc>
-        <lastmod>2026-09-03</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/terminal-setup.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/terminal-setup.html</loc>
         <lastmod>2026-03-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/python-libs.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/python-libs.html</loc>
         <lastmod>2026-04-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/bash-scripts.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/bash-scripts.html</loc>
         <lastmod>2026-05-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/linux-dev.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/linux-dev.html</loc>
         <lastmod>2026-06-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/osint-guide.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/osint-guide.html</loc>
         <lastmod>2026-07-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/htb.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/htb.html</loc>
         <lastmod>2026-07-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/htb-paths.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/htb-paths.html</loc>
         <lastmod>2026-07-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/errores-zsh.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/errores-zsh.html</loc>
         <lastmod>2026-07-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/limpiar-cache-rofi.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/limpiar-cache-rofi.html</loc>
         <lastmod>2026-07-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rodrigo47363.github.io/portfolio/posts/acersense-linux-rust.html</loc>
+        <loc>https://rodrigo47363.github.io/posts/acersense-linux-rust.html</loc>
         <lastmod>2026-09-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

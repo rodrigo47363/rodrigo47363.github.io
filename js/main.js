@@ -1,14 +1,28 @@
 'use strict';
 
 // --- 1. Gestión del Tema ---
+function updateGiscusTheme(theme) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage({
+        giscus: {
+            setConfig: {
+                theme: theme === 'light' ? 'light' : 'dark'
+            }
+        }
+    }, 'https://giscus.app');
+}
+
 function toggleDarkMode(e) {
-    if (e.target.checked) {
+    const isLight = e.target.checked;
+    if (isLight) {
         document.body.classList.add('light-mode');
         localStorage.setItem('theme', 'light');
     } else {
         document.body.classList.remove('light-mode');
         localStorage.setItem('theme', 'dark');
     }
+    updateGiscusTheme(isLight ? 'light' : 'dark');
 }
 
 function initTheme() {
@@ -17,9 +31,12 @@ function initTheme() {
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         if (checkbox) checkbox.checked = true;
+        // Si giscus ya está cargado o carga después
+        setTimeout(() => updateGiscusTheme('light'), 800);
     } else {
         document.body.classList.remove('light-mode');
         if (checkbox) checkbox.checked = false;
+        setTimeout(() => updateGiscusTheme('dark'), 800);
     }
 }
 
@@ -99,65 +116,240 @@ async function fetchRepos(targetId, maxRepos, showStats = false) {
     }
 }
 
-// --- 3. Sistema de Filtros del Blog ---
+// --- Función Utilitaria: Normalización de cadenas (insensible a acentos y diacríticos) ---
+function normalizeStr(str) {
+    return (str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+}
+
+// --- 3. Sistema Táctico de Filtros y Búsqueda del Blog ---
 function initBlogFeatures() {
     const searchInput = document.getElementById('blogSearch');
+    const searchClearBtn = document.getElementById('blogSearchClear');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const blogCards = document.querySelectorAll('.blog-card');
+    const activeTagBadge = document.getElementById('activeTagBadge');
+    const resultsCountEl = document.getElementById('blogResultsCount');
+    const emptyState = document.getElementById('blogEmptyState');
+    const resetFiltersBtn = document.getElementById('resetBlogFilters');
 
-    if (!searchInput && filterBtns.length === 0) return;
+    if (!searchInput && filterBtns.length === 0 && blogCards.length === 0) return;
 
-    // Leer parámetro URL para etiquetas
+    // Estado reactivo del blog
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // 1. Leer parámetros de la URL (?tag=... & ?search=...)
     const urlParams = new URLSearchParams(window.location.search);
-    const tagParam = urlParams.get('tag');
+    const rawTagParam = urlParams.get('tag');
+    const rawSearchParam = urlParams.get('search');
 
-    if (tagParam) {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        const targetBtn = Array.from(filterBtns).find(b => b.getAttribute('data-filter') === tagParam.toLowerCase());
-        if (targetBtn) targetBtn.classList.add('active');
+    if (rawTagParam) {
+        try {
+            currentFilter = decodeURIComponent(rawTagParam).trim().toLowerCase();
+        } catch (e) {
+            currentFilter = rawTagParam.trim().toLowerCase();
+        }
+    }
+    if (rawSearchParam && searchInput) {
+        try {
+            currentSearch = decodeURIComponent(rawSearchParam).trim();
+        } catch (e) {
+            currentSearch = rawSearchParam.trim();
+        }
+        searchInput.value = currentSearch;
+        if (searchClearBtn) searchClearBtn.style.display = 'block';
     }
 
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            filterCards(searchTerm, getActiveFilter());
-        });
-    }
-
+    // 2. Controladores para botones de filtro de categoría
     filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            
-            const filterValue = e.target.getAttribute('data-filter');
-            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-            filterCards(searchTerm, filterValue);
+        btn.addEventListener('click', () => {
+            const filterValue = btn.getAttribute('data-filter') || 'all';
+            setFilter(filterValue);
         });
     });
 
-    function getActiveFilter() {
-        const activeBtn = document.querySelector('.filter-btn.active');
-        return activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+    // 3. Controlador de búsqueda reactiva con debouncing ligero
+    if (searchInput) {
+        let searchTimeout;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                currentSearch = e.target.value.trim();
+                if (searchClearBtn) {
+                    searchClearBtn.style.display = currentSearch.length > 0 ? 'block' : 'none';
+                }
+                updateUrlParams();
+                filterCards();
+            }, 50);
+        });
+
+        // Limpiar búsqueda al presionar Escape en el campo
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchInput.value !== '') {
+                e.preventDefault();
+                clearSearch();
+            }
+        });
     }
 
-    // Gatillar filtro inicial (por si viene de URL param)
-    const initialFilter = getActiveFilter();
-    const initialSearch = searchInput ? searchInput.value.toLowerCase() : '';
-    filterCards(initialSearch, initialFilter);
+    // 4. Botón limpiar búsqueda (✕)
+    if (searchClearBtn) {
+        searchClearBtn.addEventListener('click', () => {
+            clearSearch();
+            searchInput.focus();
+        });
+    }
 
-    function filterCards(searchTerm, filterValue) {
+    // 5. Botón restablecer todo en empty state
+    if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', () => {
+            resetAllFilters();
+        });
+    }
+
+    // Atajo de teclado global: presionar "/" enfoca el buscador de artículos
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+            if (searchInput && document.querySelector('.blog-grid')) {
+                e.preventDefault();
+                searchInput.focus();
+                searchInput.select();
+            }
+        }
+    });
+
+    if (searchInput) {
+        searchInput.addEventListener('focus', () => {
+            const kbd = document.querySelector('.search-kbd-wrapper');
+            if (kbd) kbd.style.opacity = '0';
+        });
+        searchInput.addEventListener('blur', () => {
+            const kbd = document.querySelector('.search-kbd-wrapper');
+            if (kbd && searchInput.value === '') kbd.style.opacity = '1';
+        });
+    }
+
+    // 6. Interceptar clics en tags de tarjetas en la misma página para fluidez SPA
+    document.addEventListener('click', (e) => {
+        const tagLink = e.target.closest('.blog-tag');
+        if (tagLink && document.querySelector('.blog-grid')) {
+            const href = tagLink.getAttribute('href');
+            if (href && href.includes('blog.html?tag=')) {
+                e.preventDefault();
+                const urlObj = new URL(tagLink.href, window.location.origin);
+                const rawTag = urlObj.searchParams.get('tag');
+                if (rawTag) {
+                    const requestedTag = decodeURIComponent(rawTag);
+                    setFilter(requestedTag.toLowerCase());
+                    const controlsEl = document.querySelector('.blog-controls');
+                    if (controlsEl) {
+                        controlsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }
+        }
+    });
+
+    function setFilter(filterValue) {
+        currentFilter = filterValue.trim().toLowerCase();
+        updateFilterUI();
+        updateUrlParams();
+        filterCards();
+    }
+
+    function clearSearch() {
+        if (searchInput) {
+            searchInput.value = '';
+            currentSearch = '';
+        }
+        if (searchClearBtn) searchClearBtn.style.display = 'none';
+        updateUrlParams();
+        filterCards();
+    }
+
+    function resetAllFilters() {
+        clearSearch();
+        setFilter('all');
+    }
+
+    function updateFilterUI() {
+        let matchingButtonFound = false;
+        const normFilter = normalizeStr(currentFilter);
+
+        filterBtns.forEach(b => {
+            const btnNorm = normalizeStr(b.getAttribute('data-filter') || '');
+            const isMatch = btnNorm === normFilter;
+            b.classList.toggle('active', isMatch);
+            b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+            if (isMatch) matchingButtonFound = true;
+        });
+
+        // Si el filtro es un tag específico sin botón predefinido, mostrar badge interactivo
+        if (activeTagBadge) {
+            if (normFilter !== 'all' && !matchingButtonFound) {
+                activeTagBadge.style.display = 'inline-flex';
+                activeTagBadge.innerHTML = `
+                    <span>🏷️ Tag activo: <strong>${escapeHTML(currentFilter)}</strong></span>
+                    <button type="button" id="clearTagFilter" aria-label="Quitar filtro de etiqueta">✕</button>
+                `;
+                const clearTagBtn = document.getElementById('clearTagFilter');
+                if (clearTagBtn) {
+                    clearTagBtn.addEventListener('click', () => setFilter('all'));
+                }
+            } else {
+                activeTagBadge.style.display = 'none';
+                activeTagBadge.innerHTML = '';
+            }
+        }
+    }
+
+    function updateUrlParams() {
+        const url = new URL(window.location.href);
+        if (currentFilter && currentFilter !== 'all') {
+            url.searchParams.set('tag', currentFilter);
+        } else {
+            url.searchParams.delete('tag');
+        }
+
+        if (currentSearch && currentSearch.length > 0) {
+            url.searchParams.set('search', currentSearch);
+        } else {
+            url.searchParams.delete('search');
+        }
+
+        window.history.replaceState(null, '', url.pathname + (url.search ? url.search : ''));
+    }
+
+    function filterCards() {
         let visibleCount = 0;
-        
+        const normSearch = normalizeStr(currentSearch);
+        const normFilter = normalizeStr(currentFilter);
+
         blogCards.forEach(card => {
-            const title = card.getAttribute('data-title').toLowerCase();
-            const tags = card.getAttribute('data-tags').toLowerCase();
+            const title = card.getAttribute('data-title') || '';
+            const excerpt = card.getAttribute('data-excerpt') || card.querySelector('.blog-excerpt')?.textContent || '';
+            const tagsAttr = card.getAttribute('data-tags') || '';
             
-            const matchesSearch = title.includes(searchTerm);
-            const matchesFilter = filterValue === 'all' || tags.includes(filterValue.toLowerCase());
-            
+            const titleNorm = normalizeStr(title);
+            const excerptNorm = normalizeStr(excerpt);
+            const tagsListNorm = tagsAttr.split(',').map(t => normalizeStr(t)).filter(Boolean);
+
+            // Coincidencia de búsqueda insensible a mayúsculas y acentos
+            const matchesSearch = normSearch === '' || 
+                titleNorm.includes(normSearch) || 
+                excerptNorm.includes(normSearch) || 
+                tagsListNorm.some(t => t.includes(normSearch));
+
+            // Coincidencia exacta de categoría o etiqueta normalizada
+            const matchesFilter = normFilter === 'all' || tagsListNorm.includes(normFilter);
+
             if (matchesSearch && matchesFilter) {
                 card.style.display = 'flex';
-                if (visibleCount === 0 && searchTerm === '' && filterValue === 'all') {
+                if (visibleCount === 0 && normSearch === '' && normFilter === 'all') {
                     card.classList.add('hero');
                 } else {
                     card.classList.remove('hero');
@@ -168,7 +360,38 @@ function initBlogFeatures() {
                 card.classList.remove('hero');
             }
         });
+
+        // Actualizar contador y estado vacío
+        if (emptyState) {
+            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+            const emptyQueryVal = document.getElementById('emptyQueryVal');
+            if (emptyQueryVal) {
+                const terms = [];
+                if (currentSearch) terms.push(escapeHTML(currentSearch));
+                if (currentFilter !== 'all') terms.push(`tag:${escapeHTML(currentFilter)}`);
+                emptyQueryVal.textContent = terms.join(' ') || 'query';
+            }
+        }
+
+        if (resultsCountEl) {
+            if (visibleCount === 0) {
+                resultsCountEl.textContent = '0 artículos encontrados';
+            } else if (visibleCount === blogCards.length) {
+                resultsCountEl.textContent = `Mostrando todos los artículos (${visibleCount})`;
+            } else {
+                resultsCountEl.textContent = `Mostrando ${visibleCount} de ${blogCards.length} artículos`;
+            }
+        }
+
+        // Refrescar AOS para recalcular posiciones y evitar elementos ocultos
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
     }
+
+    // Inicializar estado de UI y filtrado inicial
+    updateFilterUI();
+    filterCards();
 }
 
 // --- 4. Inicializador Principal (Único punto de entrada) ---
@@ -205,6 +428,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Inicializar Terminal e Interactive Search
     initInteractiveTerminal();
     initGlobalSearch();
+
+    // 7. Inicializar Barra de Progreso de Lectura
+    initReadingProgress();
 });
 
 // --- 5. Funcionalidad de Copiar Código ---
@@ -267,10 +493,11 @@ function initInteractiveTerminal() {
     if (!termInput || !termBody) return;
 
     const commands = {
-        help: 'Comandos disponibles:\n  whoami     - Información sobre Rodrigo47363\n  skills     - Habilidades técnicas y stack\n  projects   - Proyectos destacados\n  contact    - Redes y métodos de contacto\n  cv         - Descargar curriculum vitae\n  date       - Mostrar fecha del sistema\n  clear      - Limpiar consola\n  matrix     - Efecto hacker táctico\n  sudo       - Ejecutar como administrador',
-        whoami: 'Rodrigo47363\nEsp. en Ciberseguridad Ofensiva | Pentesting | Red Team | Scripting Python & Bash.',
-        skills: '🛡️ Seguridad: Ethical Hacking, WiFi Audit (Aircrack-ng, Hashcat), Metasploit, Nmap, Burp Suite.\n💻 Desarrollo: Python, Bash, HTML5, CSS3 Glassmorphism, JavaScript ES6+.\n🐧 OS: Parrot OS, Kali Linux, Arch Linux, Debian.',
-        projects: '🚀 NekoFI (Auditoría Wi-Fi)\n📘 Portafolio Web Glassmorphism con SSG\n🛠️ Rofi Cache Cleaner & Automation Tools',
+        help: 'Comandos disponibles:\n  whoami     - Información sobre Rodrigo47363\n  skills     - Habilidades técnicas y stack\n  projects   - Proyectos destacados\n  acersense  - Suite nativa de hardware en Rust\n  contact    - Redes y métodos de contacto\n  cv         - Descargar curriculum vitae\n  date       - Mostrar fecha del sistema\n  clear      - Limpiar consola\n  matrix     - Efecto hacker táctico\n  sudo       - Ejecutar como administrador',
+        whoami: 'Rodrigo47363\nPentester Senior & Software Architect | Red Team | Reversing | Rust, Python & Bash.',
+        skills: '🛡️ Seguridad: Ethical Hacking, Active Directory (Impacket, NetExec), Web (Burp, FFUF), Reversing (Ghidra, SMM).\n💻 Desarrollo: Rust, Python 3, Bash, Linux Ring-0/Ring -2 internals.\n🐧 OS: Parrot OS, Kali Linux, Debian, BSPWM.',
+        projects: '⚡ AcerSense Pro (Rust Hardware Suite a 6,122 RPM)\n🚀 NekoFI (Auditoría Wi-Fi)\n🔍 OSIdentifier (Passive TTL Recon)\n📘 Portafolio Web Glassmorphism con SSG',
+        acersense: '⚡ AcerSense Pro Linux v2.0\nSuite nativa en Rust para control de hardware y firmware InsydeH2O a 6,122 RPM.\nWriteup: posts/acersense-linux-rust.html\nRepo: https://github.com/rodrigo47363/acersense-linux',
         contact: '📧 Contacto Directo: Formulario en pages/contacto.html\n🐙 GitHub: https://github.com/rodrigo47363',
         cv: 'Iniciando descarga de cv.pdf...',
         date: new Date().toLocaleString(),
@@ -364,11 +591,33 @@ function initGlobalSearch() {
         { title: '📦 Repositorios GitHub', url: prefix + 'pages/repositorios.html' },
         { title: '📬 Contacto', url: prefix + 'pages/contacto.html' },
         { title: '📄 Descargar CV', url: prefix + 'cv.pdf' },
-        { title: '📜 Guía Completa de OSINT', url: prefix + 'posts/osint-guide.html' },
-        { title: '🎯 Resolviendo Máquinas HackTheBox', url: prefix + 'posts/htb.html' },
-        { title: '🐧 Limpiar Caché Rofi en Linux', url: prefix + 'posts/limpiar-cache-rofi.html' },
-        { title: '🤖 Módulos Python en Archivos Separados', url: prefix + 'posts/modules.html' }
+        { title: 'AcerSense Pro: Reversing de BIOS InsydeH2O (Rust)', url: prefix + 'posts/acersense-linux-rust.html' },
+        { title: '🎯 Resolviendo Máquinas HackTheBox: Basic Toolset', url: prefix + 'posts/htb.html' },
+        { title: '🗺️ Guía de Paths de HackTheBox', url: prefix + 'posts/htb-paths.html' },
+        { title: '📜 Guía Completa de OSINT: Herramientas y Técnicas', url: prefix + 'posts/osint-guide.html' },
+        { title: '🐧 Limpiar Caché Rofi y XDG en Linux', url: prefix + 'posts/limpiar-cache-rofi.html' },
+        { title: '🐚 Automatizando tareas con scripts de Bash', url: prefix + 'posts/bash-scripts.html' },
+        { title: '🔧 Resolviendo los 3 errores más frustrantes de ZSH', url: prefix + 'posts/errores-zsh.html' },
+        { title: '🐍 Mis librerías favoritas de Python', url: prefix + 'posts/python-libs.html' },
+        { title: '💻 Por qué Linux es el mejor sistema para desarrolladores', url: prefix + 'posts/linux-dev.html' },
+        { title: '🖥️ Cómo configurar tu terminal para que luzca increíble', url: prefix + 'posts/terminal-setup.html' }
     ];
+
+    let activeItems = [...searchableItems];
+
+    // Cargar índice dinámico generado por build.py si está disponible
+    fetch((isSubdir ? '../' : './') + 'data/search_index.json')
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+            if (Array.isArray(data) && data.length > 0) {
+                activeItems = data.map(item => ({
+                    title: item.title,
+                    url: (isSubdir ? '../' : './') + item.url,
+                    tags: item.tags || []
+                }));
+            }
+        })
+        .catch(() => { /* Usa searchableItems por defecto */ });
 
     function openModal() {
         modal.classList.add('active');
@@ -383,8 +632,12 @@ function initGlobalSearch() {
 
     function renderResults(query) {
         searchResults.innerHTML = '';
-        const q = query.toLowerCase().trim();
-        const filtered = searchableItems.filter(item => item.title.toLowerCase().includes(q));
+        const qNorm = normalizeStr(query.trim());
+        const filtered = activeItems.filter(item => {
+            const titleNorm = normalizeStr(item.title);
+            const tagsNorm = (item.tags || []).map(t => normalizeStr(t));
+            return qNorm === '' || titleNorm.includes(qNorm) || tagsNorm.some(t => t.includes(qNorm));
+        });
 
         if (filtered.length === 0) {
             searchResults.innerHTML = '<li style="padding: 10px; opacity: 0.6; text-align: center;">No se encontraron resultados</li>';
@@ -394,7 +647,12 @@ function initGlobalSearch() {
         filtered.forEach((item, index) => {
             const li = document.createElement('li');
             if (index === 0) li.className = 'selected';
-            li.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+            li.innerHTML = `<a href="${item.url}">${escapeHTML(item.title)}</a>`;
+            li.addEventListener('mouseenter', () => {
+                const current = searchResults.querySelector('li.selected');
+                if (current) current.classList.remove('selected');
+                li.classList.add('selected');
+            });
             searchResults.appendChild(li);
         });
     }
@@ -407,15 +665,52 @@ function initGlobalSearch() {
     });
 
     document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
             if (modal.classList.contains('active')) {
                 closeModal();
             } else {
                 openModal();
             }
-        } else if (e.key === 'Escape' && modal.classList.contains('active')) {
+            return;
+        }
+
+        if (!modal.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
             closeModal();
+            return;
+        }
+
+        const items = searchResults.querySelectorAll('li');
+        if (items.length === 0) return;
+
+        let currentIndex = Array.from(items).findIndex(el => el.classList.contains('selected'));
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (currentIndex >= 0 && items[currentIndex]) {
+                items[currentIndex].classList.remove('selected');
+            }
+            currentIndex = (currentIndex + 1) % items.length;
+            items[currentIndex].classList.add('selected');
+            items[currentIndex].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (currentIndex >= 0 && items[currentIndex]) {
+                items[currentIndex].classList.remove('selected');
+            }
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            items[currentIndex].classList.add('selected');
+            items[currentIndex].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+            if (currentIndex >= 0 && items[currentIndex]) {
+                const link = items[currentIndex].querySelector('a');
+                if (link) {
+                    e.preventDefault();
+                    link.click();
+                }
+            }
         }
     });
 
@@ -423,3 +718,28 @@ function initGlobalSearch() {
         renderResults(e.target.value);
     });
 }
+
+// --- 9. Barra de Progreso de Lectura Optimizada ---
+function initReadingProgress() {
+    const bar = document.getElementById('myBar');
+    if (!bar) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                if (height > 0) {
+                    const scrolled = Math.min(100, Math.max(0, (winScroll / height) * 100));
+                    bar.style.width = scrolled + '%';
+                } else {
+                    bar.style.width = '0%';
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+}
+

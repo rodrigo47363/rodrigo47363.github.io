@@ -1,23 +1,82 @@
+<!-- ==========================================================================
+     PLANTILLA: blog_layout.html
+     Módulo de Presentación del Blog Técnico y Base de Conocimiento Ofensivo
+     ========================================================================== -->
+
 <div class="blog-header" data-aos="fade-down">
-    <h2>Mi Blog</h2>
-    <p>Artículos sobre tecnología, Linux, Bash, Python y desarrollo.</p>
+    <div class="blog-badge-wrapper">
+        <span class="blog-eyebrow"><span class="eyebrow-dot"></span> SECURITY RESEARCH &amp; LAB NOTES</span>
+    </div>
+    <h1 class="blog-main-heading">Bitácora &amp; Artículos Técnicos</h1>
+    <p class="blog-subtitle">Writeups de máquinas, ingeniería inversa de firmware, automatización en Linux y desarrollo de herramientas de seguridad ofensiva.</p>
+    <div class="blog-stats-bar">
+        <span class="blog-stat-item"><span class="stat-icon">📚</span> <strong>10</strong> Artículos</span>
+        <span class="blog-stat-divider">•</span>
+        <span class="blog-stat-item"><span class="stat-icon">🦀</span> <strong>Rust</strong> &amp; Reversing</span>
+        <span class="blog-stat-divider">•</span>
+        <span class="blog-stat-item"><span class="stat-icon">🎯</span> <strong>HTB</strong> &amp; Pentesting</span>
+        <span class="blog-stat-divider">•</span>
+        <span class="blog-stat-item"><span class="stat-icon">🐧</span> <strong>Linux</strong> Internals</span>
+    </div>
 </div>
 
 <div class="blog-controls" data-aos="fade-up" data-aos-delay="100">
-    <div class="blog-search-container">
-        <input type="text" id="blogSearch" class="blog-search-input" placeholder="🔍 Buscar artículos por título...">
+    <!-- Buscador Reactivo y Accesible con atajo / -->
+    <div class="blog-search-container" role="search">
+        <label for="blogSearch" class="sr-only">Buscar artículos en el blog</label>
+        <span class="blog-search-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </span>
+        <input type="search" id="blogSearch" class="blog-search-input" placeholder="Buscar por título, tecnologías, CVE o contenido..." autocomplete="off" aria-label="Buscar artículos en el blog">
+        <div class="search-kbd-wrapper" aria-hidden="true">
+            <kbd class="search-hint-kbd" title="Presiona / para enfocar el buscador">/</kbd>
+        </div>
+        <button type="button" id="blogSearchClear" class="blog-search-clear" aria-label="Limpiar campo de búsqueda" style="display: none;">&times;</button>
     </div>
-    <div class="blog-filters">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="htb">HTB</button>
-        <button class="filter-btn" data-filter="linux">Linux</button>
-        <button class="filter-btn" data-filter="desarrollo">Desarrollo</button>
-        <button class="filter-btn" data-filter="bash">Bash</button>
-        <button class="filter-btn" data-filter="python">Python</button>
-        <button class="filter-btn" data-filter="osint">OSINT</button>
+
+    <!-- Filtros de Categoría Temática con Iconos -->
+    <div class="blog-filters" role="toolbar" aria-label="Filtros temáticos de artículos">
+        <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true"><span class="filter-icon">⚡</span> Todos</button>
+        <button type="button" class="filter-btn" data-filter="pentesting" aria-pressed="false"><span class="filter-icon">🛡️</span> Pentesting</button>
+        <button type="button" class="filter-btn" data-filter="reversing" aria-pressed="false"><span class="filter-icon">🔬</span> Reversing</button>
+        <button type="button" class="filter-btn" data-filter="htb" aria-pressed="false"><span class="filter-icon">🟩</span> HTB</button>
+        <button type="button" class="filter-btn" data-filter="osint" aria-pressed="false"><span class="filter-icon">👁️</span> OSINT</button>
+        <button type="button" class="filter-btn" data-filter="linux" aria-pressed="false"><span class="filter-icon">🐧</span> Linux</button>
+        <button type="button" class="filter-btn" data-filter="bash" aria-pressed="false"><span class="filter-icon">🐚</span> Bash</button>
+        <button type="button" class="filter-btn" data-filter="python" aria-pressed="false"><span class="filter-icon">🐍</span> Python</button>
+        <button type="button" class="filter-btn" data-filter="rust" aria-pressed="false"><span class="filter-icon">🦀</span> Rust</button>
+        <button type="button" class="filter-btn" data-filter="hardware" aria-pressed="false"><span class="filter-icon">⚙️</span> Hardware</button>
     </div>
+
+    <!-- Chip / Badge dinámico para tags específicos que no son botones primarios -->
+    <div id="activeTagBadge" class="active-tag-badge" style="display: none;" role="status"></div>
+
+    <!-- Contador de resultados para retroalimentación visual y de lectores de pantalla -->
+    <div id="blogResultsCount" class="blog-results-counter" role="status" aria-live="polite"></div>
 </div>
 
-<div class="blog-grid" data-aos="fade-up" data-aos-delay="200">
+<!-- Rejilla Bento de Artículos -->
+<div class="blog-grid" data-aos="fade-up" data-aos-delay="200" id="blogGrid">
     {{blog_grid}}
+</div>
+
+<!-- Estado vacío estilizado como terminal interactiva -->
+<div id="blogEmptyState" class="empty-terminal-state glass" style="display: none;" role="status" aria-live="polite">
+    <div class="empty-terminal-header">
+        <span class="empty-dot red"></span>
+        <span class="empty-dot yellow"></span>
+        <span class="empty-dot green"></span>
+        <span class="empty-terminal-title">bash - blog_search</span>
+    </div>
+    <div class="empty-terminal-body">
+        <p class="empty-cmd"><span class="empty-prompt">rodrigo@parrot:~$</span> grep -ri "<span id="emptyQueryVal"></span>" ./posts/</p>
+        <p class="empty-err">grep: No matches found in index. (0 artículos)</p>
+        <p class="empty-hint">Sugerencia: Intenta buscar por tecnologías como <code>rust</code>, <code>htb</code>, <code>bash</code>, <code>linux</code> o <code>reversing</code>.</p>
+        <button type="button" id="resetBlogFilters" class="btn-terminal-reset">
+            <span class="reset-icon">↺</span> Restablecer filtros
+        </button>
+    </div>
 </div>

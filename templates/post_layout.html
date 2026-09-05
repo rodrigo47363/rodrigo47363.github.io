@@ -5,10 +5,14 @@
         padding: 40px;
         border-radius: 24px;
         margin-bottom: 40px;
+        min-width: 0;
+        box-sizing: border-box;
+        width: 100%;
     }
     .post-header {
         margin-bottom: 30px;
         text-align: center;
+        min-width: 0;
     }
     .post-date {
         font-size: 0.9em;
@@ -22,13 +26,23 @@
         color: var(--accent-color);
         margin: 10px 0;
         line-height: 1.2;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
     .post-content {
         font-size: 1.1em;
         line-height: 1.8;
         opacity: 0.9;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
     .post-content p { margin-bottom: 20px; }
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
     .post-content blockquote {
         border-left: 4px solid var(--accent-color);
         padding-left: 15px;
@@ -44,7 +58,10 @@
         padding: 15px;
         border-radius: 8px;
         overflow-x: auto;
+        max-width: 100%;
+        box-sizing: border-box;
         margin-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
     }
     .post-content code {
         font-family: monospace;
@@ -55,14 +72,18 @@
     .post-content pre code {
         background: transparent;
         padding: 0;
+        white-space: pre;
+        word-break: normal;
     }
     .post-content table {
         display: block;
         width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin: 25px 0;
         border-collapse: collapse;
+        box-sizing: border-box;
     }
     .post-content table th,
     .post-content table td {
@@ -92,13 +113,27 @@
         color: #fff;
     }
     @media (max-width: 768px) {
-        .post-container { padding: 20px 15px; border-radius: 16px; margin-top: 15px; }
+        .post-container { padding: 25px 16px; border-radius: 16px; margin-top: 15px; }
         .post-title { font-size: 1.7em; }
         .post-content { font-size: 1em; line-height: 1.7; }
     }
+    @media (max-width: 480px) {
+        .post-container { padding: 20px 12px; border-radius: 14px; }
+        .post-title { font-size: 1.4em; }
+    }
+    iframe,
+    .giscus,
+    .giscus-frame {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .giscus-frame {
+        width: 100%;
+        border: none;
+    }
 </style>
 
-<main>
+<main id="main-content">
     <article class="post-container glass" data-aos="fade-up">
         <div class="post-header">
             <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
@@ -153,7 +188,7 @@
         <!-- Artículos Relacionados -->
         <div class="related-posts" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); margin-bottom: 30px;">
             <h3 style="margin-bottom: 20px; font-size: 1.5em;">Sigue explorando</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 20px;">
                 {{related_posts}}
             </div>
         </div>

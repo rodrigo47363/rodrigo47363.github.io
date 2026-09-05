@@ -2,75 +2,75 @@
 <rss version="2.0">
 <channel>
     <title>Blog de Rodrigo47363</title>
-    <link>https://rodrigo47363.github.io/portfolio/</link>
+    <link>https://rodrigo47363.github.io/</link>
     <description>Tutoriales y recursos sobre ciberseguridad y desarrollo</description>
     
         <item>
             <title><![CDATA[AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/acersense-linux-rust.html</link>
+            <link>https://rodrigo47363.github.io/posts/acersense-linux-rust.html</link>
             <description><![CDATA[Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.]]></description>
             <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[¡Adiós a los accesos fantasmas! Cómo limpiar cachés rebeldes en Rofi y XDG]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/limpiar-cache-rofi.html</link>
+            <link>https://rodrigo47363.github.io/posts/limpiar-cache-rofi.html</link>
             <description><![CDATA[Aprende a borrar accesos directos duplicados y solucionar el error de iconos fantasmas de Telegram y Flatpak en Rofi (Linux).]]></description>
             <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Resolviendo los 3 errores más frustrantes de ZSH]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/errores-zsh.html</link>
+            <link>https://rodrigo47363.github.io/posts/errores-zsh.html</link>
             <description><![CDATA[command not found: compdef, corrupt history file y más. Aprende a arreglar los problemas más comunes de ZSH.]]></description>
             <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Guía de Paths de HackTheBox]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/htb-paths.html</link>
+            <link>https://rodrigo47363.github.io/posts/htb-paths.html</link>
             <description><![CDATA[Una recopilación completa de los 20 Job Role y Skill Paths de HackTheBox Academy para tu carrera en ciberseguridad.]]></description>
             <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[HackTheBox Path: Basic Toolset]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/htb.html</link>
+            <link>https://rodrigo47363.github.io/posts/htb.html</link>
             <description><![CDATA[Mi progreso en el path Basic Toolset de HackTheBox, cubriendo las herramientas fundamentales para penetration testing y aplicaciones web.]]></description>
             <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Introducción al OSINT: Herramientas y Técnicas]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/osint-guide.html</link>
+            <link>https://rodrigo47363.github.io/posts/osint-guide.html</link>
             <description><![CDATA[Guía básica de OSINT: Técnicas y herramientas para buscar información pública de manera efectiva y segura.]]></description>
             <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Por qué Linux es el mejor sistema para desarrolladores]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/linux-dev.html</link>
+            <link>https://rodrigo47363.github.io/posts/linux-dev.html</link>
             <description><![CDATA[Un recorrido por las ventajas de usar distribuciones de Linux para programar, desde la libertad de personalización hasta la gestión de paquetes...]]></description>
             <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Automatizando tareas con scripts de Bash]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/bash-scripts.html</link>
+            <link>https://rodrigo47363.github.io/posts/bash-scripts.html</link>
             <description><![CDATA[Aprende a crear tus propios scripts de Bash para dejar de repetir comandos interminables en la terminal y mejorar tu productividad.]]></description>
             <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Mis librerías favoritas de Python]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/python-libs.html</link>
+            <link>https://rodrigo47363.github.io/posts/python-libs.html</link>
             <description><![CDATA[Una lista de herramientas esenciales en Python que todo desarrollador debería conocer, desde requests hasta pandas y herramientas de CLI.]]></description>
             <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
         </item>
         
         <item>
             <title><![CDATA[Cómo configurar tu terminal para que luzca increíble]]></title>
-            <link>https://rodrigo47363.github.io/portfolio/posts/terminal-setup.html</link>
+            <link>https://rodrigo47363.github.io/posts/terminal-setup.html</link>
             <description><![CDATA[Guía paso a paso para instalar ZSH, Oh My Zsh y temas para que tu terminal no solo sea útil, sino también visualmente impresionante.]]></description>
             <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
         </item>

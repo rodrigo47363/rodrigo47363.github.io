@@ -1,0 +1,116 @@
+[
+  {
+    "title": "🏠 Inicio",
+    "url": "index.html"
+  },
+  {
+    "title": "📝 Blog y Artículos",
+    "url": "pages/blog.html"
+  },
+  {
+    "title": "👨‍💻 Acerca de Mí",
+    "url": "pages/acerca-de.html"
+  },
+  {
+    "title": "📦 Repositorios GitHub",
+    "url": "pages/repositorios.html"
+  },
+  {
+    "title": "📬 Contacto",
+    "url": "pages/contacto.html"
+  },
+  {
+    "title": "📄 Descargar CV",
+    "url": "cv.pdf"
+  },
+  {
+    "title": "📄 AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust",
+    "url": "posts/acersense-linux-rust.html",
+    "tags": [
+      "linux",
+      "hardware",
+      "rust",
+      "reversing"
+    ]
+  },
+  {
+    "title": "📄 ¡Adiós a los accesos fantasmas! Cómo limpiar cachés rebeldes en Rofi y XDG",
+    "url": "posts/limpiar-cache-rofi.html",
+    "tags": [
+      "linux",
+      "bash",
+      "telegram",
+      "flatpak"
+    ]
+  },
+  {
+    "title": "📄 Resolviendo los 3 errores más frustrantes de ZSH",
+    "url": "posts/errores-zsh.html",
+    "tags": [
+      "linux",
+      "bash"
+    ]
+  },
+  {
+    "title": "📄 Guía de Paths de HackTheBox",
+    "url": "posts/htb-paths.html",
+    "tags": [
+      "htb",
+      "ciberseguridad",
+      "pentesting"
+    ]
+  },
+  {
+    "title": "📄 HackTheBox Path: Basic Toolset",
+    "url": "posts/htb.html",
+    "tags": [
+      "htb",
+      "pentesting",
+      "ciberseguridad"
+    ]
+  },
+  {
+    "title": "📄 Introducción al OSINT: Herramientas y Técnicas",
+    "url": "posts/osint-guide.html",
+    "tags": [
+      "osint",
+      "ciberseguridad",
+      "pentesting"
+    ]
+  },
+  {
+    "title": "📄 Por qué Linux es el mejor sistema para desarrolladores",
+    "url": "posts/linux-dev.html",
+    "tags": [
+      "linux",
+      "desarrollo"
+    ]
+  },
+  {
+    "title": "📄 Automatizando tareas con scripts de Bash",
+    "url": "posts/bash-scripts.html",
+    "tags": [
+      "bash",
+      "automatización",
+      "desarrollo",
+      "linux"
+    ]
+  },
+  {
+    "title": "📄 Mis librerías favoritas de Python",
+    "url": "posts/python-libs.html",
+    "tags": [
+      "python",
+      "desarrollo"
+    ]
+  },
+  {
+    "title": "📄 Cómo configurar tu terminal para que luzca increíble",
+    "url": "posts/terminal-setup.html",
+    "tags": [
+      "linux",
+      "personalización",
+      "bash"
+    ]
+  }
+]
