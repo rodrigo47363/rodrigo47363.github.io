@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://rodrigo47363.github.io/index.html</loc>
-        <lastmod>2026-09-05</lastmod>
+        <lastmod>2026-09-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/pages/acerca-de.html</loc>
-        <lastmod>2026-09-05</lastmod>
+        <lastmod>2026-09-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/pages/contacto.html</loc>
-        <lastmod>2026-09-05</lastmod>
+        <lastmod>2026-09-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/pages/repositorios.html</loc>
-        <lastmod>2026-09-05</lastmod>
+        <lastmod>2026-09-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/pages/blog.html</loc>
-        <lastmod>2026-09-05</lastmod>
+        <lastmod>2026-09-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -86,7 +86,7 @@
     </url>
     <url>
         <loc>https://rodrigo47363.github.io/posts/acersense-linux-rust.html</loc>
-        <lastmod>2026-09-03</lastmod>
+        <lastmod>2026-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

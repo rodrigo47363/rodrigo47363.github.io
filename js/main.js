@@ -497,7 +497,7 @@ function initInteractiveTerminal() {
         whoami: 'Rodrigo47363\nPentester Senior & Software Architect | Red Team | Reversing | Rust, Python & Bash.',
         skills: '🛡️ Seguridad: Ethical Hacking, Active Directory (Impacket, NetExec), Web (Burp, FFUF), Reversing (Ghidra, SMM).\n💻 Desarrollo: Rust, Python 3, Bash, Linux Ring-0/Ring -2 internals.\n🐧 OS: Parrot OS, Kali Linux, Debian, BSPWM.',
         projects: '⚡ AcerSense Pro (Rust Hardware Suite a 6,122 RPM)\n🚀 NekoFI (Auditoría Wi-Fi)\n🔍 OSIdentifier (Passive TTL Recon)\n📘 Portafolio Web Glassmorphism con SSG',
-        acersense: '⚡ AcerSense Pro Linux v2.0\nSuite nativa en Rust para control de hardware y firmware InsydeH2O a 6,122 RPM.\nWriteup: posts/acersense-linux-rust.html\nRepo: https://github.com/rodrigo47363/acersense-linux',
+        acersense: '⚡ AcerSense Pro Linux v2.1.0 (Rust Edition)\nSuite nativa en Rust para control de hardware y firmware InsydeH2O a 6,122 RPM. 25 temas WCAG AAA y motor multilingüe (10 idiomas).\nWriteup: posts/acersense-linux-rust.html\nRepo: https://github.com/rodrigo47363/acersense-linux',
         contact: '📧 Contacto Directo: Formulario en pages/contacto.html\n🐙 GitHub: https://github.com/rodrigo47363',
         cv: 'Iniciando descarga de cv.pdf...',
         date: new Date().toLocaleString(),

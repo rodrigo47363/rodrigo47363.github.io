@@ -24,7 +24,7 @@
     "url": "cv.pdf"
   },
   {
-    "title": "📄 AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust",
+    "title": "📄 AcerSense Pro v2.1.0: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust",
     "url": "posts/acersense-linux-rust.html",
     "tags": [
       "linux",

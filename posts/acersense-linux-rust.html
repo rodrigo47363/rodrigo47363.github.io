@@ -4,26 +4,26 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://giscus.app https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://giscus.app https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com https://www.hackthebox.com https://tryhackme-badges.s3.amazonaws.com https://github-stats-extended.vercel.app https://streak-stats.demolab.com https://readme-typing-svg.demolab.com https://secure.gravatar.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io; frame-src https://giscus.app; object-src 'none'; base-uri 'self';">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.">
+    <meta name="description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense para construir AcerSense Pro v2.1.0: suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM, 25 temas ergonómicos WCAG AAA y motor multilingüe.">
     <meta name="author" content="Rodrigo47363">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="canonical" href="https://rodrigo47363.github.io/posts/acersense-linux-rust.html">
     
     <!-- Open Graph / Redes Sociales -->
     <meta property="og:site_name" content="Rodrigo47363 | Pentesting &amp; Software Architecture">
-    <meta property="og:title" content="AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio">
-    <meta property="og:description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:title" content="AcerSense Pro v2.1.0: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio">
+    <meta property="og:description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense para construir AcerSense Pro v2.1.0: suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM, 25 temas ergonómicos WCAG AAA y motor multilingüe.">
+    <meta property="og:image" content="https://rodrigo47363.github.io/img/acersense_gui_dashboard.png">
     <meta property="og:url" content="https://rodrigo47363.github.io/posts/acersense-linux-rust.html">
     <meta property="og:type" content="article">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio">
-    <meta name="twitter:description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense de Windows para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000">
+    <meta name="twitter:title" content="AcerSense Pro v2.1.0: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio">
+    <meta name="twitter:description" content="Cómo revertimos el firmware InsydeH2O y el servicio NitroSense para construir AcerSense Pro v2.1.0: suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM, 25 temas ergonómicos WCAG AAA y motor multilingüe.">
+    <meta name="twitter:image" content="https://rodrigo47363.github.io/img/acersense_gui_dashboard.png">
     <meta name="theme-color" content="#3b82f6">
-    <title>AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio</title>
+    <title>AcerSense Pro v2.1.0: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust - Mi Portafolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,18 +220,18 @@
             <nav aria-label="breadcrumb" style="margin-bottom: 20px; text-align: left; opacity: 0.8; font-size: 0.95em; font-weight: 600;">
                 <a href="../pages/blog.html" style="color: var(--accent-color); text-decoration: none;">Blog</a> <span style="margin: 0 8px;">&gt;</span> <span>Lectura</span>
             </nav>
-            <span class="post-date">03 Septiembre, 2026 &bull; ⏱️ 5 min de lectura</span>
-            <h1 class="post-title">AcerSense Pro: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust</h1>
+            <span class="post-date">12 Octubre, 2026 &bull; ⏱️ 7 min de lectura</span>
+            <h1 class="post-title">AcerSense Pro v2.1.0: Reversing de BIOS InsydeH2O y Control de Hardware en Linux con Rust</h1>
         </div>
 
         <div class="post-content">
-            <p>Uno de los mayores dolores de cabeza para cualquier usuario de Linux en laptops gaming (como las series <strong>Acer Nitro 5</strong> y <strong>Predator Helios</strong>) es la ausencia total de software oficial para gestionar los ventiladores, el umbral de carga de la batería y la iluminación RGB del teclado. Durante años, los usuarios han tenido que conformarse con curvas automáticas mediocres impuestas por la BIOS o scripts lentos que no sincronizaban ambas turbinas.</p>
+            <p>Uno de los mayores dolores de cabeza para cualquier usuario de Linux en laptops gaming (como las series <strong>Acer Nitro 5</strong> y <strong>Predator Helios</strong>) es la ausencia total de software oficial para gestionar los ventiladores, los perfiles de energía, el umbral de carga de la batería y la iluminación RGB del teclado. Durante años, los usuarios han tenido que conformarse con curvas automáticas mediocres impuestas por la BIOS o scripts lentos que no sincronizaban ambas turbinas.</p>
 
-<p>En este artículo detallo el proceso técnico de <strong>ingeniería inversa de firmware UEFI (InsydeH2O)</strong>, el análisis de opcodes WMI/ACPI en Ring-0 y Ring -2 (SMM), y la construcción de <strong><a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" style="color: var(--accent-color); font-weight: bold;">AcerSense Pro Linux v2.0</a></strong>: una suite completa escrita 100% en <strong>Rust</strong> con interfaz acelerada por GPU a 60+ FPS.</p>
+<p>En este artículo detallo el proceso técnico de <strong>ingeniería inversa de firmware UEFI (InsydeH2O)</strong>, el análisis de opcodes WMI/ACPI en Ring-0 y Ring -2 (SMM), y la construcción de <strong><a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); font-weight: bold;">AcerSense Pro Linux v2.1.0 (Rust Edition)</a></strong>: una suite completa escrita 100% en <strong>Rust</strong> con interfaz acelerada por GPU a 60+ FPS, 25 temas visuales ergonómicos (WCAG AAA), motor multilingüe nativo (10 idiomas), gestión de perfiles de energía EPP y soporte nativo para barras de estado (Waybar, Polybar e i3blocks).</p>
 
 <div style="text-align: center; margin: 30px 0;">
     <img src="../img/acersense_gui_dashboard.png" alt="AcerSense Pro Dashboard en Linux" style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
-    <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">Dashboard nativo en Rust (egui/eframe) corriendo sobre Parrot OS / BSPWM</p>
+    <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">Dashboard nativo en Rust (egui/eframe) corriendo sobre Parrot OS / BSPWM con telemetría en vivo y turbinas a 6,122 RPM</p>
 </div>
 
 <h3 style="color: var(--accent-color); margin-top: 35px;">1. El Problema: El Candado Térmico de la GPU en Linux</h3>
@@ -279,27 +279,27 @@ echo "\_SB.PCI0.WMID.WMBH 1 0x0E 0x820009" &gt; /proc/acpi/call
 echo "\_SB.PCI0.WMID.WMBH 1 0x10 0x6404" &gt; /proc/acpi/call</code></pre>
 <p>La turbina de la GPU rompió el candado SMM alcanzando su <strong>récord físico de 6,122 RPM</strong> de forma estable y sostenida.</p>
 
-<h3 style="color: var(--accent-color); margin-top: 35px;">3. ¿Por qué reescribir la suite en Rust?</h3>
+<h3 style="color: var(--accent-color); margin-top: 35px;">3. ¿Por qué reescribir la suite en Rust? (Benchmarks v2.1.0)</h3>
 <p>Las primeras iteraciones del proyecto utilizaban Python y PyQt5. Aunque funcionales, presentaban problemas intrínsecos para software de administración de sistemas:</p>
 <ul>
     <li><strong>Consumo de memoria elevado:</strong> ~52 MB para una interfaz básica (y más de 280 MB en el NitroSense original de Windows con sus 3 servicios en segundo plano).</li>
     <li><strong>Latencia en arranque:</strong> El intérprete de Python requería ~180 ms para inicializarse al consultar telemetría por CLI.</li>
 </ul>
 
-<p>La versión <strong>2.0 en Rust puro</strong> cambió las reglas del juego:</p>
+<p>La reescritura en <strong>Rust puro (v2.1.0)</strong> demostró una eficiencia radical:</p>
 
 <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em;">
     <thead>
         <tr style="border-bottom: 2px solid var(--accent-color); text-align: left;">
             <th style="padding: 10px;">Métrica</th>
             <th style="padding: 10px;">NitroSense (Windows)</th>
-            <th style="padding: 10px;">AcerSense Pro v2.0 (Rust)</th>
+            <th style="padding: 10px;">AcerSense Pro v2.1.0 (Rust)</th>
         </tr>
     </thead>
     <tbody>
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
             <td style="padding: 10px;"><strong>Uso de RAM</strong></td>
-            <td style="padding: 10px; color: #ef4444;">~280 MB</td>
+            <td style="padding: 10px; color: #ef4444;">~280 MB (3 servicios)</td>
             <td style="padding: 10px; color: #10b981; font-weight: bold;">~16 MB (GUI) / ~3 MB (CLI)</td>
         </tr>
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
@@ -312,53 +312,120 @@ echo "\_SB.PCI0.WMID.WMBH 1 0x10 0x6404" &gt; /proc/acpi/call</code></pre>
             <td style="padding: 10px;">45–120 ms (WMI COM)</td>
             <td style="padding: 10px; color: #10b981; font-weight: bold;">&lt; 150 µs (/proc/acpi/call directo)</td>
         </tr>
-        <tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
             <td style="padding: 10px;"><strong>Tasa de Refresco GUI</strong></td>
             <td style="padding: 10px;">30 FPS</td>
             <td style="padding: 10px; color: #10b981; font-weight: bold;">60+ FPS (OpenGL / Hardware-Accelerated)</td>
         </tr>
+        <tr>
+            <td style="padding: 10px;"><strong>Empaquetado y Distribución</strong></td>
+            <td style="padding: 10px;">Instalador MSI propietario (~120 MB)</td>
+            <td style="padding: 10px; color: #10b981; font-weight: bold;">Paquete Debian (.deb) precompilado</td>
+        </tr>
     </tbody>
 </table>
 
-<h3 style="color: var(--accent-color); margin-top: 35px;">4. Características Implementadas</h3>
+<h3 style="color: var(--accent-color); margin-top: 35px;">4. Innovaciones Técnicas de la Versión 2.1.0</h3>
+<p>La versión <strong>v2.1.0</strong> introduce un ecosistema integral tanto para estaciones de combate y auditorías de seguridad como para uso diario intensivo:</p>
+
 <ul>
-    <li><strong>Sincronización Dual de Ventiladores (5,400 / 6,122 RPM):</strong> Calibración de modulación de ancho de pulsos PWM a 8 bits (0–255).</li>
-    <li><strong>Protección de Batería al 80% (Battery Health Care):</strong> Límite químico directo en el microcontrolador para evitar la degradación de celdas de litio al estar conectado a CA.</li>
-    <li><strong>Control de Iluminación RGB 4 Zonas:</strong> Presets como <em>cyberpunk</em>, <em>toxic</em>, <em>ice</em> y selección hexadecimal por zona.</li>
-    <li><strong>Mapeo de la Tecla Física [N]:</strong> Detección del scancode <code>0xf5</code> mediante reglas UDEV/HWDB y mapeo a <code>XF86Launch1</code> para lanzar la GUI con una sola pulsación.</li>
-    <li><strong>Módulos Nativos para Polybar y JSON:</strong> Conmutación rápida en barras de estado mediante <code>acersense --polybar</code>.</li>
+    <li><strong>Sincronización Dual Extrema de Turbinas (5,400 / 6,122 RPM):</strong> Calibración de modulación de ancho de pulsos PWM a 8 bits (0–255) y mitigación de thermal throttling bajo cargas prolongadas de compilación o cracking de hashes.</li>
+    <li><strong>Suite Ergonómica de 25 Temas Visuales (WCAG AAA):</strong> Motor de estilizado reactivo con conmutación en caliente mediante el atajo <code>[T]</code>. Incluye paletas tácticas como <em>Red Audit (Offensive)</em>, <em>Tokyo Night</em>, <em>Neo Tokyo</em>, <em>Hacker Matrix</em>, <em>Nordic Calm</em>, <em>Everforest</em>, <em>Cyber Nitro</em> y variantes pastel accesibles.</li>
+    <li><strong>Motor Multilingüe Reactivo (10 Idiomas):</strong> Cambio dinámico instantáneo con la tecla <code>[L]</code> entre Español, Inglés, Francés, Alemán, Ruso, Chino Simplificado/Tradicional, Japonés, Coreano, Portugués e Italiano, con renderizado tipográfico nativo UTF-8/CJK.</li>
+    <li><strong>Gestión de Envolventes de Energía (EPP Power Envelopes):</strong> Conmutación instantánea entre perfiles térmicos (<code>Quiet</code>, <code>Balanced</code>, <code>Performance</code>, <code>Turbo</code>) que ajusta la política energética de la CPU en <code>/sys/devices/system/cpu/cpu*/power/energy_performance_preference</code>.</li>
+    <li><strong>Control de Iluminación RGB de 4 Zonas:</strong> Modos de hardware estático, respiración y onda con selección de color hexadecimal por zona independiente.</li>
+    <li><strong>Bloqueos Tácticos de Gaming y Operación:</strong> Supresión de tecla Windows (<code>WinKey Lock</code>), desactivación de Touchpad para evitar pulsaciones accidentales, y conmutación de LCD Overdrive (3ms).</li>
+    <li><strong>Protección Química de Batería (Battery Health Care al 80%):</strong> Límite directo en el registro del EC para prolongar el ciclo de vida útil de las celdas de litio durante sesiones de laboratorio conectadas a corriente alterna.</li>
+    <li><strong>Módulos Nativos para Polybar, Waybar e i3blocks:</strong> Salida formateada y JSON de alta velocidad con Nerd Fonts para barras de estado ligeras.</li>
+    <li><strong>Mapeo de la Tecla Física [N]:</strong> Detección del scancode <code>0xf5</code> mediante reglas UDEV/HWDB y mapeo a <code>XF86Launch1</code> para desplegar la GUI instantáneamente.</li>
 </ul>
 
-<h3 style="color: var(--accent-color); margin-top: 35px;">5. Instalación y Uso</h3>
-<p>Puedes compilar directamente desde el código fuente o instalar el paquete Debian precompilado:</p>
+<h4 style="color: var(--accent-color); margin-top: 25px;">Galería Visual de Capacidades</h4>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 20px; margin: 25px 0;">
+    <div style="text-align: center;">
+        <img src="../img/acersense_red_audit.png" alt="Tema Red Audit Offensive en AcerSense Pro" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(255, 0, 50, 0.15); border: 1px solid rgba(255, 0, 50, 0.25);">
+        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Tema Red Audit (Offensive):</strong> Paleta táctica de alto contraste diseñada para ejercicios de Red Team y auditorías nocturnas.</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="../img/acersense_system_settings.png" alt="Ajustes de Sistema y Motor de 10 Idiomas" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
+        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Panel de Ajustes:</strong> Selector de 25 temas ergonómicos, matriz i18n de 10 idiomas y calibración de offsets.</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="../img/acersense_power_scenarios.png" alt="Gestión de Perfiles Energéticos EPP" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
+        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Perfiles Térmicos y EPP:</strong> Conmutación entre Quiet, Balanced, Performance y Turbo con ajuste dinámico de gobernadores de CPU.</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="../img/acersense_rgb_keyboard.png" alt="Control de Iluminación Teclado RGB 4 Zonas" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
+        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Iluminación RGB 4 Zonas:</strong> Control independiente de zonas, brillo y patrones de onda/respiración por hardware.</p>
+    </div>
+</div>
 
-<pre><code># Clonar repositorio
+<h3 style="color: var(--accent-color); margin-top: 35px;">5. Instalación y Empaquetado</h3>
+<p>AcerSense Pro v2.1.0 está disponible en formato <strong>.deb</strong> para Debian, Parrot OS, Ubuntu y Kali Linux, así como en código fuente para compilación con Cargo:</p>
+
+<pre><code># Opción 1: Paquete Debian Oficial (.deb precompilado)
+sudo dpkg -i acersense_2.1.0_amd64.deb
+sudo apt-get install -f
+
+# Opción 2: Instalador Automatizado con resolución de dependencias y udev
 git clone https://github.com/rodrigo47363/acersense-linux.git
 cd acersense-linux
-
-# Instalador automatizado
 sudo ./install.sh
 
-# O compilar con Cargo
-cargo build --release</code></pre>
+# Opción 3: Compilación directa con Cargo
+cargo build --release
+sudo install -m 755 target/release/acersense /usr/local/bin/
+sudo install -m 755 target/release/acersense-gui /usr/local/bin/</code></pre>
 
-<p>Comandos tácticos desde la terminal:</p>
-<pre><code># Ver telemetría completa de sensores
+<h3 style="color: var(--accent-color); margin-top: 35px;">6. Comandos Tácticos por CLI y Barras de Estado</h3>
+<p>Para automatizar perfiles en scripts de inicio, auditorías o atajos de teclado:</p>
+
+<pre><code># Telemetría completa de sensores y estado térmico
 acersense status
 
-# Forzar ventiladores al 100% para sesiones de cracking de contraseñas (Hashcat)
+# Forzar ventiladores al 100% (6,122 RPM) para sesiones de Hashcat o pruebas de estrés
 acersense fan --mode max
 
-# Activar límite de carga de batería al 80%
+# Conmutar envolvente de energía a Turbo (máximo rendimiento CPU)
+acersense profile --set turbo
+
+# Activar modo silencioso (Quiet) para biblioteca o terminal sigilosa
+acersense profile --set quiet
+
+# Activar protección química de batería al 80%
 acersense battery --limit-80 on
+
+# Cambiar idioma a Español y tema visual a Red Audit
+acersense lang es
+acersense theme "Red Audit (Offensive)"
+
+# Configurar bloqueos tácticos de gaming
+acersense gaming --winkey off --touchpad off --overdrive on
 
 # Lanzar interfaz gráfica interactiva
 acersense-gui</code></pre>
 
-<h3 style="color: var(--accent-color); margin-top: 35px;">Conclusión</h3>
-<p>Con <strong>AcerSense Pro</strong> demostramos que la ingeniería inversa de bajo nivel combinada con el poder y seguridad de memoria de <strong>Rust</strong> permite crear utilidades de hardware que superan con creces en rendimiento, consumo y estética a las herramientas privativas de los fabricantes en Windows.</p>
+<p>Integración en <strong>Waybar</strong> (<code>~/.config/waybar/config</code>):</p>
+<pre><code class="language-json">"custom/acersense": {
+    "exec": "acersense --waybar",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "acersense-gui"
+}</code></pre>
 
-<p>El código es 100% de código abierto bajo licencia GPL-3.0 y está disponible en GitHub: <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" style="color: var(--accent-color); font-weight: bold;">github.com/rodrigo47363/acersense-linux</a>.</p>
+<p>Integración en <strong>Polybar</strong> (<code>~/.config/polybar/config.ini</code>):</p>
+<pre><code class="language-ini">[module/acersense]
+type = custom/script
+exec = acersense --polybar
+interval = 2
+click-left = acersense-gui
+format-foreground = #00f0ff</code></pre>
+
+<h3 style="color: var(--accent-color); margin-top: 35px;">Conclusión</h3>
+<p>Con <strong>AcerSense Pro Linux v2.1.0</strong> demostramos que la ingeniería inversa de bajo nivel combinada con el poder y seguridad de memoria de <strong>Rust</strong> permite crear utilidades de hardware que no solo igualan, sino que superan con creces en rendimiento, latencia, consumo y diseño a las herramientas privativas de los fabricantes en Windows.</p>
+
+<p>El código es 100% libre bajo licencia GPL-3.0 y está disponible para la comunidad en GitHub: <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); font-weight: bold;">github.com/rodrigo47363/acersense-linux</a>.</p>
         </div>
         
         <!-- Navegación Siguiente/Anterior -->
