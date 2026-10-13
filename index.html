@@ -117,8 +117,11 @@
 
                 <p style="font-size: 0.85em; opacity: 0.8; margin-bottom: 8px; font-family: 'Fira Code', monospace; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 15px;">// Desarrollo, Reversing & Tooling</p>
                 <div class="badge-row" style="justify-content: center;">
+                    <img src="assets/img/-Rust-000000_rustbadge.svg" alt="Rust" height="25" loading="lazy">
+                    <img src="assets/img/-C-00599C_cbadge.svg" alt="C" height="25" loading="lazy">
                     <img src="assets/img/-Bash-4EAA25_2393c69c18.svg" alt="Bash" height="25" loading="lazy">
                     <img src="assets/img/-Python-3776AB_7dc993f336.svg" alt="Python" height="25" loading="lazy">
+                    <img src="assets/img/-Ghidra-002B36_ghidrabadge.svg" alt="Ghidra" height="25" loading="lazy">
                     <img src="assets/img/-JavaScript-F7DF1E_b7ba0983b3.svg" alt="JavaScript" height="25" loading="lazy">
                 </div>
 
@@ -177,49 +180,73 @@
         <section class="projects-section" id="proyectos" data-aos="fade-up">
             <h2 style="text-align: center; color: var(--accent-color); font-size: 1.8em; margin-bottom: 25px;">Proyectos Destacados de Seguridad & Sistemas</h2>
             <div class="projects-grid">
-                <!-- Proyecto 1: Wireless Security -->
-                <article class="project-card glass">
+                <!-- Proyecto 1: Hardware Reversing & Systems (Flagship) -->
+                <article class="project-card glass accent-cyan">
+                    <img src="img/acersense_gui_dashboard.png" alt="AcerSense Pro v2.1.0 Dashboard" class="project-img" loading="lazy" width="400" height="220">
+                    <h3 class="project-title">⚡ AcerSense Pro v2.1.0</h3>
+                    <div class="hero-tag-bar">
+                        <span class="hero-tag" style="color: #00f0ff; border-color: rgba(0, 240, 255, 0.4);">Rust 100%</span>
+                        <span class="hero-tag">SMM Ring -2</span>
+                        <span class="hero-tag">6,122 RPM</span>
+                        <span class="hero-tag">25 Temas AAA</span>
+                        <span class="hero-tag">10 Idiomas</span>
+                        <span class="hero-tag">.deb</span>
+                    </div>
+                    <p class="project-desc">Ingeniería inversa de firmware InsydeH2O (opcode WMBH <code>0x820009</code>) y NitroSense para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM, 25 temas ergonómicos WCAG AAA y motor multilingüe.</p>
+                    <div class="project-actions">
+                        <a href="posts/acersense-linux-rust.html" class="project-btn-primary">Leer Writeup Técnico →</a>
+                        <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" class="project-btn-secondary">GitHub Repo ↗</a>
+                    </div>
+                </article>
+
+                <!-- Proyecto 2: Wireless Security -->
+                <article class="project-card glass accent-emerald">
                     <img src="assets/img/img_5ff3f127d8.jpg" alt="NekoFi Framework" class="project-img" loading="lazy" width="400" height="220">
-                    <h3 class="project-title">NekoFi.sh — Wireless Security</h3>
-                    <p class="project-desc">Framework modular en Bash diseñado para la automatización de auditorías inalámbricas WPA/WPA2/WPS, aislamiento de procesos y gestión de interfaces en modo monitor.</p>
-                    <div class="project-tech">
-                        <span class="blog-tag">Bash</span>
-                        <span class="blog-tag">Wireless</span>
-                        <span class="blog-tag">Red Team</span>
+                    <h3 class="project-title">📡 NekoFi.sh — Wireless Security</h3>
+                    <div class="hero-tag-bar">
+                        <span class="hero-tag" style="color: #34d399; border-color: rgba(52, 211, 153, 0.4);">Bash / Shell</span>
+                        <span class="hero-tag">WiFi Audits</span>
+                        <span class="hero-tag">WPA2 / WPA3</span>
+                        <span class="hero-tag">PMKID</span>
+                        <span class="hero-tag">OPSEC Automation</span>
                     </div>
-                    <div style="margin-top: 12px;">
-                        <a href="https://github.com/rodrigo47363/NekoFI" target="_blank" rel="noopener noreferrer" class="project-link">Ver Código en GitHub →</a>
+                    <p class="project-desc">Framework modular en Bash diseñado para la automatización de auditorías inalámbricas WPA/WPA2/WPS, aislamiento de procesos conflictivos, inyección de desasociaciones y captura quirúrgica de PMKID sin fugas operativas.</p>
+                    <div class="project-actions">
+                        <a href="https://github.com/rodrigo47363/NekoFI" target="_blank" rel="noopener noreferrer" class="project-btn-primary">Ver Código en GitHub →</a>
                     </div>
                 </article>
 
-                <!-- Proyecto 2: Passive Recon -->
-                <article class="project-card glass">
+                <!-- Proyecto 3: Passive Recon -->
+                <article class="project-card glass accent-blue">
                     <img src="assets/img/img_f16e433f13.jpg" alt="OSIdentifier" class="project-img" loading="lazy" width="400" height="220">
-                    <h3 class="project-title">OSIdentifier.py — Passive Recon</h3>
-                    <p class="project-desc">Herramienta en Python 3 que infiere sistemas operativos remotos analizando heurísticamente los valores TTL de paquetes ICMP mediante Scapy, con cero interacción activa.</p>
-                    <div class="project-tech">
-                        <span class="blog-tag">Python</span>
-                        <span class="blog-tag">Scapy</span>
-                        <span class="blog-tag">Stealth</span>
+                    <h3 class="project-title">🕵️ OSIdentifier.py — Passive Recon</h3>
+                    <div class="hero-tag-bar">
+                        <span class="hero-tag" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.4);">Python 3</span>
+                        <span class="hero-tag">Scapy Engine</span>
+                        <span class="hero-tag">TTL Heuristics</span>
+                        <span class="hero-tag">Passive Sniffing</span>
+                        <span class="hero-tag">Stealth Mode</span>
                     </div>
-                    <div style="margin-top: 12px;">
-                        <a href="https://github.com/rodrigo47363/OSIdentifier" target="_blank" rel="noopener noreferrer" class="project-link">Ver Código en GitHub →</a>
+                    <p class="project-desc">Herramienta en Python 3 que infiere sistemas operativos remotos analizando heurísticamente los valores TTL y firmas TCP/IP mediante Scapy en modo promiscuo, garantizando cero interacción activa con el target.</p>
+                    <div class="project-actions">
+                        <a href="https://github.com/rodrigo47363/OSIdentifier" target="_blank" rel="noopener noreferrer" class="project-btn-primary">Ver Código en GitHub →</a>
                     </div>
                 </article>
 
-                <!-- Proyecto 3: Hardware Reversing & Systems -->
-                <article class="project-card glass">
-                    <img src="img/acersense_gui_dashboard.png" alt="AcerSense Pro Linux Suite" class="project-img" loading="lazy" width="400" height="220">
-                    <h3 class="project-title">AcerSense Pro v2.1.0 — Hardware Reversing</h3>
-                    <p class="project-desc">Ingeniería inversa de firmware InsydeH2O y NitroSense para construir una suite nativa en Rust con paridad total de hardware en Linux a 6,122 RPM, 25 temas ergonómicos WCAG AAA y motor multilingüe.</p>
-                    <div class="project-tech">
-                        <span class="blog-tag">Rust</span>
-                        <span class="blog-tag">Reversing</span>
-                        <span class="blog-tag">Linux</span>
+                <!-- Proyecto 4: Web Pentesting Deployment -->
+                <article class="project-card glass accent-orange">
+                    <img src="assets/img/autoburp_banner.svg" alt="AutoBurp Automated Deployment" class="project-img" loading="lazy" width="400" height="220">
+                    <h3 class="project-title">🚀 AutoBurp.sh — Web Pentest Setup</h3>
+                    <div class="hero-tag-bar">
+                        <span class="hero-tag" style="color: #fbbf24; border-color: rgba(251, 191, 36, 0.4);">Bash Idempotente</span>
+                        <span class="hero-tag">PortSwigger API</span>
+                        <span class="hero-tag">Burp Suite Pro/Comm</span>
+                        <span class="hero-tag">OpenJDK 21</span>
+                        <span class="hero-tag">Zero Setup</span>
                     </div>
-                    <div style="margin-top: 12px; display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="posts/acersense-linux-rust.html" class="project-link">Leer Writeup Técnico →</a>
-                        <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" class="project-link" style="opacity: 0.85;">GitHub Repo ↗</a>
+                    <p class="project-desc">Utilidad idempotente en Bash para automatizar la instalación, configuración de dependencias OpenJDK, atajos de escritorio y despliegue continuo de PortSwigger Burp Suite en distribuciones Linux operativas.</p>
+                    <div class="project-actions">
+                        <a href="https://github.com/rodrigo47363/AutoBurp" target="_blank" rel="noopener noreferrer" class="project-btn-primary">Ver Código en GitHub →</a>
                     </div>
                 </article>
             </div>
