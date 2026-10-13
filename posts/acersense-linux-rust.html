@@ -212,6 +212,231 @@
         width: 100%;
         border: none;
     }
+    
+    /* --- Galería Visual de Capacidades Pro --- */
+    .gallery-container {
+        margin: 35px 0 25px 0;
+    }
+    .gallery-filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 22px;
+        justify-content: center;
+    }
+    .gallery-filter-btn {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-color, #e2e8f0);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 7px 15px;
+        border-radius: 999px;
+        font-size: 0.82em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        backdrop-filter: blur(8px);
+    }
+    .gallery-filter-btn:hover,
+    .gallery-filter-btn.active {
+        background: var(--accent-color, #3b82f6);
+        color: #ffffff;
+        border-color: var(--accent-color, #3b82f6);
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+        transform: translateY(-1px);
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+        gap: 22px;
+    }
+    .gallery-card {
+        background: rgba(18, 22, 34, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+        position: relative;
+    }
+    .gallery-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        border-color: rgba(59, 130, 246, 0.4);
+    }
+    .gallery-img-wrapper {
+        position: relative;
+        overflow: hidden;
+        cursor: zoom-in;
+        background: #000;
+        aspect-ratio: 16 / 9;
+    }
+    .gallery-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        border-radius: 0;
+    }
+    .gallery-card:hover .gallery-img-wrapper img {
+        transform: scale(1.04);
+    }
+    .gallery-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.72em;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        z-index: 2;
+    }
+    .gallery-zoom-hint {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        padding: 4px 9px;
+        border-radius: 6px;
+        font-size: 0.72em;
+        font-weight: 600;
+        backdrop-filter: blur(6px);
+        opacity: 0.85;
+        transition: opacity 0.2s ease, background 0.2s ease;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .gallery-card:hover .gallery-zoom-hint {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.9);
+    }
+    .gallery-content {
+        padding: 16px 18px 18px 18px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    .gallery-title {
+        font-size: 1.05em;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: var(--accent-color, #3b82f6);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .gallery-desc {
+        font-size: 0.88em;
+        line-height: 1.6;
+        opacity: 0.85;
+        margin: 0 0 14px 0;
+        flex: 1;
+    }
+    .gallery-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.75em;
+    }
+    .gallery-spec-pill {
+        background: rgba(255, 255, 255, 0.06);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        color: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    @keyframes fadeInCard {
+        from { opacity: 0; transform: scale(0.97); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    /* Lightbox Modal */
+    .lightbox-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 11, 18, 0.94);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        box-sizing: border-box;
+        cursor: zoom-out;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+    .lightbox-modal.active {
+        display: flex;
+        opacity: 1;
+    }
+    .lightbox-content-box {
+        max-width: 1200px;
+        width: 100%;
+        max-height: 94vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        cursor: default;
+    }
+    .lightbox-img {
+        max-width: 100%;
+        max-height: 78vh;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .lightbox-caption {
+        margin-top: 14px;
+        text-align: center;
+        color: #fff;
+        max-width: 800px;
+    }
+    .lightbox-caption h4 {
+        margin: 0 0 4px 0;
+        color: var(--accent-color, #3b82f6);
+        font-size: 1.18em;
+    }
+    .lightbox-caption p {
+        margin: 0;
+        font-size: 0.9em;
+        opacity: 0.85;
+        line-height: 1.5;
+    }
+    .lightbox-close {
+        position: absolute;
+        top: -42px;
+        right: 0;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .lightbox-close:hover {
+        background: rgba(239, 68, 68, 0.85);
+        transform: scale(1.08);
+    }
 </style>
 
 <main id="main-content">
@@ -340,23 +565,140 @@ echo "\_SB.PCI0.WMID.WMBH 1 0x10 0x6404" &gt; /proc/acpi/call</code></pre>
     <li><strong>Mapeo de la Tecla Física [N]:</strong> Detección del scancode <code>0xf5</code> mediante reglas UDEV/HWDB y mapeo a <code>XF86Launch1</code> para desplegar la GUI instantáneamente.</li>
 </ul>
 
-<h4 style="color: var(--accent-color); margin-top: 25px;">Galería Visual de Capacidades</h4>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 20px; margin: 25px 0;">
-    <div style="text-align: center;">
-        <img src="../img/acersense_red_audit.png" alt="Tema Red Audit Offensive en AcerSense Pro" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(255, 0, 50, 0.15); border: 1px solid rgba(255, 0, 50, 0.25);">
-        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Tema Red Audit (Offensive):</strong> Paleta táctica de alto contraste diseñada para ejercicios de Red Team y auditorías nocturnas.</p>
+<h4 style="color: var(--accent-color); margin-top: 32px; font-size: 1.3em; display: flex; align-items: center; gap: 10px;">
+    <span>📸</span> Galería Visual de Capacidades (Suite v2.1.0)
+</h4>
+<p style="font-size: 0.95em; opacity: 0.85; margin-bottom: 20px;">
+    Explora la suite táctica de <strong>AcerSense Pro</strong> en acción. Cada captura refleja una superficie de control directo sobre el hardware a resolución nativa de 1920x1080. <em>Haz clic sobre cualquier tarjeta para expandirla a pantalla completa en alta definición.</em>
+</p>
+
+<div class="gallery-container">
+    <!-- Barra de Filtros Interactivos -->
+    <div class="gallery-filter-bar" role="tablist" aria-label="Filtrar galería de capacidades">
+        <button class="gallery-filter-btn active" data-filter="all">Todas las Capturas</button>
+        <button class="gallery-filter-btn" data-filter="themes">Temas Tácticos (WCAG AAA)</button>
+        <button class="gallery-filter-btn" data-filter="telemetry">Telemetría &amp; Curvas</button>
+        <button class="gallery-filter-btn" data-filter="hardware">Hardware &amp; RGB</button>
+        <button class="gallery-filter-btn" data-filter="system">Ajustes &amp; i18n</button>
     </div>
-    <div style="text-align: center;">
-        <img src="../img/acersense_system_settings.png" alt="Ajustes de Sistema y Motor de 10 Idiomas" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
-        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Panel de Ajustes:</strong> Selector de 25 temas ergonómicos, matriz i18n de 10 idiomas y calibración de offsets.</p>
-    </div>
-    <div style="text-align: center;">
-        <img src="../img/acersense_power_scenarios.png" alt="Gestión de Perfiles Energéticos EPP" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
-        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Perfiles Térmicos y EPP:</strong> Conmutación entre Quiet, Balanced, Performance y Turbo con ajuste dinámico de gobernadores de CPU.</p>
-    </div>
-    <div style="text-align: center;">
-        <img src="../img/acersense_rgb_keyboard.png" alt="Control de Iluminación Teclado RGB 4 Zonas" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.2);">
-        <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;"><strong>Iluminación RGB 4 Zonas:</strong> Control independiente de zonas, brillo y patrones de onda/respiración por hardware.</p>
+
+    <!-- Rejilla de Tarjetas -->
+    <div class="gallery-grid" id="galleryGrid">
+        
+        <!-- Tarjeta 1: Red Audit Offensive -->
+        <article class="gallery-card" data-category="themes" style="border-top: 3px solid #ef4444;">
+            <div class="gallery-img-wrapper" tabindex="0" role="button" aria-label="Ampliar captura del tema Red Audit (Offensive)">
+                <span class="gallery-badge" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171;">🔴 Red Team Ops</span>
+                <span class="gallery-zoom-hint">🔍 1080p Full HD</span>
+                <img src="../img/acersense_red_audit.png" alt="Tema Red Audit (Offensive) en AcerSense Pro Linux" loading="lazy">
+            </div>
+            <div class="gallery-content">
+                <h5 class="gallery-title" style="color: #f87171;">Tema Red Audit (Offensive)</h5>
+                <p class="gallery-desc">Paleta de combate táctica de alto contraste, calibrada específicamente para ejercicios Red Team nocturnos y terminales con cero fatiga visual.</p>
+                <div class="gallery-specs">
+                    <span class="gallery-spec-pill">Atajo: [T]</span>
+                    <span class="gallery-spec-pill">WCAG: AAA (12.4:1)</span>
+                    <span class="gallery-spec-pill">Target: Auditoría Nocturna</span>
+                    <span class="gallery-spec-pill">Fondo: #0D0507</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Tarjeta 2: Hacker Matrix -->
+        <article class="gallery-card" data-category="themes" style="border-top: 3px solid #10b981;">
+            <div class="gallery-img-wrapper" tabindex="0" role="button" aria-label="Ampliar captura del tema Hacker Matrix">
+                <span class="gallery-badge" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399;">🟢 Cyberpunk / CRT</span>
+                <span class="gallery-zoom-hint">🔍 1080p Full HD</span>
+                <img src="../img/acersense_hacker_matrix.png" alt="Tema Hacker Matrix CRT en AcerSense Pro Linux" loading="lazy">
+            </div>
+            <div class="gallery-content">
+                <h5 class="gallery-title" style="color: #34d399;">Tema Hacker Matrix (Terminal Green)</h5>
+                <p class="gallery-desc">Estética de consola hacker inspirada en monitores de fósforo verde con acentos monocromáticos de alta legibilidad técnica.</p>
+                <div class="gallery-specs">
+                    <span class="gallery-spec-pill">Atajo: [T]</span>
+                    <span class="gallery-spec-pill">Fósforo P1: #00FF66</span>
+                    <span class="gallery-spec-pill">Paleta: 25 Temas Hub</span>
+                    <span class="gallery-spec-pill">Target: Consola &amp; Tiling WM</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Tarjeta 3: Telemetría en Vivo -->
+        <article class="gallery-card" data-category="telemetry" style="border-top: 3px solid #06b6d4;">
+            <div class="gallery-img-wrapper" tabindex="0" role="button" aria-label="Ampliar captura de Telemetría y Monitorización de Sensores">
+                <span class="gallery-badge" style="background: rgba(6, 182, 212, 0.2); border: 1px solid rgba(6, 182, 212, 0.4); color: #22d3ee;">⚡ Telemetría 60 FPS</span>
+                <span class="gallery-zoom-hint">🔍 1080p Full HD</span>
+                <img src="../img/acersense_telemetry_monitoring.png" alt="Telemetría y Monitorización de Sensores Térmicos en Linux" loading="lazy">
+            </div>
+            <div class="gallery-content">
+                <h5 class="gallery-title" style="color: #22d3ee;">Telemetría &amp; Monitorización Dinámica</h5>
+                <p class="gallery-desc">Gráficos de telemetría en tiempo real acelerados por GPU (OpenGL/egui) monitoreando temperaturas de silicio, curvas de RPM y frecuencias.</p>
+                <div class="gallery-specs">
+                    <span class="gallery-spec-pill">OpenGL: 60+ FPS</span>
+                    <span class="gallery-spec-pill">Sensores: CPU / GPU Dual</span>
+                    <span class="gallery-spec-pill">PWM: 8-bit (0–255)</span>
+                    <span class="gallery-spec-pill">Latencia: &lt; 150 µs</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Tarjeta 4: Escenarios de Energía y Gobernadores EPP -->
+        <article class="gallery-card" data-category="system" style="border-top: 3px solid #f59e0b;">
+            <div class="gallery-img-wrapper" tabindex="0" role="button" aria-label="Ampliar captura de Gestión de Perfiles Energéticos y EPP">
+                <span class="gallery-badge" style="background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24;">🔋 EPP Envelopes</span>
+                <span class="gallery-zoom-hint">🔍 1080p Full HD</span>
+                <img src="../img/acersense_power_scenarios.png" alt="Gestión de Perfiles Energéticos y EPP en Linux" loading="lazy">
+            </div>
+            <div class="gallery-content">
+                <h5 class="gallery-title" style="color: #fbbf24;">Perfiles Térmicos &amp; Gobernadores EPP</h5>
+                <p class="gallery-desc">Conmutación de envolventes de energía entre Quiet, Balanced, Performance y Turbo con inyección directa en energy_performance_preference de la CPU.</p>
+                <div class="gallery-specs">
+                    <span class="gallery-spec-pill">Envolventes: 4 Perfiles</span>
+                    <span class="gallery-spec-pill">Sysfs: CPU EPP</span>
+                    <span class="gallery-spec-pill">Governors: Dinámicos</span>
+                    <span class="gallery-spec-pill">Sincronización AC/Batería</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Tarjeta 5: Iluminación RGB 4 Zonas -->
+        <article class="gallery-card" data-category="hardware" style="border-top: 3px solid #a855f7;">
+            <div class="gallery-img-wrapper" tabindex="0" role="button" aria-label="Ampliar captura del Control de Teclado RGB 4 Zonas">
+                <span class="gallery-badge" style="background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc;">🌈 Aura RGB 4-Zone</span>
+                <span class="gallery-zoom-hint">🔍 1080p Full HD</span>
+                <img src="../img/acersense_rgb_keyboard.png" alt="Control de Teclado RGB 4 Zonas en Linux" loading="lazy">
+            </div>
+            <div class="gallery-content">
+                <h5 class="gallery-title" style="color: #c084fc;">Iluminación Teclado RGB 4 Zonas</h5>
+                <p class="gallery-desc">Control por zonas independientes del teclado con efectos de onda, respiración y presets estáticos, con inyección directa de colores hexadecimales.</p>
+                <div class="gallery-specs">
+                    <span class="gallery-spec-pill">Zonas: 4 Independientes</span>
+                    <span class="gallery-spec-pill">Modos: Wave / Breath / Static</span>
+                    <span class="gallery-spec-pill">Selector: Hex Input</span>
+                    <span class="gallery-spec-pill">Controlador: HID / WMI</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Tarjeta 6: Ajustes de Sistema y Matriz Multilingüe -->
+        <article class="gallery-card" data-category="system" style="border-top: 3px solid #3b82f6;">
+            <div class="gallery-img-wrapper" tabindex="0" role="button" aria-label="Ampliar captura del Panel de Ajustes y Motor Multilingüe">
+                <span class="gallery-badge" style="background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); color: #60a5fa;">🌐 i18n &amp; 25 Temas Hub</span>
+                <span class="gallery-zoom-hint">🔍 1080p Full HD</span>
+                <img src="../img/acersense_system_settings.png" alt="Ajustes de Sistema y Matriz Multilingüe 10 Idiomas" loading="lazy">
+            </div>
+            <div class="gallery-content">
+                <h5 class="gallery-title" style="color: #60a5fa;">Ajustes de Sistema &amp; Matriz i18n</h5>
+                <p class="gallery-desc">Selector interactivo de los 25 temas visuales, motor de traducción en 10 idiomas con renderizado de glifos CJK/UTF-8 y calibración de offsets térmicos.</p>
+                <div class="gallery-specs">
+                    <span class="gallery-spec-pill">Idiomas: 10 Matrices</span>
+                    <span class="gallery-spec-pill">Atajo: [L] Hotkey</span>
+                    <span class="gallery-spec-pill">Fonts: UTF-8 / Kanjis</span>
+                    <span class="gallery-spec-pill">Offsets: EC 0x10–0x24</span>
+                </div>
+            </div>
+        </article>
+
     </div>
 </div>
 
@@ -490,6 +832,18 @@ format-foreground = #00f0ff</code></pre>
         
         <a href="../pages/blog.html" class="btn-link">← Volver al Blog</a>
     </article>
+
+    <!-- Modal Lightbox Fullscreen para Galería 1080p -->
+    <div class="lightbox-modal" id="galleryLightboxModal" role="dialog" aria-modal="true" aria-label="Visualizador de capturas a resolución nativa">
+        <div class="lightbox-content-box">
+            <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Cerrar vista a pantalla completa">&times;</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption">
+                <h4 id="lightboxTitle"></h4>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
 </main>
 
 
@@ -516,5 +870,81 @@ format-foreground = #00f0ff</code></pre>
         </div>
     </div>
 
+    <!-- Script de Interactividad para Galería y Lightbox 1080p -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Filtrado dinámico por categorías
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const cards = document.querySelectorAll('.gallery-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                        card.style.animation = 'fadeInCard 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 2. Lightbox Modal Fullscreen a 1080p nativo
+        const modal = document.getElementById('galleryLightboxModal');
+        const modalImg = document.getElementById('lightboxImg');
+        const modalTitle = document.getElementById('lightboxTitle');
+        const modalDesc = document.getElementById('lightboxDesc');
+        const closeBtn = document.getElementById('lightboxCloseBtn');
+
+        if (modal && modalImg) {
+            document.querySelectorAll('.gallery-img-wrapper').forEach(wrapper => {
+                const openModal = () => {
+                    const img = wrapper.querySelector('img');
+                    const card = wrapper.closest('.gallery-card');
+                    const title = card ? card.querySelector('.gallery-title').innerText : '';
+                    const desc = card ? card.querySelector('.gallery-desc').innerText : '';
+
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+                    if (modalTitle) modalTitle.innerText = title;
+                    if (modalDesc) modalDesc.innerText = desc;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
+
+                wrapper.addEventListener('click', openModal);
+                wrapper.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal();
+                    }
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal || e.target.classList.contains('lightbox-content-box')) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+    });
+    </script>
 </body>
 </html>
