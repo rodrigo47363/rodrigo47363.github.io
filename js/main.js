@@ -41,79 +41,170 @@ function initTheme() {
 }
 
 // --- 2. Integración Segura con GitHub API ---
-// Función modularizada que evita la duplicación de código y previene XSS
+// Función modularizada que evita la duplicación de código, previene XSS e incluye caché y fallback resiliente
 async function fetchRepos(targetId, maxRepos, showStats = false) {
     const repoList = document.getElementById(targetId);
-    if (!repoList) return; // Sale silenciosamente si no está en la página correcta
+    if (!repoList) return;
+
+    let repos = [];
+    const cacheKey = `gh_repos_${maxRepos}`;
 
     try {
-        const response = await fetch(`https://api.github.com/users/rodrigo47363/repos?sort=updated&per_page=${maxRepos}`);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
-        const repos = await response.json();
-        repoList.textContent = ''; // Limpieza segura del estado "Cargando..."
+        // Intentar recuperar de caché de sesión para evitar rate-limits
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+            repos = JSON.parse(cached);
+        } else {
+            const response = await fetch(`https://api.github.com/users/rodrigo47363/repos?sort=updated&per_page=${maxRepos}`);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            repos = await response.json();
+            try { sessionStorage.setItem(cacheKey, JSON.stringify(repos)); } catch (e) {}
+        }
+    } catch (error) {
+        console.warn('GitHub API no disponible o rate-limited, usando fallback resiliente:', error);
+        // Fallback resiliente con los proyectos clave de Rodrigo47363
+        repos = [
+            { name: "acersense-linux", html_url: "https://github.com/rodrigo47363/acersense-linux", description: "Next-Gen Low-Level Hardware Control Suite for Acer Nitro & Predator Laptops in Linux (Rust Edition)", language: "Rust", stargazers_count: 1, forks_count: 0 },
+            { name: "NekoFi", html_url: "https://github.com/rodrigo47363/NekoFI", description: "Framework modular para analizar y auditar redes WiFi WPA2/WPA3 con soporte PMKID y PixieDust.", language: "Shell", stargazers_count: 3, forks_count: 0 },
+            { name: "izzi-wifi-audit-method", html_url: "https://github.com/rodrigo47363/izzi-wifi-audit-method", description: "Método para auditar redes WiFi Izzi usando crunch y aircrack-ng basado en patrones conocidos.", language: "Shell", stargazers_count: 5, forks_count: 1 },
+            { name: "AutoBurp", html_url: "https://github.com/rodrigo47363/AutoBurp", description: "Idempotent Bash utility to automate installation, deployment, and continuous updates of PortSwigger Burp Suite on Linux.", language: "Shell", stargazers_count: 0, forks_count: 0 },
+            { name: "OSIdentifier", html_url: "https://github.com/rodrigo47363/OSIdentifier", description: "Herramienta de Python para fingerprinting pasivo de sistemas operativos mediante disección heurística de TTL con Scapy.", language: "Python", stargazers_count: 0, forks_count: 0 },
+            { name: "CPU-Energy-Dash", html_url: "https://github.com/rodrigo47363/CPU-Energy-Dash", description: "Real-time lightweight Linux terminal dashboard monitoring Intel RAPL CPU energy consumption, thermal metrics, and core frequencies.", language: "Shell", stargazers_count: 1, forks_count: 0 },
+            { name: "pomoc", html_url: "https://github.com/rodrigo47363/pomoc", description: "Ultralightweight Pomodoro daemon and CLI client for Debian and Linux systems with Sockets, Notifications, Audio and Polybar/Waybar support.", language: "C", stargazers_count: 0, forks_count: 0 },
+            { name: "dictgen", html_url: "https://github.com/rodrigo47363/dictgen", description: "Fast, customizable CLI password dictionary generator in Python with character set filtering and entropy controls.", language: "Python", stargazers_count: 0, forks_count: 0 },
+            { name: "wordlists", html_url: "https://github.com/rodrigo47363/wordlists", description: "High-value wordlists, default credential dumps, admin panels, and targeted PIN collections for security audits.", language: "Markdown", stargazers_count: 2, forks_count: 0 }
+        ];
+    }
 
-        repos.forEach(repo => {
-            const li = document.createElement('li');
-            li.className = 'glass';
-            li.style.marginBottom = '15px';
-            li.style.padding = '20px';
+    repoList.textContent = ''; // Limpieza del estado de carga
 
-            const link = document.createElement('a');
-            link.href = repo.html_url;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer'; // Prevención de Reverse Tabnabbing
-            link.style.color = 'var(--accent-color)';
-            link.style.fontWeight = 'bold';
-            link.style.textDecoration = 'none';
-            link.textContent = repo.name; 
+    repos.forEach(repo => {
+        const li = document.createElement('li');
+        li.className = 'glass repo-card';
+        li.style.marginBottom = '15px';
+        li.style.padding = '20px';
+        li.setAttribute('data-name', normalizeStr(repo.name));
+        li.setAttribute('data-desc', normalizeStr(repo.description));
+        li.setAttribute('data-lang', normalizeStr(repo.language));
+        li.setAttribute('data-stars', repo.stargazers_count || 0);
 
-            const p = document.createElement('p');
-            p.className = 'repos-desc';
-            p.textContent = repo.description || 'Sin descripción disponible.';
+        const link = document.createElement('a');
+        link.href = repo.html_url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.style.color = 'var(--accent-color)';
+        link.style.fontWeight = 'bold';
+        link.style.textDecoration = 'none';
+        link.textContent = repo.name; 
 
-            li.appendChild(link);
-            li.appendChild(p);
+        const p = document.createElement('p');
+        p.className = 'repos-desc';
+        p.textContent = repo.description || 'Sin descripción disponible.';
 
-            // Renderizado condicional dependiendo de la página
-            if (showStats) {
-                const stats = document.createElement('div');
-                stats.className = 'repo-stats';
-                stats.style.marginTop = '10px';
-                
-                // Construimos los stats de forma segura
-                const langSpan = document.createElement('span');
-                langSpan.textContent = repo.language || 'N/A';
-                langSpan.style.marginRight = '10px';
-                
-                const starSpan = document.createElement('span');
-                starSpan.textContent = `★ ${repo.stargazers_count} `;
-                starSpan.style.marginRight = '10px';
+        li.appendChild(link);
+        li.appendChild(p);
 
-                const forkSpan = document.createElement('span');
-                forkSpan.textContent = `⑂ ${repo.forks_count}`;
+        if (showStats) {
+            const stats = document.createElement('div');
+            stats.className = 'repo-stats';
+            stats.style.marginTop = '10px';
+            
+            const langSpan = document.createElement('span');
+            langSpan.textContent = repo.language || 'N/A';
+            langSpan.style.marginRight = '10px';
+            
+            const starSpan = document.createElement('span');
+            starSpan.textContent = `★ ${repo.stargazers_count} `;
+            starSpan.style.marginRight = '10px';
 
-                stats.appendChild(langSpan);
-                stats.appendChild(starSpan);
-                stats.appendChild(forkSpan);
-                li.appendChild(stats);
-            } else {
-                const tag = document.createElement('span');
-                tag.className = 'blog-tag';
-                tag.style.marginTop = '10px';
-                tag.style.display = 'inline-block';
-                tag.textContent = repo.language || 'Markdown';
-                li.appendChild(tag);
+            const forkSpan = document.createElement('span');
+            forkSpan.textContent = `⑂ ${repo.forks_count}`;
+
+            stats.appendChild(langSpan);
+            stats.appendChild(starSpan);
+            stats.appendChild(forkSpan);
+            li.appendChild(stats);
+        } else {
+            const tag = document.createElement('span');
+            tag.className = 'blog-tag';
+            tag.style.marginTop = '10px';
+            tag.style.display = 'inline-block';
+            tag.textContent = repo.language || 'Markdown';
+            li.appendChild(tag);
+        }
+
+        repoList.appendChild(li);
+    });
+
+    if (targetId === 'all-repos-list') {
+        const counter = document.getElementById('repoCountBadge');
+        if (counter) counter.textContent = `${repos.length} proyectos`;
+        initReposFilter();
+    }
+}
+
+// --- Filtrado y Búsqueda en Vivo de Repositorios ---
+function initReposFilter() {
+    const searchInput = document.getElementById('repoSearchInput');
+    const filterBtns = document.querySelectorAll('.repo-filter-btn');
+    const repoList = document.getElementById('all-repos-list');
+    const counter = document.getElementById('repoCountBadge');
+    if (!repoList) return;
+
+    let currentCategory = 'all';
+
+    function filterRepos() {
+        const query = searchInput ? normalizeStr(searchInput.value) : '';
+        const items = repoList.querySelectorAll('li');
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            if (!item.hasAttribute('data-name')) return;
+            const name = item.getAttribute('data-name') || '';
+            const desc = item.getAttribute('data-desc') || '';
+            const lang = item.getAttribute('data-lang') || '';
+            const stars = parseInt(item.getAttribute('data-stars') || '0', 10);
+
+            const matchesQuery = !query || name.includes(query) || desc.includes(query) || lang.includes(query);
+
+            let matchesCat = true;
+            if (currentCategory === 'security') {
+                matchesCat = name.includes('wifi') || name.includes('audit') || name.includes('burp') || name.includes('osint') || name.includes('pass') || desc.includes('seguridad') || desc.includes('audit') || desc.includes('wpa') || desc.includes('recon') || desc.includes('offensive') || desc.includes('attack') || desc.includes('password');
+            } else if (currentCategory === 'rust-c') {
+                matchesCat = lang === 'rust' || lang === 'c' || lang === 'c++' || lang === 'asl';
+            } else if (currentCategory === 'python') {
+                matchesCat = lang === 'python';
+            } else if (currentCategory === 'bash') {
+                matchesCat = lang === 'shell' || lang === 'bash' || lang === 'powershell';
+            } else if (currentCategory === 'stars') {
+                matchesCat = stars > 0;
             }
 
-            repoList.appendChild(li);
+            if (matchesQuery && matchesCat) {
+                item.style.display = 'flex';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
         });
 
-    } catch (error) {
-        console.error('Error fetching repos:', error);
-        // Error genérico seguro (no refleja inputs del usuario)
-        repoList.innerHTML = '<li class="glass"><strong style="color: #ef4444;">Error de telemetría</strong><p class="repos-desc">No se pudieron cargar los repositorios desde GitHub.</p></li>';
+        if (counter) {
+            counter.textContent = `${visibleCount} proyectos`;
+        }
     }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', filterRepos);
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-filter') || 'all';
+            filterRepos();
+        });
+    });
 }
 
 // --- Función Utilitaria: Normalización de cadenas (insensible a acentos y diacríticos) ---

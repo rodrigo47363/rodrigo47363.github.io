@@ -5,19 +5,35 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; img-src 'self' https://avatars.githubusercontent.com https://img.shields.io https://images.unsplash.com https://academy.hackthebox.com data:; connect-src 'self' https://api.github.com; font-src 'self' https://fonts.gstatic.com; form-action 'self' https://formspree.io;">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explora mis repositorios y proyectos alojados en GitHub. Código abierto, scripts y herramientas.">
-    <meta property="og:title" content="Repositorios - Rodrigo47363">
-    <meta property="og:description" content="Una vitrina dinámica de mis proyectos de GitHub obtenidos mediante su API oficial.">
+    <meta name="description" content="Ecosistema de proyectos y herramientas de ciberseguridad ofensiva, reversing de firmware/hardware, auditoría WiFi y utilidades de sistemas en Linux creadas por Rodrigo47363.">
+    <meta name="author" content="Rodrigo47363">
+    
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:site_name" content="Rodrigo47363 | Pentesting &amp; Software Architecture">
+    <meta property="og:title" content="Repositorios &amp; Herramientas Ofensivas - Rodrigo47363">
+    <meta property="og:description" content="Ecosistema de código abierto para ciberseguridad ofensiva, reversing de hardware UEFI, auditoría WiFi y utilidades de bajo nivel en Linux.">
+    <meta property="og:image" content="https://rodrigo47363.github.io/img/acersense_gui_dashboard.png">
+    <meta property="og:url" content="https://rodrigo47363.github.io/pages/repositorios.html">
     <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Repositorios &amp; Herramientas Ofensivas - Rodrigo47363">
+    <meta name="twitter:description" content="Ecosistema de código abierto para ciberseguridad ofensiva, reversing de hardware UEFI, auditoría WiFi y utilidades de bajo nivel en Linux.">
+    <meta name="twitter:image" content="https://rodrigo47363.github.io/img/acersense_gui_dashboard.png">
     <meta name="theme-color" content="#3b82f6">
-    <title>Repositorios - Mi Portafolio</title>
+
+    <title>Repositorios &amp; Herramientas Ofensivas - Rodrigo47363 | Mi Portafolio</title>
+    <link rel="canonical" href="https://rodrigo47363.github.io/pages/repositorios.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/main.js" defer></script>
+    
     <style>
         .repos-header {
             text-align: center;
@@ -32,26 +48,105 @@
             overflow-wrap: break-word;
         }
 
+        .hero-tag-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 16px 0;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--accent-color, #3b82f6);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78em;
+            font-weight: 700;
+            font-family: monospace;
+            letter-spacing: 0.3px;
+        }
+
+        .repo-search-container {
+            margin: 25px 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .repo-search-input {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: var(--text-color, #e2e8f0);
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-family: inherit;
+        }
+
+        .repo-search-input:focus {
+            border-color: var(--accent-color, #3b82f6);
+            box-shadow: 0 0 16px rgba(59, 130, 246, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .repo-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .repo-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color, #e2e8f0);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 7px 15px;
+            border-radius: 999px;
+            font-size: 0.82em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .repo-filter-btn:hover,
+        .repo-filter-btn.active {
+            background: var(--accent-color, #3b82f6);
+            color: #ffffff;
+            border-color: var(--accent-color, #3b82f6);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+        }
+
         .repos-list {
             list-style-type: none;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
             gap: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         .repos-list li {
-            padding: 25px;
+            padding: 24px;
             border-radius: 16px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
             gap: 10px;
             height: 100%;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .repos-list li:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+            border-color: rgba(59, 130, 246, 0.4);
         }
 
         body.light-mode .repos-list li:hover {
@@ -72,16 +167,19 @@
 
         .repos-desc {
             font-size: 0.95em;
-            opacity: 0.8;
+            line-height: 1.6;
+            opacity: 0.85;
             flex: 1;
+            margin: 0;
         }
 
         .repo-stats {
             display: flex;
             gap: 15px;
             font-size: 0.85em;
-            opacity: 0.7;
+            opacity: 0.75;
             margin-top: 10px;
+            font-family: monospace;
         }
 
         .repo-stats span {
@@ -119,91 +217,187 @@
 
     <main>
         <div class="repos-header" data-aos="fade-down">
-            <h2>Mis Repositorios</h2>
-            <p>Todos mis proyectos públicos alojados en GitHub.</p>
+            <h2>Mis Repositorios &amp; Herramientas</h2>
+            <p>Ecosistema de código abierto para ciberseguridad ofensiva, reversing de hardware y utilidades de sistemas.</p>
         </div>
 
-        <h3 style="margin-top: 40px; margin-bottom: 20px; color: var(--accent-color);">🛠️ Herramientas y Proyectos Principales</h3>
+        <h3 style="margin-top: 40px; margin-bottom: 20px; color: var(--accent-color);">🛠️ Proyectos Principales &amp; Suites de Combate</h3>
 
-        <div class="hero-project" data-aos="fade-up">
-            <h3>📡 NekoFi.sh — Automated WiFi Security Framework</h3>
-            <p>Framework modular en Bash diseñado para la automatización de auditorías WiFi en despliegues reales. Orquesta interfaces, inyección de paquetes y ataques WPS/WPA.</p>
+        <!-- Proyecto Destacado 1: AcerSense Pro Linux v2.1.0 -->
+        <div class="hero-project" data-aos="fade-up" style="border-top: 3px solid #00f0ff;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                <h3 style="margin-bottom: 5px;">⚡ AcerSense Pro v2.1.0 — InsydeH2O BIOS Reversing &amp; Linux Suite (Rust Edition)</h3>
+            </div>
+            
+            <div class="hero-tag-bar">
+                <span class="hero-tag" style="color: #00f0ff; border-color: rgba(0, 240, 255, 0.4);">Rust 100%</span>
+                <span class="hero-tag">Ring -2 SMM Bypass</span>
+                <span class="hero-tag">6,122 RPM Turbo</span>
+                <span class="hero-tag">25 Temas WCAG AAA</span>
+                <span class="hero-tag">10 Idiomas i18n</span>
+                <span class="hero-tag">Debian .deb</span>
+                <span class="hero-tag">Waybar / Polybar</span>
+            </div>
+
+            <img src="../img/acersense_gui_dashboard.png" alt="AcerSense Pro v2.1.0 Linux Dashboard" style="width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15); border: 1px solid rgba(0, 240, 255, 0.25);" loading="lazy">
+
+            <p>Suite nativa en Rust con interfaz OpenGL acelerada por GPU a 60+ FPS para control térmico de turbinas duales (5,400 / 6,122 RPM), envolventes de energía EPP, iluminación RGB de 4 zonas y gestión integral de hardware en Linux, desarrollada tras realizar ingeniería inversa de firmware UEFI InsydeH2O (opcode WMBH <code>0x820009</code>).</p>
+            
             <ul>
-                <li><strong>Objetivo:</strong> Reproducibilidad técnica y OPSEC (reducción de errores humanos en operaciones en vivo).</li>
-                <li><strong>Highlights:</strong> Comprobación dinámica de dependencias, modo desatendido (<code>--auto</code>) y gestión transparente de <code>wpa_supplicant</code> y <code>NetworkManager</code>.</li>
+                <li><strong>Objetivo:</strong> Superar el bucle de anulación en Ring -2 (SMM) y otorgar control directo del Embedded Controller (EC) en Ring-0 sin depender del software privativo de Windows.</li>
+                <li><strong>Novedades v2.1.0:</strong> Suite ergonómica de 25 temas visuales con cambio en caliente (<code>[T]</code>), motor multilingüe en 10 idiomas con fuentes CJK (<code>[L]</code>), perfiles EPP de CPU (Quiet, Balanced, Performance, Turbo), bloqueos tácticos de gaming (WinKey, Touchpad, LCD 3ms) y módulos nativos para Waybar/Polybar.</li>
+                <li><strong>Stack:</strong> Rust + <code>eframe/egui</code> (OpenGL) + WMI/ACPI bare-metal + UDEV/HWDB scancode remap.</li>
+            </ul>
+
+            <div class="bash-snippet">
+<span class="comment"># Opción 1: Instalación inmediata vía paquete Debian (.deb precompilado)</span><br>
+<span class="cmd">sudo dpkg</span> -i acersense_2.1.0_amd64.deb<br>
+<br>
+<span class="comment"># Opción 2: Compilación bare-metal con Cargo</span><br>
+<span class="cmd">git clone</span> https://github.com/rodrigo47363/acersense-linux.git && <span class="cmd">cd</span> acersense-linux<br>
+<span class="cmd">cargo</span> build --release<br>
+<span class="cmd">sudo</span> ./target/release/acersense-gui<br>
+<br>
+<span class="comment"># Telemetría en vivo a 60 FPS:
+# [*] Embedded Controller EC Compal inicializado (0x62 / 0x66)
+# [+] CPU Fan: 5,660 RPM | GPU Fan: 6,122 RPM [Max Cool Mode: ACTIVE]
+# [+] Envolvente EPP: Turbo | Idioma: ES | Tema: Red Audit (Offensive)</span>
+            </div>
+
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub →</a>
+                <a href="../posts/acersense-linux-rust.html" class="project-link" style="color: var(--text-color); opacity: 0.9;">Leer Writeup Técnico (v2.1.0) →</a>
+            </div>
+        </div>
+
+        <!-- Proyecto Destacado 2: NekoFi.sh -->
+        <div class="hero-project" data-aos="fade-up" data-aos-delay="100" style="border-top: 3px solid #10b981;">
+            <h3>📡 NekoFi.sh — Automated WiFi Security Framework</h3>
+            
+            <div class="hero-tag-bar">
+                <span class="hero-tag" style="color: #34d399; border-color: rgba(52, 211, 153, 0.4);">Bash / Shell</span>
+                <span class="hero-tag">WiFi Auditing</span>
+                <span class="hero-tag">WPA2 / WPA3</span>
+                <span class="hero-tag">PMKID &amp; PixieDust</span>
+                <span class="hero-tag">OPSEC Automation</span>
+                <span class="hero-tag">⭐ 3 Stars</span>
+            </div>
+
+            <p>Framework modular en Bash diseñado para la automatización de auditorías WiFi en despliegues reales. Orquesta interfaces inalámbricas, inyección de tramas de desasociación quirúrgicas, y ataques WPS/WPA2/WPA3 sin intervención manual propensa a fugas operativas.</p>
+            <ul>
+                <li><strong>Objetivo:</strong> Reproducibilidad táctica, auditoría rigurosa y OPSEC (reducción de errores humanos y descarte de procesos conflictivos).</li>
+                <li><strong>Highlights:</strong> Comprobación dinámica de dependencias, modo desatendido (<code>--auto</code>), captura limpia de PMKID/handshakes y gestión transparente de <code>wpa_supplicant</code> y <code>NetworkManager</code>.</li>
             </ul>
             <div class="bash-snippet">
-<span class="comment"># Despliegue rápido</span><br>
+<span class="comment"># Despliegue y ejecución táctica</span><br>
 <span class="cmd">git clone</span> https://github.com/rodrigo47363/NekoFI.git && <span class="cmd">cd</span> NekoFI<br>
 <span class="cmd">chmod</span> +x nekofi.sh<br>
 <span class="cmd">sudo</span> ./nekofi.sh --auto<br>
 <br>
 <span class="comment"># Output esperado:<br>
 # [*] Iniciando NekoFi.sh framework...<br>
-# [+] Interfaz wlan0 detectada. Aislando procesos conflictivos.<br>
-# [+] Levantando interfaz en modo monitor (wlan0mon)...</span>
+# [+] Interfaz wlan0 detectada. Aislando procesos conflictivos (airmon-ng check kill).<br>
+# [+] Levantando interfaz en modo monitor (wlan0mon)...<br>
+# [+] Escaneo en curso: Capturando beacon frames y evaluando vectores WPS/PMKID.</span>
             </div>
             <a href="https://github.com/rodrigo47363/NekoFI" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-top: 20px;">Ver en GitHub →</a>
         </div>
 
-        <div class="hero-project" data-aos="fade-up" data-aos-delay="100">
+        <!-- Proyecto Destacado 3: OSIdentifier.py -->
+        <div class="hero-project" data-aos="fade-up" data-aos-delay="200" style="border-top: 3px solid #3b82f6;">
             <h3>🕵️ OSIdentifier.py — Passive OS Fingerprinting</h3>
-            <p>Herramienta de Python que clasifica sistemas operativos remotos analizando heurísticamente los valores TTL de paquetes ICMP, garantizando cero interacción activa con el target.</p>
+            
+            <div class="hero-tag-bar">
+                <span class="hero-tag" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.4);">Python 3</span>
+                <span class="hero-tag">Scapy Engine</span>
+                <span class="hero-tag">Passive Recon</span>
+                <span class="hero-tag">TTL Heuristics</span>
+                <span class="hero-tag">Stealth Mode</span>
+            </div>
+
+            <p>Herramienta de Python que clasifica sistemas operativos remotos analizando heurísticamente los valores TTL y firmas TCP/IP de paquetes capturados en la red, garantizando cero interacción activa con el target para máxima discreción operativa.</p>
             <ul>
-                <li><strong>Objetivo:</strong> Reconocimiento sigiloso (Stealth) en redes altamente monitorizadas.</li>
-                <li><strong>Stack:</strong> Python 3 + <code>scapy</code> para manipulación y disección de tráfico a bajo nivel.</li>
+                <li><strong>Objetivo:</strong> Reconocimiento sigiloso (Stealth) en redes corporativas con sistemas IDS/IPS activos.</li>
+                <li><strong>Stack:</strong> Python 3 + <code>scapy</code> para disección e inspección de paquetes en modo promiscuo a bajo nivel.</li>
             </ul>
             <div class="bash-snippet">
-<span class="comment"># Ejecución en modo escucha (Sniffing)</span><br>
-<span class="cmd">sudo</span> python3 OSIdentifier.py --interface wlp3s0 --capture-time 60<br>
+<span class="comment"># Ejecución en modo escucha pasiva (Sniffing)</span><br>
+<span class="cmd">git clone</span> https://github.com/rodrigo47363/OSIdentifier.git && <span class="cmd">cd</span> OSIdentifier<br>
+<span class="cmd">sudo python3</span> OSIdentifier.py --interface wlp3s0 --capture-time 60<br>
 <br>
 <span class="comment"># Output esperado:<br>
-# [+] Host: 192.168.1.15 | TTL: 64  | OS Inferido: Linux/Unix<br>
-# [+] Host: 192.168.1.45 | TTL: 128 | OS Inferido: Windows</span>
+# [+] Sniffing activo en interfaz wlp3s0 (0 paquetes emitidos)...<br>
+# [+] Host: 192.168.1.15 | TTL: 64  | OS Inferido: Linux/Unix (Kernel 5.x/6.x)<br>
+# [+] Host: 192.168.1.45 | TTL: 128 | OS Inferido: Windows 10/11 Enterprise</span>
             </div>
             <a href="https://github.com/rodrigo47363/OSIdentifier" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-top: 20px;">Ver en GitHub →</a>
         </div>
 
-        <div class="hero-project" data-aos="fade-up" data-aos-delay="200">
-            <h3>⚡ AcerSense Pro — InsydeH2O BIOS Reversing & Linux Suite</h3>
-            <p>Suite nativa en Rust con interfaz acelerada por GPU para control térmico a 6,122 RPM y gestión de hardware en Linux, desarrollada tras realizar ingeniería inversa de firmware UEFI InsydeH2O.</p>
+        <!-- Proyecto Destacado 4: AutoBurp.sh -->
+        <div class="hero-project" data-aos="fade-up" data-aos-delay="300" style="border-top: 3px solid #f59e0b;">
+            <h3>🚀 AutoBurp.sh — Automated Burp Suite Deployment Suite</h3>
+            
+            <div class="hero-tag-bar">
+                <span class="hero-tag" style="color: #fbbf24; border-color: rgba(251, 191, 36, 0.4);">Bash Idempotente</span>
+                <span class="hero-tag">Web Pentesting</span>
+                <span class="hero-tag">Burp Suite Pro/Community</span>
+                <span class="hero-tag">OpenJDK Java</span>
+                <span class="hero-tag">Linux Workstations</span>
+            </div>
+
+            <p>Utilidad idempotente en Bash para automatizar la instalación, configuración de dependencias, atajos de escritorio y despliegue continuo de PortSwigger Burp Suite en distribuciones Linux de pentesting (Parrot OS, Kali Linux, Debian).</p>
             <ul>
-                <li><strong>Objetivo:</strong> Superar el bucle de anulación en Ring -2 (SMM) y otorgar control directo del Embedded Controller (EC) en Ring-0.</li>
-                <li><strong>Stack:</strong> Rust + <code>egui/eframe</code> + ingeniería inversa ACPI/WMI con Ghidra e <code>iasl</code>.</li>
+                <li><strong>Objetivo:</strong> Estandarización de entornos de auditoría web y reducción a cero del tiempo de setup en nuevas máquinas operativas.</li>
+                <li><strong>Highlights:</strong> Detección y aprovisionamiento automático del runtime Java OpenJDK compatible, generación de lanzadores en <code>/usr/local/bin</code> e integración nativa con menús XDG y Rofi.</li>
             </ul>
             <div class="bash-snippet">
-<span class="comment"># Compilación e inicio de la suite nativa</span><br>
-<span class="cmd">git clone</span> https://github.com/rodrigo47363/acersense-linux.git && <span class="cmd">cd</span> acersense-linux<br>
-<span class="cmd">cargo</span> build --release<br>
-<span class="cmd">sudo</span> ./target/release/acersense-gui<br>
+<span class="comment"># Aprovisionamiento automatizado</span><br>
+<span class="cmd">git clone</span> https://github.com/rodrigo47363/AutoBurp.git && <span class="cmd">cd</span> AutoBurp<br>
+<span class="cmd">chmod</span> +x autoburp.sh<br>
+<span class="cmd">sudo</span> ./autoburp.sh --install<br>
 <br>
-<span class="comment"># Telemetría en tiempo real:<br>
-# [*] Embedded Controller EC Compal inicializado (0x62 / 0x66)<br>
-# [+] CPU Fan: 5,660 RPM | GPU Fan: 6,122 RPM [Max Cool Mode: ACTIVE]</span>
+<span class="comment"># Output esperado:<br>
+# [*] Comprobando entorno de ejecución y dependencias OpenJDK...<br>
+# [+] Runtime Java verificado. Descargando última versión de PortSwigger.<br>
+# [+] Binario configurado en /usr/local/bin/burpsuite y acceso directo creado.</span>
             </div>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-                <a href="https://github.com/rodrigo47363/acersense-linux" target="_blank" rel="noopener noreferrer" class="project-link">Ver en GitHub →</a>
-                <a href="../posts/acersense-linux-rust.html" class="project-link" style="color: var(--text-color); opacity: 0.85;">Leer Writeup Técnico →</a>
-            </div>
+            <a href="https://github.com/rodrigo47363/AutoBurp" target="_blank" rel="noopener noreferrer" class="project-link" style="margin-top: 20px;">Ver en GitHub →</a>
         </div>
         
-        <h3 style="margin-top: 60px; margin-bottom: 20px; color: var(--accent-color);">📦 Otros Repositorios</h3>
+        <!-- Catálogo Dinámico con Buscador y Filtros -->
+        <div style="margin-top: 60px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <h3 style="margin: 0; color: var(--accent-color);">📦 Catálogo Completo de Repositorios Públicos</h3>
+            <span id="repoCountBadge" style="font-size: 0.85em; background: rgba(59, 130, 246, 0.15); color: var(--accent-color); padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(59, 130, 246, 0.3); font-weight: 600;">Cargando repositorios...</span>
+        </div>
 
+        <div class="repo-search-container" data-aos="fade-up">
+            <input type="text" id="repoSearchInput" placeholder="🔍 Buscar repositorios por nombre, tecnología o tag (ej. rust, wifi, burp, python, c)..." class="repo-search-input" aria-label="Buscar repositorios">
+            
+            <div class="repo-filter-bar" id="repoFilterButtons" role="tablist" aria-label="Filtrar repositorios por categoría">
+                <button class="repo-filter-btn active" data-filter="all">Todos</button>
+                <button class="repo-filter-btn" data-filter="security">🛡️ Seguridad &amp; WiFi</button>
+                <button class="repo-filter-btn" data-filter="rust-c">⚡ Rust &amp; C</button>
+                <button class="repo-filter-btn" data-filter="python">🐍 Python</button>
+                <button class="repo-filter-btn" data-filter="bash">🐧 Bash / Linux</button>
+                <button class="repo-filter-btn" data-filter="stars">⭐ Más Populares</button>
+            </div>
+        </div>
 
         <ul class="repos-list" id="all-repos-list" data-aos="fade-up" data-aos-delay="100">
             <li class="glass">
-                <strong style="color: var(--accent-color);">Cargando repositorios...</strong>
-                <p class="repos-desc">Espera un momento.</p>
+                <strong style="color: var(--accent-color);">Cargando telemetría de GitHub...</strong>
+                <p class="repos-desc">Obteniendo el catálogo de repositorios desde la API oficial.</p>
             </li>
         </ul>
 
-        <div class="glass" data-aos="fade-up" style="margin-top: 60px; padding: 30px; border-radius: 16px;">
+        <!-- Rules of Engagement & Ética -->
+        <div class="glass" data-aos="fade-up" style="margin-top: 60px; padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);">
             <h3 style="color: var(--accent-color); margin-bottom: 20px;">📜 Rules of Engagement (RoE) y Contribuciones</h3>
-            <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 15px; margin-bottom: 20px; border-radius: 0 8px 8px 0;">
-                <strong style="color: #ef4444;">⚠️ Aviso Legal y Ética:</strong><br>
-                Todo el código, frameworks y pruebas de concepto (PoCs) alojados en mis repositorios están desarrollados <strong>estrictamente para auditorías autorizadas, operaciones de Red Teaming y entornos de laboratorio</strong>. El uso indebido de estas herramientas fuera del marco legal y ético aplicable es responsabilidad exclusiva del operador final.
+            <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 18px; margin-bottom: 20px; border-radius: 0 10px 10px 0;">
+                <strong style="color: #ef4444;">⚠️ Marco Ético y Operativo:</strong><br>
+                Todo el código, frameworks, scripts y pruebas de concepto (PoCs) alojados en mis repositorios están desarrollados <strong>estrictamente para auditorías autorizadas, simulaciones Red Team en entornos controlados y propósitos de investigación técnica</strong>. El operador es el único responsable de contar con el debido acuerdo de autorización por escrito antes de cualquier despliegue.
             </div>
-            <p><strong>Política de PRs:</strong> Fomento la colaboración técnica orientada al <em>stealth</em> y la optimización operativa. Si deseas contribuir: realiza un <em>fork</em>, trabaja en una rama descriptiva y documenta el impacto de red de tus cambios. Cualquier modificación que altere payloads debe integrar obligatoriamente validaciones de seguridad (<code>safety-checks</code>).</p>
+            <p style="line-height: 1.7; opacity: 0.9;"><strong>Pautas de Contribución y PRs:</strong> Se fomenta la colaboración técnica enfocada en la eficiencia, el sigilo operacional y la seguridad de memoria. Para contribuir: genera un <em>fork</em> del repositorio, desarrolla tus cambios en una rama descriptiva y valida que los scripts respeten directivas defensivas (<code>set -euo pipefail</code>) o tests unitarios pertinentes.</p>
         </div>
     </main>
 
@@ -221,7 +415,7 @@
     </script>
 
     <!-- Modal de Búsqueda Global (Ctrl+K) -->
-    <div class="global-search-modal" id="globalSearchModal">
+    <div class="global-search-modal" id="globalSearchModal" role="dialog" aria-modal="true" aria-label="Búsqueda global">
         <div class="global-search-content glass">
             <div class="global-search-header">
                 <input type="text" id="globalSearchInput" placeholder="Buscar páginas, artículos, proyectos... (ESC para cerrar)" autocomplete="off">
